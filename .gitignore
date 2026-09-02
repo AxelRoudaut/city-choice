@@ -1,0 +1,11 @@
+_site/
+.jekyll-cache/
+.jekyll-metadata
+vendor/
+.bundle/
+Gemfile.lock
+
+# Polices rapatriées par `just fonts` : le site en ligne utilise le CDN Google.
+# Décommentez la ligne suivante si vous préférez servir les polices depuis le
+# dépôt (il faut alors les committer).
+assets/fonts/

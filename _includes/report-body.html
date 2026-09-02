@@ -1,0 +1,1034 @@
+<div class="wrap">
+
+<header class="masthead">
+  <p class="eyebrow">Rapport de décision · déménagement · septembre 2026</p>
+  <h1>Cinq villes<br>au banc d'essai</h1>
+  <p class="standfirst">Rennes, Montpellier, Grenoble, Chambéry, Toulon — comparées sur six critères, avec les chiffres et les sources derrière chacun. Les pondérations sont réglables&nbsp;: le classement se recalcule.</p>
+  <p class="byline"><span>12 critères</span><span>5 villes</span><span>29 sources</span><span>Données 1991–2026</span></p>
+</header>
+
+<div class="verdict">
+  <div>
+    <h2>Ce que disent les données</h2>
+    <p><strong>Rennes prend la tête</strong> sur la pondération par défaut (7,2), devant Grenoble (6,8) et Chambéry (6,3). Rennes est la seule ville du panel sans point faible majeur en dehors d'un seul — la falaise. Grenoble tient par l'escalade et le vélo, Chambéry par l'équilibre nature, Montpellier par le centre-ville, Toulon par la mer.</p>
+    <p>La ligne de fracture reste nette : <strong>Rennes = emploi, logement, ville quotidienne</strong> ; <strong>Grenoble = falaise et vélo</strong> ; <strong>Chambéry = nature, sans marché de l'emploi pour le second poste</strong>. Les douze curseurs ci-dessous servent à trancher.</p>
+  </div>
+  <div>
+    <h2>Les trois signaux à retenir</h2>
+    <p><strong>Le poste de conseillère en insertion est le facteur limitant</strong>, pas le poste DevOps — et les deux marchés ne se classent pas dans le même ordre. Chambéry n'affichait qu'<em>une</em> offre CIP, contre 26 à Montpellier et 23 à Rennes.</p>
+    <p><strong>La cuvette grenobloise joue dans les deux sens</strong> : elle produit le pire score climat du panel et le meilleur score vélo de France. Le même trait géographique, deux conséquences opposées.</p>
+    <p><strong>Montpellier est la seule ville où mobilité et cadre urbain se contredisent</strong> : le plus beau centre piéton du panel, et la 3<sup>e</sup> congestion de France, en aggravation.</p>
+  </div>
+</div>
+
+<div class="tool">
+  <div class="tool-rank">
+    <h3>Classement pondéré</h3>
+    <p class="hint">Note sur 10, agrégée à partir des douze critères. Réglez l'importance de chacun à droite.</p>
+    <div id="ranking"></div>
+  </div>
+  <div>
+    <h3>Vos priorités</h3>
+    <p class="hint">Poids relatif de chaque critère. Le total est normalisé automatiquement.</p>
+    <div id="sliders"></div>
+    <button class="reset" id="reset" type="button">Rétablir les poids par défaut</button>
+  </div>
+</div>
+
+<!-- ============ EMPLOI DEVOPS ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 1 · emploi</p>
+      <h2>Ingénieur DevOps</h2>
+    </div>
+    <p class="crit-ask">Un marché qui suit les écosystèmes tech : volume d'offres, mais aussi diversité des employeurs, qui conditionne la mobilité à cinq ans.</p>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">HelloWork</th><th class="n">Indeed</th><th class="n">Chômage dép.</th><th>Spécialisation du bassin</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Rennes</th>
+          <td class="n">68<span class="cellbar"><i style="width:100%"></i></span></td>
+          <td class="n">86</td>
+          <td class="n">6,6 %<br><span class="chip ok">sous la moyenne</span></td>
+          <td>8<sup>e</sup> métropole numérique de France, 27 300 emplois. Capitale cyber : ~170 entreprises, ~8 000 emplois. ESN, éditeurs, télécoms, secteur public</td></tr>
+        <tr><th>Grenoble</th>
+          <td class="n">13<span class="cellbar"><i style="width:19%"></i></span></td>
+          <td class="n">83<br><span class="chip mid">écart de plateforme</span></td>
+          <td class="n">6,6 %<br><span class="chip ok">sous la moyenne</span></td>
+          <td>Embarqué, IoT, semi-conducteurs, recherche : CEA, STMicroelectronics, Schneider, Soitec. Profil « systèmes » plutôt que web</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">42<span class="cellbar"><i style="width:62%"></i></span></td>
+          <td class="n">—</td>
+          <td class="n">10,9 %<br><span class="chip bad">le plus élevé</span></td>
+          <td>Occitanie = 2<sup>e</sup> région numérique hors Île-de-France (~131 000 pros, &gt;75 % sur Toulouse et Montpellier). Édition logicielle, santé numérique, startups</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">27<span class="cellbar"><i style="width:40%"></i></span></td>
+          <td class="n">—</td>
+          <td class="n">7,9 %<br><span class="chip mid">= moyenne nat.</span></td>
+          <td>Défense et naval : arsenal, Naval Group, DGA et leur sous-traitance. Peu de tech civile, souvent avec habilitation</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">11<span class="cellbar"><i style="width:16%"></i></span></td>
+          <td class="n">—</td>
+          <td class="n">5,7 %<br><span class="chip ok">le plus bas</span></td>
+          <td>Savoie Technolac : 230 entreprises, 3 500 emplois, 1 000 chercheurs. French Tech in the Alps. Bassin réel mais étroit — et Grenoble est à 55 km</td></tr>
+      </tbody>
+      <caption>Relevé HelloWork, requête « devops », rayon 20 km, septembre 2026 — série homogène entre villes. Colonne Indeed relevée pour les deux bassins où elle était disponible : l'écart Grenoble 13/83 mesure un biais de plateforme, pas un marché. Chômage : taux localisés Insee, 1<sup>er</sup> trimestre 2026 (provisoire) ; France métropolitaine 7,9 %.</caption>
+    </table>
+  </div>
+
+  <p>Rennes et Grenoble sortent en tête, pour des raisons opposées : Rennes par le volume et la diversité — c'est le bassin où l'on peut changer d'employeur sans déménager ; Grenoble par la profondeur industrielle, avec des postes plus rares mais plus durables, et un profil très infrastructure. Toulon concentre son offre sur la défense, ce qui rétrécit le champ des employeurs possibles.</p>
+</section>
+
+<!-- ============ EMPLOI CIP ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 2 · emploi</p>
+      <h2>Conseillère en insertion socio-professionnelle</h2>
+    </div>
+    <p class="crit-ask">Un marché qui suit le public à accompagner et les financements publics locaux — donc, mécaniquement, le taux de chômage du bassin.</p>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Offres</th><th class="n">Chômage dép.</th><th>Employeurs types</th><th>Lecture</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Montpellier</th>
+          <td class="n">26<span class="cellbar green"><i style="width:100%"></i></span></td>
+          <td class="n">10,9 %</td>
+          <td>Missions locales, structures d'insertion par l'activité économique, associations, organismes de formation</td>
+          <td>Le plus gros volume, tiré par le chômage le plus élevé du panel. Contrepartie : beaucoup de CDD adossés à des financements annuels, et une concurrence forte entre candidats</td></tr>
+        <tr><th>Rennes</th>
+          <td class="n">23<span class="cellbar green"><i style="width:88%"></i></span></td>
+          <td class="n">6,6 %</td>
+          <td>Économie sociale et solidaire bretonne, très dense ; collectivités, missions locales, France Travail et ses prestataires</td>
+          <td><span class="chip ok">meilleur rapport</span> Presque autant d'offres que Montpellier avec un chômage bien plus bas : le tissu associatif y est structurellement plus étoffé</td></tr>
+        <tr><th>Grenoble</th>
+          <td class="n">15<span class="cellbar green"><i style="width:58%"></i></span></td>
+          <td class="n">6,6 %</td>
+          <td>Métropole, agglomération, réseau IAE de l'Isère, associations</td>
+          <td>Volume correct pour la taille du bassin. Suffisant pour une recherche active, pas pour choisir</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">6<span class="cellbar green"><i style="width:23%"></i></span></td>
+          <td class="n">7,9 %</td>
+          <td>Missions locales varoises, associations</td>
+          <td>Faible au regard du chômage local : le tissu associatif est plus restreint que ne le laisserait attendre la taille de l'agglomération</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">1<span class="cellbar green"><i style="width:4%"></i></span></td>
+          <td class="n">5,7 %</td>
+          <td>Régie de quartier, une mission locale, quelques associations</td>
+          <td><span class="chip bad">le point de blocage</span> Une seule offre relevée. Il faudrait viser la Savoie entière — Aix-les-Bains, Albertville, Annecy à 50 min — ou accepter une recherche longue</td></tr>
+      </tbody>
+      <caption>Relevé HelloWork, requête « conseiller insertion professionnelle », rayon 20 km, septembre 2026, recoupé avec les listes France Travail. Chômage : taux localisés Insee, T1 2026 (provisoire).</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Pourquoi ce critère mérite son propre curseur</span>
+    <p>Les deux marchés ne se classent pas dans le même ordre, et pour Chambéry ils s'opposent frontalement : <strong>le meilleur taux de chômage des cinq (5,7 %) produit le pire marché du conseil en insertion</strong>. Un bassin où l'on chôme peu est un bassin où l'on recrute peu de CIP — les deux vont ensemble, ce n'est pas une anomalie de relevé.</p>
+    <p>Symétriquement, Montpellier doit ses 26 offres aux 10,9 % de chômage de l'Hérault. Le volume est réel, la stabilité des postes l'est moins.</p>
+    <p>Rennes est la seule ville où les deux marchés sont simultanément profonds. C'est son principal argument dans tout ce dossier.</p>
+  </div>
+</section>
+
+<!-- ============ IMMOBILIER ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 3</p>
+      <h2>Le logement, dans un rayon de 15 km</h2>
+    </div>
+    <p class="crit-ask">Une maison de plus de 60 m² avec jardin, 1 200 € par mois maximum, jusqu'à 10 km au-delà des limites de la ville — soit environ 15 km depuis le centre. Éviter les villes très minérales, à grands immeubles.</p>
+  </div>
+
+  <p>Rapporté au m², 1 200 € donne un plafond de 20 €/m² pour 60 m², 15 €/m² pour 80 m², 12 €/m² pour 100 m². Comparé aux loyers médians observés, le budget passe partout — <em>sur le papier</em>. La contrainte réelle est ailleurs, et le rayon la rend visible : ce qui compte n'est pas le prix moyen de l'agglomération, c'est <strong>ce que contient précisément la couronne accessible</strong>. Selon la taille de la ville, 15 km donnent accès à de la campagne ou s'arrêtent au tissu urbain dense.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Loyer médian</th><th>Ce que couvrent 15 km</th><th>Type de tissu</th><th>Verdict maison + jardin ≤ 1 200 €</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Rennes</th>
+          <td class="n">11,6 €/m²<span class="cellbar green"><i style="width:85%"></i></span></td>
+          <td>Toute la première couronne (Cesson-Sévigné, Chantepie, Saint-Grégoire, Le Rheu, Pacé, Chartres-de-Bretagne, Betton) <strong>plus</strong> la deuxième : Bruz, Acigné, Noyal-sur-Vilaine, Mordelles, Melesse, L'Hermitage</td>
+          <td>Bourgs distincts séparés par du bocage, très majoritairement pavillonnaires, tous reliés au centre par le réseau bus et les voies vélo</td>
+          <td><span class="chip ok">la plus atteignable</span> Le rayon englobe deux couronnes complètes de maisons. Zone tendue, mais sans loyers de référence</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">12,8 €/m²<span class="cellbar warm"><i style="width:93%"></i></span></td>
+          <td>Cognin, Barberaz, La Ravoire, Saint-Alban-Leysse, Challes-les-Eaux, La Motte-Servolex, Voglans, Le Bourget-du-Lac, puis Saint-Baldoph, Apremont, Chignin, Les Marches, Montmélian</td>
+          <td>Ville de 60 000 habitants : 15 km atteignent le vignoble et les coteaux de Chartreuse et des Bauges. Quasi aucun grand ensemble</td>
+          <td><span class="chip ok">très favorable</span> Le rayon sort largement de l'urbain, touche le lac du Bourget au nord et la combe de Savoie à l'est</td></tr>
+        <tr><th>Grenoble</th>
+          <td class="n">11,4 €/m²<span class="cellbar green"><i style="width:83%"></i></span></td>
+          <td>Le cœur dense d'abord (Échirolles, Saint-Martin-d'Hères, Fontaine, Saint-Égrève), puis l'entrée du Grésivaudan — Montbonnot, Saint-Ismier, Le Versoud, Villard-Bonnot, Bernin — et Voreppe, Vif, Champ-sur-Drac</td>
+          <td>Deux tissus très différents dans le même rayon : grands ensembles dans les 10 premiers kilomètres, pavillonnaire de vallée au-delà</td>
+          <td><span class="chip mid">15 km change tout</span> À 10 km, le rayon ne contenait que de l'immeuble ; à 15, il atteint enfin le Grésivaudan et le Voironnais, où la maison avec jardin devient réaliste</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">12,9 €/m²<span class="cellbar warm"><i style="width:94%"></i></span></td>
+          <td>La Valette-du-Var, La Garde, Le Revest-les-Eaux, Le Pradet, Ollioules, La Seyne-sur-Mer, puis La Crau, Carqueiranne, Six-Fours, La Farlède, Solliès-Pont</td>
+          <td>Littoral urbain dense d'un côté, collines pavillonnaires et vallée du Gapeau de l'autre</td>
+          <td>Faisable en remontant vers l'intérieur (Solliès, La Farlède, Le Revest) ; difficile côté mer, où le saisonnier et les résidences secondaires assèchent l'offre longue durée</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">13,7 €/m²<span class="cellbar hot"><i style="width:100%"></i></span></td>
+          <td>Castelnau-le-Lez, Clapiers, Jacou, Le Crès, Montferrier, Grabels, Juvignac, Saint-Jean-de-Védas, Lattes, Pérols, puis Saint-Gély-du-Fesc, Saint-Clément-de-Rivière, Teyran, Assas, Fabrègues, Baillargues, Mauguio</td>
+          <td>Couronne très villa-pavillonnaire, la plus étalée du panel — mais aussi le marché le plus cher et le plus disputé</td>
+          <td>Le tissu existe en abondance ; le prix et la concurrence font barrage. Encadrement strict avec loyers de référence depuis déc. 2021</td></tr>
+      </tbody>
+      <caption>Loyers médians hors charges, tous types de logements : Observatoires des loyers (réseau OLL / DHUP) — Rennes et Grenoble millésime 2024, Montpellier et Toulon 2025. Chambéry : médiane maisons 12,81 €/m² (Observatoire DHUP 2025). Rayon de 15 km à vol d'oiseau depuis le centre-ville, soit environ 10 km au-delà des limites communales. Le loyer médian mélange appartements et maisons ; les maisons se louent généralement plus grandes et un peu moins cher au m².</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Pourquoi 15 km plutôt que 10 change le classement</span>
+    <p>À 10 km du centre, Grenoble était la ville la plus pénalisée du dossier : son rayon ne contenait que le cœur dense de la métropole — Échirolles, Saint-Martin-d'Hères, Fontaine — c'est-à-dire précisément les grands ensembles à éviter. <strong>Les cinq kilomètres supplémentaires font entrer le Grésivaudan et Voreppe dans le périmètre</strong>, et lui rendent une bonne partie de son avantage prix : c'est le loyer médian le plus bas des cinq.</p>
+    <p>Le rayon élargi profite à toutes les villes, mais pas également : Rennes et Chambéry gagnent une deuxième couronne franchement rurale, Toulon reste bridée par la géographie littorale, et Montpellier gagne du tissu sans gagner en accessibilité — le prix reste le facteur limitant.</p>
+  </div>
+</section>
+
+<!-- ============ CENTRE-VILLE PIÉTON & ARCHITECTURE ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 4</p>
+      <h2>Centre piéton et architecture</h2>
+    </div>
+    <p class="crit-ask">Un centre-ville rendu aux piétons, et un bâti qui vaut la peine d'être traversé à pied tous les jours.</p>
+  </div>
+
+  <p>Ces deux qualités ne vont pas ensemble. Une ville peut avoir massivement piétonnisé un centre sans intérêt architectural, ou conserver un cœur historique remarquable où la voiture reste omniprésente. Le croisement des deux indicateurs sépare nettement le panel.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Part piétonne</th><th class="n">Monuments hist.</th><th>Cœur historique</th><th>Lecture croisée</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Montpellier</th>
+          <td class="n">5 %<br><span class="chip mid">12<sup>e</sup></span><span class="cellbar"><i style="width:50%"></i></span></td>
+          <td class="n">119<br><span class="chip ok">22<sup>e</sup> de France</span><span class="cellbar green"><i style="width:100%"></i></span></td>
+          <td>L'Écusson médiéval, ruelles et hôtels particuliers des XVII<sup>e</sup>–XVIII<sup>e</sup>, place de la Comédie, Peyrou</td>
+          <td><span class="chip ok">le meilleur croisement</span> 160 hectares d'aires piétonnes, la plus grande surface de France, posés sur le patrimoine le plus riche du panel</td></tr>
+        <tr><th>Rennes</th>
+          <td class="n">8 %<br><span class="chip ok">3<sup>e</sup></span><span class="cellbar"><i style="width:80%"></i></span></td>
+          <td class="n">98<br><span class="chip ok">26<sup>e</sup> de France</span><span class="cellbar green"><i style="width:82%"></i></span></td>
+          <td>Centre médiéval à pans de bois (place Sainte-Anne, rue Saint-Michel), Parlement de Bretagne, ensembles classiques post-incendie de 1720</td>
+          <td>Zone à trafic limité de 40 hectares sur le centre historique, l'une des plus ambitieuses de France. Métropole d'art et d'histoire depuis 1986, centre régi par un plan de sauvegarde</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">n.c.<br><span class="chip ok">vieille ville intégralement piétonne</span></td>
+          <td class="n">25<span class="cellbar green"><i style="width:21%"></i></span></td>
+          <td>Vieille ville d'inspiration piémontaise : arcades de la rue de Boigne, cours intérieures, façades colorées, château des ducs de Savoie, Fontaine des Éléphants</td>
+          <td>Ville d'art et d'histoire. Le nombre de monuments est faible, mais l'ensemble est homogène et compact — c'est la cohérence qui fait la qualité, pas le décompte</td></tr>
+        <tr><th>Grenoble</th>
+          <td class="n">10 %<br><span class="chip ok">1<sup>re</sup> de France</span><span class="cellbar"><i style="width:100%"></i></span></td>
+          <td class="n">37<br><span class="chip mid">92<sup>e</sup></span><span class="cellbar green"><i style="width:31%"></i></span></td>
+          <td>Noyau ancien réduit autour de Saint-André et du Jardin de Ville ; le reste est très majoritairement un tissu du XX<sup>e</sup> siècle</td>
+          <td><span class="chip bad">le grand écart</span> Pionnière de la piétonnisation dans les années 1970 et première ville de France en part piétonne — mais l'architecture est le point faible reconnu de la ville</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">3 %<br><span class="chip bad">25<sup>e</sup></span><span class="cellbar"><i style="width:30%"></i></span></td>
+          <td class="n">25<span class="cellbar green"><i style="width:21%"></i></span></td>
+          <td>Basse ville et vieux Toulon, place Puget et sa fontaine, opéra, Atlantes de Puget sur l'hôtel de ville</td>
+          <td>Vraie matière architecturale, longtemps dégradée, en réhabilitation depuis plus de dix ans. La part piétonne reste la plus faible du panel</td></tr>
+      </tbody>
+      <caption>Part piétonne : classement villes.plus, surface des zones piétonnes rapportée à la surface communale mesurée — Grenoble 1,9 km² sur 18,4 ; Rennes 4,1 sur 50,3 ; Montpellier 3,0 sur 57,1 ; Toulon 1,2 sur 44,1. Chambéry n'entre pas dans le périmètre de ce classement. Monuments historiques classés ou inscrits : décompte par commune, Wikipédia d'après la base Mérimée, avec le rang national. Surfaces piétonnes de Montpellier : ville de Montpellier ; ZTL de Rennes : Rue de l'Avenir.</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Le piège de ce critère</span>
+    <p>Pris isolément, l'indicateur piéton couronnerait Grenoble et l'indicateur patrimonial couronnerait Montpellier. <strong>Croisés, ils désignent Montpellier et Rennes</strong>, seules villes fortes sur les deux plans — et ils font descendre Grenoble, dont le centre piéton traverse un bâti sans grande qualité.</p>
+    <p>Chambéry est le cas particulier du panel : trop petite pour figurer dans les classements nationaux, mais dotée d'une vieille ville entièrement piétonne et d'une identité architecturale piémontaise que ses 25 monuments classés sous-estiment largement.</p>
+  </div>
+</section>
+
+<!-- ============ VIE DE CENTRE-VILLE ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 5</p>
+      <h2>Vie de centre-ville</h2>
+    </div>
+    <p class="crit-ask">Bars, restaurants, boutiques : un centre habité le soir et le week-end, pas une vitrine.</p>
+  </div>
+
+  <p>L'indicateur de référence est le taux de vacance commerciale — la part des locaux vides en rez-de-chaussée. Il mesure directement ce qu'on ressent en marchant dans une rue. La moyenne nationale s'établissait à 10,6 % en 2025, un niveau record.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Vacance commerciale</th><th>Tendance</th><th>Ce qui fait la vie du centre</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Rennes</th>
+          <td class="n">9,4 %<br><span class="chip ok">sous la moyenne</span><span class="cellbar green"><i style="width:100%"></i></span></td>
+          <td>En résilience : depuis 2019, +20 cafés-restaurants, +18 commerces alimentaires spécialisés, +34 santé-beauté — les fermetures se concentrent sur l'habillement (−79)</td>
+          <td>2 156 locaux commerciaux, dont <strong>61 % d'indépendants</strong>. Place Sainte-Anne et rue Saint-Michel pour les bars, marché des Lices (l'un des plus grands de France), ~66 000 étudiants</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">10,7 %<br><span class="chip mid">= moyenne</span><span class="cellbar green"><i style="width:88%"></i></span></td>
+          <td>Stable, dans la moyenne nationale</td>
+          <td>L'Écusson est l'un des centres les plus animés du sud : densité de bars et de terrasses très élevée, place de la Comédie, ~70 000 étudiants. Forte saisonnalité touristique</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">~10–11 %<br><span class="chip mid">= moyenne</span><span class="cellbar green"><i style="width:85%"></i></span></td>
+          <td>Sous surveillance : la ville et la CCI ont lancé « la Boîte à commerce » et des boutiques éphémères pour résorber la vacance</td>
+          <td>Halles de Chambéry, marché, ruelles de la vieille ville. Offre réelle mais plafonnée par la taille : 60 000 habitants ne portent pas la même densité de bars et de restaurants</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">n.d.<span class="cellbar warm"><i style="width:45%"></i></span></td>
+          <td><span class="chip ok">redressement</span> Plus de dix ans de rénovation du centre ancien : piétonnisation, foncière de redynamisation, services publics réimplantés</td>
+          <td>Marché du cours Lafayette, l'un des plus réputés de France ; les Halles, la rue des Arts et la place de l'Équerre forment le nouveau pôle. Parti d'une base très basse</td></tr>
+        <tr><th>Grenoble</th>
+          <td class="n">13–14 %<br><span class="chip bad">le plus élevé</span><span class="cellbar hot"><i style="width:100%"></i></span></td>
+          <td><span class="chip bad">en dégradation</span> Taux doublé en dix ans (~6 % → ~14 %). Transactions −7 % en 2025, surfaces louées 14 012 → 11 088 m²</td>
+          <td>Vraie vie étudiante (~60 000 étudiants) autour de Saint-André et du cours Berriat, mais plus de 20 % de vacance sur le cours Berriat et la rue Chenoise, deux axes historiques</td></tr>
+      </tbody>
+      <caption>Taux de vacance commerciale : Observatoire du commerce du centre-ville rennais 2025 (2 156 locaux relevés en avril 2025), qui publie également les comparaisons Montpellier 10,7 % et Grenoble 13 % ; moyenne nationale 10,64 % (Procos, 2025). Grenoble ~14 % et données de transactions : Le Dauphiné, avril 2026. Chambéry : CCI Savoie et presse locale. Toulon : aucun taux comparable publié — la trajectoire est documentée par la ville et l'association Centre-Ville en Mouvement, pas le niveau.</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Ce que ce critère révèle</span>
+    <p><strong>C'est le critère qui pénalise le plus Grenoble</strong>, et il pointe dans la même direction que le précédent : une ville très piétonne, mais dont le commerce de centre décline nettement — le taux de vacance a doublé en dix ans et dépasse 20 % sur deux axes historiques. Un centre piéton vide reste un centre vide.</p>
+    <p>Inversement, <strong>Rennes et Montpellier sont les deux vraies villes de centre-ville du panel</strong>, avec un avantage à Rennes sur la solidité (9,4 % de vacance, 61 % d'indépendants, croissance des cafés-restaurants) et à Montpellier sur l'intensité et la durée de la saison en terrasse.</p>
+  </div>
+</section>
+
+<!-- ============ VÉLO ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 6</p>
+      <h2>Le vélo au quotidien</h2>
+    </div>
+    <p class="crit-ask">Des aménagements cyclables qui permettent les trajets de tous les jours — domicile-travail, courses, école — et pas seulement la balade du dimanche.</p>
+  </div>
+
+  <p>Le baromètre de la Fédération française des usagers de la bicyclette est l'instrument de référence : il note le ressenti réel des cyclistes sur la sécurité, le confort, le stationnement et la politique locale, avec 334 000 réponses en 2025. Le relief compte autant que le réseau — et sur ce point le panel réserve une surprise.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Baromètre FUB 2025</th><th>Réseau</th><th>Relief</th><th>Lecture</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Grenoble</th>
+          <td class="n">A · 4,37<br><span class="chip ok">1<sup>re</sup> grande ville</span><span class="cellbar green"><i style="width:100%"></i></span></td>
+          <td>Réseau Chronovélo en site propre, location longue durée Métrovélo, continuité métropolitaine</td>
+          <td><span class="chip ok">plat</span> Le fond de cuvette qui pénalise le climat est un atout ici : la ville est parfaitement plate</td>
+          <td><strong>Meilleure ville cyclable de France</strong>, toutes catégories. Le vélo y est le mode le plus rapide sur la plupart des trajets urbains</td></tr>
+        <tr><th>Rennes</th>
+          <td class="n">B · 4,05<br><span class="chip ok">3<sup>e</sup> grande ville</span><span class="cellbar green"><i style="width:93%"></i></span></td>
+          <td>Réseau Express Vélo (REV) en cours de déploiement, zone à trafic limité de 40 ha sur le centre</td>
+          <td>Relief doux, quelques faux plats</td>
+          <td>Sur le podium national. Le REV vise précisément les trajets quotidiens depuis la couronne — cohérent avec une maison à 15 km</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">5<sup>e</sup> ville moyenne<span class="cellbar green"><i style="width:72%"></i></span></td>
+          <td>Ville pionnière de la mobilité douce, réseau ancien et continu à l'échelle d'une petite ville</td>
+          <td><span class="chip mid">vallonné</span> Cluse plate, mais les coteaux montent vite</td>
+          <td>Bon niveau, mais l'association locale note que la progression est plus lente que celle des autres villes de sa catégorie : Chambéry n'est plus sur le podium</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">n.c.<span class="cellbar green"><i style="width:60%"></i></span></td>
+          <td>235 km de « vélo-lignes » express programmées, dont 170 km d'ici 2026 ; 160 km existants ; plan mobilité à 150 M€</td>
+          <td><span class="chip ok">plat</span></td>
+          <td>Rattrapage massif en cours, sur une base faible : l'objectif affiché est de passer la part modale de 4 % à 10 %</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">n.c.<span class="cellbar warm"><i style="width:22%"></i></span></td>
+          <td>Réseau passé de 125 km (2006) à 269 km (2018), objectif 400 km au schéma directeur</td>
+          <td><span class="chip bad">accidenté</span> Ville en amphithéâtre, coincée entre mer et massifs</td>
+          <td><span class="chip bad">le plus faible</span> La part modale stagne autour de <strong>2 %</strong>, contre 9 % à Bordeaux ou Strasbourg : le réseau s'allonge sans changer les pratiques</td></tr>
+      </tbody>
+      <caption>Baromètre vélo 2025 de la FUB, enquête du 28 février au 2 juin 2025, résultats publiés le 18 septembre 2025 : 334 563 réponses, 2 776 communes qualifiées, notes de A+ (≥ 4,6) à G (&lt; 2,3), la moyenne nationale se situant en D. Montpellier et Toulon : note non retrouvée dans les sources consultées, l'appréciation repose sur les données d'infrastructure et de part modale publiées par les deux métropoles et la FUB. Réseaux : Montpellier Méditerranée Métropole, Métropole Toulon Provence Méditerranée (schéma directeur des aménagements cyclables).</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Le paradoxe grenoblois</span>
+    <p>La cuvette qui vaut à Grenoble ses canicules et ses pics d'ozone est exactement ce qui en fait la première ville cyclable de France : un fond de vallée parfaitement plat, dense, avec un réseau en site propre. <strong>Le même trait géographique produit le pire score climat et le meilleur score vélo du dossier.</strong></p>
+    <p>À l'opposé, Toulon cumule le relief, la coupure des axes routiers et une part modale bloquée à 2 % : c'est la seule ville du panel où le vélo quotidien reste difficile malgré un réseau en extension.</p>
+  </div>
+</section>
+
+<!-- ============ EMBOUTEILLAGES ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 7</p>
+      <h2>Les embouteillages</h2>
+    </div>
+    <p class="crit-ask">Défavoriser les villes denses à forte circulation, où chaque déplacement en voiture coûte du temps.</p>
+  </div>
+
+  <p>L'indice TomTom mesure le temps supplémentaire nécessaire pour un trajet par rapport à des conditions fluides, sur 29 villes françaises. Il se lit avec le critère précédent : une ville très embouteillée mais très cyclable ne pose pas le même problème qu'une ville embouteillée où le vélo n'est pas une option.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Congestion 2025</th><th class="n">Heures perdues / an</th><th>Tendance</th><th>Cause structurelle</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Chambéry</th>
+          <td class="n">hors panel<br><span class="chip ok">trop petite</span></td>
+          <td class="n">—</td>
+          <td>Non mesurée : Chambéry ne fait pas partie des 29 villes suivies</td>
+          <td>60 000 habitants. Circulation contrainte par l'étroitesse de la cluse et les échangeurs A41/A43, mais sans commune mesure avec une métropole</td></tr>
+        <tr><th>Rennes</th>
+          <td class="n">n.c.<span class="cellbar warm"><i style="width:45%"></i></span></td>
+          <td class="n">—</td>
+          <td>Stable par rapport à 2024</td>
+          <td>Rocade unique qui concentre les flux, mais ville compacte et alternatives crédibles (REV, métro, bus)</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">31 %<span class="cellbar warm"><i style="width:66%"></i></span></td>
+          <td class="n">—</td>
+          <td><span class="chip ok">en baisse</span> 34 % → 31 %. <strong>Seule ville française où le temps de trajet moyen a diminué en 2025</strong>, grâce à l'élargissement de l'A57 à 2×3 voies sur 7 km</td>
+          <td>Autoroutes A50 et A57 traversant l'agglomération, ville étirée entre mer et massifs, pas de contournement</td></tr>
+        <tr><th>Grenoble</th>
+          <td class="n">n.c.<span class="cellbar hot"><i style="width:72%"></i></span></td>
+          <td class="n">—</td>
+          <td><span class="chip ok">en baisse</span> L'une des six seules villes françaises dont l'indice a reculé en 2025</td>
+          <td>Cuvette où trois vallées convergent : A480 et rocade sud saturées aux heures de pointe, peu d'itinéraires alternatifs</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">41,4 %<br><span class="chip bad">3<sup>e</sup> de France</span><span class="cellbar hot"><i style="width:100%"></i></span></td>
+          <td class="n">85 h<br><span class="chip bad">+2 h</span></td>
+          <td><span class="chip bad">en hausse</span> 40,5 % → 41,4 %</td>
+          <td>Croissance démographique la plus rapide du panel, étalement urbain, A9 et A709 en limite d'agglomération</td></tr>
+      </tbody>
+      <caption>TomTom Traffic Index, édition 2026 portant sur l'année 2025 : 29 villes françaises, données de plus de 600 millions d'appareils. L'indice de congestion est le pourcentage de temps additionnel par rapport à un trajet en conditions fluides ; les heures perdues correspondent à un trajet de 10 km effectué matin et soir aux heures de pointe. Référence haute : Lyon, 47,2 % et 121 h. Les valeurs individuelles de Rennes et Grenoble ne figurent pas dans le communiqué national, seules leurs tendances y sont indiquées.</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Croisé avec le critère précédent</span>
+    <p><strong>Montpellier est la seule ville du panel où les deux signaux vont dans le même mauvais sens</strong> : 3<sup>e</sup> ville la plus embouteillée de France, en aggravation, avec une part modale vélo encore à 4 %. Le réseau cyclable arrive, mais après le problème.</p>
+    <p>Grenoble est embouteillée <em>et</em> première ville cyclable de France : concrètement, le bouchon se contourne à vélo. Toulon est le cas inverse — une congestion en nette amélioration, mais aucune alternative crédible au volant.</p>
+    <p>Chambéry échappe simplement à la question par sa taille, ce qui est en soi un avantage.</p>
+  </div>
+</section>
+
+<!-- ============ CLIMAT ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 8</p>
+      <h2>Le climat</h2>
+    </div>
+    <p class="crit-ask">Pénaliser le gris et la pluie. Pénaliser aussi les périodes répétées au-delà de 35 °C.</p>
+  </div>
+
+  <p>Ce critère élimine les extrêmes des deux côtés, ce qui ne laisse aucune option confortable : les villes ensoleillées sont les villes chaudes. Deux indicateurs séparent malgré tout les profils — le nombre de jours à plus de 30 °C, et surtout le nombre de <em>nuits tropicales</em> (minimale ≥ 20 °C), qui détermine si la maison se rafraîchit la nuit.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Soleil</th><th class="n">Pluie</th><th class="n">Jours de pluie</th><th class="n">Jours ≥ 30 °C</th><th class="n">Nuits ≥ 20 °C</th><th class="n">Record</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Rennes</th>
+          <td class="n">1 762 h<span class="cellbar"><i style="width:61%"></i></span></td>
+          <td class="n">691 mm</td><td class="n">114,5</td>
+          <td class="n">8,9<span class="cellbar hot"><i style="width:20%"></i></span></td>
+          <td class="n">0,5</td><td class="n">41,3 °C<br><span class="chip mid">juin 2026</span></td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">1 895 h<span class="cellbar"><i style="width:65%"></i></span></td>
+          <td class="n">1 204 mm<br><span class="chip bad">le plus pluvieux</span></td><td class="n">114,6</td>
+          <td class="n">24,7<span class="cellbar hot"><i style="width:56%"></i></span></td>
+          <td class="n">1,3</td><td class="n">40,5 °C</td></tr>
+        <tr><th>Grenoble</th>
+          <td class="n">2 108 h<span class="cellbar"><i style="width:73%"></i></span></td>
+          <td class="n">915 mm</td><td class="n">107,7</td>
+          <td class="n">35,2<span class="cellbar hot"><i style="width:81%"></i></span></td>
+          <td class="n">1,5</td><td class="n">39,5 °C</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">2 705 h<span class="cellbar"><i style="width:93%"></i></span></td>
+          <td class="n">639 mm</td><td class="n">57,9</td>
+          <td class="n">34,2<span class="cellbar hot"><i style="width:78%"></i></span></td>
+          <td class="n">28,5</td><td class="n">43,5 °C<br><span class="chip bad">le plus chaud</span></td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">2 899 h<span class="cellbar"><i style="width:100%"></i></span></td>
+          <td class="n">633 mm</td><td class="n">60,9</td>
+          <td class="n">43,7<span class="cellbar hot"><i style="width:100%"></i></span></td>
+          <td class="n">68,7<br><span class="chip bad">1 nuit sur 5</span></td><td class="n">40,1 °C</td></tr>
+      </tbody>
+      <caption>Normales Météo-France 1991–2020. Stations : Rennes-St-Jacques (07130), Chambéry-Aix (07491), Grenoble-Le Versoud (07487, 220 m — station de la vallée, plus représentative de la ville que St-Geoirs), Montpellier-Fréjorgues (07643), Toulon-Le Baou (00057, série de 13 ans seulement). Ensoleillement et cumul de pluie de Grenoble mesurés à St-Geoirs (2 108 h / 915 mm).</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Lecture</span>
+    <p><strong>Toulon a le plus de jours chauds mais peu de jours à plus de 35 °C</strong> : la brise de mer écrête les pointes — son record absolu (40,1 °C) est le plus bas des trois villes du Sud. En revanche, 69 nuits tropicales par an, contre 1,5 à Grenoble : la maison ne refroidit jamais de juin à septembre. C'est le vrai coût du climat toulonnais.</p>
+    <p><strong>Grenoble est le piège inverse</strong> : autant de jours à 30 °C que Montpellier, dans une cuvette où l'air stagne, avec un îlot de chaleur urbain parmi les plus marqués de France et des pics d'ozone en épisode caniculaire. Mais les nuits redescendent.</p>
+    <p><strong>Sur la page Open DPE que vous citez</strong>, attention à la période : elle couvre la saison de chauffe (15 octobre – 15 avril), c'est donc un indicateur de <em>froid</em>, pas de canicule. Elle situe Toulon à 11,1 °C de moyenne hivernale et Chambéry à 6,4 °C, avec un centile 0,5 % à +1,3 °C pour Toulon contre −6,7 °C à Grenoble.</p>
+  </div>
+</section>
+
+<!-- ============ ENVIRONNEMENT ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 9</p>
+      <h2>L'environnement</h2>
+    </div>
+    <p class="crit-ask">Favoriser les grands espaces naturels verts. Éviter l'aride et l'industriel.</p>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th>Grands espaces à proximité</th><th>Nature en ville</th><th>Réserve</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Chambéry</th>
+          <td>PNR du Massif des Bauges (Geopark UNESCO) et PNR de Chartreuse (86 000 ha, 72 communes) de part et d'autre de la cluse ; Belledonne à l'est</td>
+          <td>Ville de vallée, très végétalisée, aucun grand bassin industriel</td>
+          <td><span class="chip ok">le meilleur profil</span> Fond de cluse encaissé, inversions hivernales</td></tr>
+        <tr><th>Rennes</th>
+          <td>Bocage breton, forêts de Rennes et de Paimpont-Brocéliande ; golfe du Morbihan et côte d'Émeraude à 1 h–1 h 30</td>
+          <td>2<sup>e</sup> ville la plus verte de France (Observatoire des villes vertes, après Angers)</td>
+          <td>Pas de parc naturel régional à proximité immédiate ; paysage agricole intensif</td></tr>
+        <tr><th>Grenoble</th>
+          <td>PNR du Vercors (205 000 ha, dont une réserve naturelle de 17 000 ha) + PNR de Chartreuse + Belledonne. ~40 min de porte à porte</td>
+          <td>Ville très minérale et très dense, taux de couverture végétale 3–4 %</td>
+          <td><span class="chip mid">air</span> Cuvette : épisodes ozone et PM10 récurrents, îlot de chaleur fort</td></tr>
+        <tr><th>Toulon</th>
+          <td>Massifs du Faron et du Coudon en balcon sur la ville, Sainte-Baume, parc national de Port-Cros, calanques</td>
+          <td><span class="chip bad">le plus faible accès</span> À peine un tiers des habitants ont un parc à moins de 300 m</td>
+          <td>Arsenal et port militaire : ville portuaire dense, pression foncière littorale</td></tr>
+        <tr><th>Montpellier</th>
+          <td>Garrigues, Pic Saint-Loup, causses ; Cévennes et Camargue à ~1 h</td>
+          <td>~2,5 m² de parcs pour dix habitants ; paysage périurbain très étalé</td>
+          <td><span class="chip bad">aridité</span> Milieu sec de type garrigue, forte exposition au feu de forêt</td></tr>
+      </tbody>
+      <caption>Sources : Fédération des Parcs naturels régionaux, offices de tourisme de Grenoble et Chambéry Montagnes, Observatoire des villes vertes (Unep–Hortis), Insee « accès aux espaces verts dans les grands centres urbains », ville de Montpellier (risque feux de forêt), Atmo / presse locale pour la qualité de l'air grenobloise.</caption>
+    </table>
+  </div>
+</section>
+
+<!-- ============ NATURE ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 10</p>
+      <h2>La falaise</h2>
+    </div>
+    <p class="crit-ask">Densité et variété des secteurs d'escalade naturelle accessibles depuis le domicile.</p>
+  </div>
+
+  <p>C'est le critère le plus discriminant du dossier. Deux seuils comptent davantage qu'un volume total : ce qu'on atteint <strong>à vélo après le travail</strong>, et ce qu'on atteint <strong>en une heure de voiture</strong> le week-end. Le premier détermine si grimper reste une habitude ; le second, si le stock tient sur plusieurs années.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">≤ 40 min à vélo<br>≈ 12 km</th><th class="n">≤ 1 h de voiture<br>≈ 50–70 km</th><th class="n">Sites &lt; 30 km<br>(mesuré)</th><th class="n">Voies &lt; 30 km</th><th>Ce qu'on atteint à vélo</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Grenoble</th>
+          <td class="n">≈ 10<br><span class="chip ok">et à plat</span><span class="cellbar green"><i style="width:100%"></i></span></td>
+          <td class="n">≈ 250+<span class="cellbar green"><i style="width:100%"></i></span></td>
+          <td class="n">166</td>
+          <td class="n">6 070</td>
+          <td>Comboire et Les Vouillands sont à 4 minutes de voiture, Poussebou à 6, Le Petit Désert à 10, Saint-Égrève-Rochepleine à ~9 km — tous accessibles par les pistes cyclables de la vallée, sans dénivelé</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">≈ 8<br><span class="chip mid">gros dénivelé</span><span class="cellbar green"><i style="width:80%"></i></span></td>
+          <td class="n">≈ 100<span class="cellbar green"><i style="width:40%"></i></span></td>
+          <td class="n">46</td>
+          <td class="n">3 320</td>
+          <td>Les quatre faces du Faron, le Coudon, Le Destel et le Baou de 4 Ouro sont tous dans le rayon — mais le Faron culmine à 580 m : l'approche à vélo est une vraie montée</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">≈ 5<span class="cellbar green"><i style="width:50%"></i></span></td>
+          <td class="n">≈ 200<span class="cellbar green"><i style="width:80%"></i></span></td>
+          <td class="n">87</td>
+          <td class="n">3 072</td>
+          <td>Saint-Alban-Leysse (91 voies) est à ~4 km du centre, Mouxy et les secteurs du Nivolet à une douzaine. L'heure de voiture ouvre ensuite les Bauges, la Chartreuse, le Bugey et l'avant-pays</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">≈ 0–1<span class="cellbar warm"><i style="width:8%"></i></span></td>
+          <td class="n">≈ 60<span class="cellbar green"><i style="width:24%"></i></span></td>
+          <td class="n">16</td>
+          <td class="n">446</td>
+          <td><span class="chip bad">rien à vélo</span> La garrigue grimpable commence à 20 km au nord. En revanche l'heure de voiture est très productive : Thaurac, Hortus, Claret, Séranne, gorges de l'Hérault</td></tr>
+        <tr><th>Rennes</th>
+          <td class="n">≈ 1–2<span class="cellbar warm"><i style="width:15%"></i></span></td>
+          <td class="n">≈ 8<span class="cellbar warm"><i style="width:3%"></i></span></td>
+          <td class="n">6</td>
+          <td class="n">98</td>
+          <td>Le Boël (33 voies) est à ~13 km par la vallée de la Vilaine, accessible à vélo par la voie verte. Au-delà, l'heure de voiture n'ajoute presque rien : le stock breton est ailleurs</td></tr>
+      </tbody>
+      <caption><strong>Colonnes « mesuré »</strong> : comptages Oblyk, rayon fixe de 30 km, consultés en septembre 2026, recoupés avec ClimbingAway, escalade-france.fr et les listes de sites naturels de la FFME. <strong>Colonnes 40 min / 1 h</strong> : estimations raisonnées, reconstruites à partir des secteurs nommés par Oblyk et de leurs distances réelles — Oblyk n'offre pas de rayon paramétrable et son API publique est fermée. Un décompte OpenStreetMap a été testé puis écarté (voir les limites). Équivalences retenues : 40 min à vélo ≈ 12 km à plat et moins en relief ; 1 h de voiture ≈ 50 km en montagne, 70 km en plaine — ce qui avantage mécaniquement Rennes et Montpellier dans la conversion.</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Ce que le seuil « à vélo » révèle</span>
+    <p>Le volume total masque une différence de nature. <strong>Grenoble est la seule ville où l'on peut grimper après le travail sans voiture et sans dénivelé</strong> : une dizaine de secteurs dans le rayon cyclable, sur le plat, reliés par les pistes de la vallée. C'est le croisement direct des critères vélo et falaise.</p>
+    <p>Toulon a autant de secteurs dans le rayon, mais le Faron se mérite : 580 m de montée à l'approche. Chambéry en a la moitié, à plat pour les plus proches. <strong>Montpellier n'a rien à vélo</strong> et compense entièrement par la voiture. Rennes n'a ni l'un ni l'autre — l'heure de voiture n'y ajoute presque aucun secteur.</p>
+  </div>
+
+  <div class="callout">
+    <span class="lab">À noter</span>
+    <p>Si la falaise est une pratique hebdomadaire et non un loisir de vacances, <strong>Rennes est disqualifiante</strong> : 98 voies, aucune grande voie, un stock épuisé en une saison. C'est le seul point du dossier où l'écart n'est pas une affaire de pondération mais de nature.</p>
+    <p>Chambéry et Toulon se tiennent en volume, mais pas en usage : Toulon offre la seule grimpe hivernale confortable du panel, Chambéry la plus grande variété — grande voie, trad, via ferrata.</p>
+  </div>
+</section>
+
+<!-- ============ MER & LAC ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 11</p>
+      <h2>Mer et lac</h2>
+    </div>
+    <p class="crit-ask">Proximité d'une eau libre où se baigner et naviguer, et sur quelle durée dans l'année.</p>
+  </div>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th>Plan d'eau le plus proche</th><th class="n">Distance</th><th>Baignade</th><th>Le reste</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Toulon</th>
+          <td>Méditerranée — plages du Mourillon, dans la ville même</td>
+          <td class="n">0 km<span class="cellbar"><i style="width:100%"></i></span></td>
+          <td><span class="chip ok">quotidienne</span> Saison longue, mer encore praticable en octobre</td>
+          <td>Rade abritée, presqu'île de Giens à 25 km, calanques, parc national de Port-Cros. Voile, plongée, kayak toute l'année</td></tr>
+        <tr><th>Chambéry</th>
+          <td>Lac du Bourget, plus grand lac naturel de France</td>
+          <td class="n">10 km<span class="cellbar"><i style="width:82%"></i></span></td>
+          <td><span class="chip ok">surveillée</span> 23 à 26 °C en juillet, plages aménagées</td>
+          <td>Deuxième plan d'eau à 21 km : lac d'Aiguebelette, moteurs thermiques interdits, eau parmi les plus chaudes des lacs alpins. Voile, aviron, paddle</td></tr>
+        <tr><th>Montpellier</th>
+          <td>Méditerranée — Palavas-les-Flots, Carnon</td>
+          <td class="n">10 km<span class="cellbar"><i style="width:82%"></i></span></td>
+          <td><span class="chip ok">surveillée</span> Saison longue, mais plages très fréquentées l'été</td>
+          <td>La Grande-Motte à 20 km ; lagunes et étangs (étang de l'Or, bassin de Thau) pour la voile légère et le kitesurf</td></tr>
+        <tr><th>Grenoble</th>
+          <td>Lac de Monteynard, puis lac de Laffrey</td>
+          <td class="n">25–30 km<span class="cellbar warm"><i style="width:38%"></i></span></td>
+          <td><span class="chip mid">contrainte</span> Baignade interdite à Monteynard. Laffrey : autorisée mais non surveillée, rive nord</td>
+          <td>Monteynard est un spot de kitesurf et de kayak réputé, avec ses passerelles himalayennes. Plages surveillées au lac de Paladru, mais à ~45 min</td></tr>
+        <tr><th>Rennes</th>
+          <td>Lac de Trémelin (Iffendic), en forêt de Brocéliande</td>
+          <td class="n">35 km<span class="cellbar warm"><i style="width:26%"></i></span></td>
+          <td><span class="chip mid">estivale</span> Surveillée 13 h 30 – 19 h, du 27 juin au 31 août, label Pavillon Bleu</td>
+          <td>Mer à Saint-Malo, 69 km / ~55 min : accessible en week-end, pas en soirée. Base nautique et VTT à Trémelin</td></tr>
+      </tbody>
+      <caption>Distances routières depuis le centre-ville. Sources : Grenoble Alpes Tourisme (lacs et plans d'eau autour de Grenoble), Chambéry Montagnes et offices de tourisme du lac du Bourget et d'Aiguebelette, site du lac de Trémelin (Iffendic) pour les horaires de baignade surveillée 2026, offices de tourisme de Toulon et de Montpellier Méditerranée.</caption>
+    </table>
+  </div>
+
+  <p>Séparé de la falaise, ce critère renverse le classement : <strong>Grenoble, premier sur la falaise, tombe en avant-dernier sur l'eau</strong> — les lacs sont là mais loin, et le plus proche interdit la baignade. Chambéry est la seule ville du panel à être forte sur les deux à la fois, avec une falaise à cinq minutes et deux lacs de baignade à moins de vingt.</p>
+</section>
+
+<!-- ============ RISQUES ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Critère 12</p>
+      <h2>Risques et dérèglement climatique</h2>
+    </div>
+    <p class="crit-ask">Sécheresse, inondation, et exposition aux aléas à venir.</p>
+  </div>
+
+  <p>L'indicateur le plus comparable est le nombre d'arrêtés de catastrophe naturelle pris sur la commune depuis 1982, par type d'aléa. Il mesure la fréquence réelle des sinistres reconnus, pas seulement l'aléa théorique.</p>
+
+  <div class="tscroll">
+    <table>
+      <thead>
+        <tr><th>Ville</th><th class="n">Arrêtés CatNat</th><th class="n">dont inondation</th><th class="n">dont sécheresse</th><th>Sismique</th><th>Radon</th><th>Autres expositions</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>Grenoble</th>
+          <td class="n">5<span class="cellbar hot"><i style="width:14%"></i></span></td><td class="n">3</td><td class="n">1</td>
+          <td>Zone 4 — moyenne</td><td>Classe 1</td>
+          <td>TRI Grenoble-Voiron : Isère, Drac, Romanche. Endigué, mais aléa majeur en cas de rupture. 87 ICPE actives, 0 PPRT</td></tr>
+        <tr><th>Chambéry</th>
+          <td class="n">12<span class="cellbar hot"><i style="width:33%"></i></span></td><td class="n">8</td><td class="n">1</td>
+          <td>Zone 4 — moyenne</td><td>Catégorie 2</td>
+          <td>TRI Chambéry–Aix (Leysse, Albanne). 1 arrêté mouvement de terrain, 1 secousse sismique</td></tr>
+        <tr><th>Rennes</th>
+          <td class="n">14<span class="cellbar hot"><i style="width:39%"></i></span></td><td class="n">12</td><td class="n">0</td>
+          <td>Zone 2 — faible</td><td>Classe 3</td>
+          <td>Aucun arrêté sécheresse en 40 ans. Mais l'Ille-et-Vilaine était placée en alerte sécheresse sur tout le département en août 2026 : le risque se déplace</td></tr>
+        <tr><th>Toulon</th>
+          <td class="n">26<span class="cellbar hot"><i style="width:72%"></i></span></td><td class="n">13</td><td class="n">5</td>
+          <td>Zone 2 — faible</td><td>Classe 3</td>
+          <td>4 arrêtés « chocs mécaniques liés aux vagues », 4 mouvements de terrain, 15 cavités, 2 PPRT. Feu de forêt et submersion marine</td></tr>
+        <tr><th>Montpellier</th>
+          <td class="n">36<span class="cellbar hot"><i style="width:100%"></i></span></td><td class="n">16</td><td class="n">15</td>
+          <td>Zone 2 — faible</td><td>Classe 1</td>
+          <td><span class="chip bad">le plus exposé</span> Crues éclair du Lez et de la Mosson, feu de forêt au nord de la commune, bassins héraultais placés en crise sécheresse en juillet 2026</td></tr>
+      </tbody>
+      <caption>Arrêtés de catastrophe naturelle : base GASPAR de Géorisques (API publique), tous arrêtés depuis 1982, requêtés par code Insee — Grenoble 38185, Chambéry 73065, Rennes 35238, Toulon 83137, Montpellier 34172. Zonage sismique et potentiel radon : Géorisques, restitués via france-cadastre. Arrêtés sécheresse 2026 : préfectures d'Ille-et-Vilaine, de l'Hérault et de l'Isère.</caption>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="lab">Deux réserves de méthode</span>
+    <p>Le <strong>retrait-gonflement des argiles</strong> — la cause des fissures de maison en période de sécheresse — ressort à « non concerné » pour les cinq communes dans l'agrégateur consulté, ce qui est très probablement une limite de restitution : plus d'une maison sur deux en France est en zone d'aléa moyen ou fort. Ce risque se vérifie <em>à l'adresse</em>, sur Géorisques, une fois un bien identifié.</p>
+    <p>Le décompte d'arrêtés favorise mécaniquement Grenoble, où l'endiguement de l'Isère et du Drac limite les sinistres reconnus tout en concentrant un aléa résiduel élevé. À lire avec le classement TRI, pas seul.</p>
+  </div>
+</section>
+
+<!-- ============ PROS / CONS ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Synthèse</p>
+      <h2>Avantages et inconvénients, ville par ville</h2>
+    </div>
+    <p class="crit-ask">Les points qui feraient réellement pencher la décision, une fois les six critères croisés.</p>
+  </div>
+
+  <div class="pc-grid">
+    <div class="pc">
+      <h3>Grenoble</h3>
+      <p class="sub">Isère (38) · ~158 000 hab.</p>
+      <h4 class="plus">Avantages</h4>
+      <ul>
+        <li>6 070 voies à moins de 30 km, dont plusieurs falaises à 5 minutes de la ville — sans équivalent en France</li>
+        <li>Trois massifs et deux parcs naturels régionaux à 40 minutes</li>
+        <li>Chômage à 6,6 %, écosystème tech dense et durable (embarqué, semi-conducteurs, recherche) ; 15 offres CIP, correct pour la taille du bassin</li>
+        <li>Loyer médian le plus bas des cinq (11,4 €/m²)</li>
+        <li><strong>Première ville cyclable de France</strong> (baromètre FUB : A, 4,37) — le fond de cuvette est parfaitement plat</li>
+        <li>Peu de sinistres reconnus, nuits fraîches malgré les canicules</li>
+      </ul>
+      <h4 class="minus">Inconvénients</h4>
+      <ul>
+        <li>35 jours à plus de 30 °C, cuvette où l'air stagne, îlot de chaleur parmi les plus forts de France</li>
+        <li>Pics d'ozone et de particules récurrents</li>
+        <li><strong>Le rayon de 10 km ne contient quasiment que de l'immeuble</strong> : Échirolles, Saint-Martin-d'Hères, Fontaine. Le pavillonnaire abordable est à 15–25 km</li>
+        <li>Pas de mer ; lacs à 25–30 km et baignade interdite au plus proche (Monteynard)</li>
+        <li>Zone sismique 4 et aléa inondation majeur derrière les digues</li>
+        <li>Centre-ville en déclin commercial : 13–14 % de vacance, taux doublé en dix ans, plus de 20 % sur le cours Berriat et la rue Chenoise</li>
+        <li>Patrimoine architectural pauvre (37 monuments, 92<sup>e</sup> rang) malgré la 1<sup>re</sup> part piétonne de France</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <h3>Rennes</h3>
+      <p class="sub">Ille-et-Vilaine (35) · ~225 000 hab.</p>
+      <h4 class="plus">Avantages</h4>
+      <ul>
+        <li>Le seul bassin où <em>les deux</em> métiers ont un marché profond : 68 offres DevOps, 23 offres CIP</li>
+        <li>8<sup>e</sup> métropole numérique française, pôle cyber majeur — sécurité de carrière DevOps à long terme</li>
+        <li>La première couronne tombe pile dans le rayon de 10 km — Cesson-Sévigné, Le Rheu, Pacé, Chantepie : la maison + jardin à 1 200 € y est la plus atteignable du panel</li>
+        <li>2<sup>e</sup> ville la plus verte de France</li>
+        <li>Presque aucune canicule : 8,9 jours à 30 °C, 0,5 nuit tropicale par an</li>
+        <li>Aucun arrêté sécheresse en quarante ans</li>
+        <li>Centre-ville le plus solide du panel : 9,4 % de vacance commerciale, 61 % d'indépendants, cafés-restaurants en croissance ; centre médiéval à pans de bois et ZTL de 40 ha</li>
+        <li>3<sup>e</sup> ville cyclable de France (B, 4,05), Réseau Express Vélo pensé pour les trajets depuis la couronne</li>
+      </ul>
+      <h4 class="minus">Inconvénients</h4>
+      <ul>
+        <li>98 voies d'escalade en tout, sans grande voie : rédhibitoire si la falaise structure votre semaine</li>
+        <li>Eau libre pauvre : lac de Trémelin à 35 km, baignade surveillée deux mois par an ; mer à 69 km</li>
+        <li>1 762 h de soleil et 114 jours de pluie : le climat le plus gris des cinq</li>
+        <li>12 arrêtés inondation, potentiel radon de classe 3</li>
+        <li>Pas de grand espace naturel protégé à proximité immédiate</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <h3>Chambéry</h3>
+      <p class="sub">Savoie (73) · ~60 000 hab.</p>
+      <h4 class="plus">Avantages</h4>
+      <ul>
+        <li><strong>Seule ville forte à la fois sur la falaise et sur l'eau</strong> : 3 072 voies et 33 sites de grande voie d'un côté, lac du Bourget à 10 km et Aiguebelette à 21 km de l'autre</li>
+        <li>Deux parcs naturels régionaux de part et d'autre, dont un Geopark UNESCO</li>
+        <li>Ville de 60 000 habitants : 10 km suffisent à atteindre le semi-rural, très peu de grands ensembles</li>
+        <li>Chômage le plus bas des cinq (5,7 %)</li>
+        <li>Chaleur modérée pour le sud-est : 24,7 jours à 30 °C, 1,3 nuit tropicale</li>
+        <li>Vieille ville entièrement piétonne, arcades piémontaises, Ville d'art et d'histoire</li>
+        <li>Trop petite pour les embouteillages : elle ne figure même pas dans les 29 villes suivies par TomTom</li>
+      </ul>
+      <h4 class="minus">Inconvénients</h4>
+      <ul>
+        <li><strong>Marché de l'emploi le plus étroit</strong> : 11 offres DevOps, 1 seule offre CIP relevée</li>
+        <li>1 204 mm de pluie par an — la ville la plus pluvieuse du panel, et 1 895 h de soleil seulement</li>
+        <li>Fond de cluse encaissé : inversions thermiques et grisaille hivernale</li>
+        <li>Zone sismique 4, TRI Chambéry–Aix, radon catégorie 2</li>
+        <li>Dépendance à Grenoble, Annecy ou Lyon pour l'évolution de carrière</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <h3>Toulon</h3>
+      <p class="sub">Var (83) · ~180 000 hab.</p>
+      <h4 class="plus">Avantages</h4>
+      <ul>
+        <li>2 899 h de soleil : le plus ensoleillé de France métropolitaine</li>
+        <li>3 320 voies dont Le Destel, Cimaï et le Faron, littéralement au-dessus de la ville</li>
+        <li>La mer sur place, toute l'année</li>
+        <li>Record absolu le plus bas des trois villes du Sud (40,1 °C) : la brise de mer écrête les pointes au-delà de 35 °C</li>
+        <li>Massifs et parc national de Port-Cros à proximité</li>
+        <li>Seule ville française dont le temps de trajet moyen a baissé en 2025 (congestion 34 % → 31 %, élargissement de l'A57)</li>
+      </ul>
+      <h4 class="minus">Inconvénients</h4>
+      <ul>
+        <li><strong>69 nuits tropicales par an</strong> : de juin à septembre, la maison ne refroidit pas la nuit</li>
+        <li>6 offres CIP seulement, tissu tech civil restreint (27 offres DevOps, très orientées défense)</li>
+        <li>Accès aux espaces verts le plus faible de France parmi les grandes villes</li>
+        <li>26 arrêtés CatNat, feu de forêt, submersion marine, 2 PPRT</li>
+        <li>Marché locatif littoral tendu par le saisonnier et les résidences secondaires</li>
+        <li><strong>Le vélo quotidien n'y fonctionne pas</strong> : part modale bloquée à 2 % malgré 269 km d'aménagements — relief en amphithéâtre et coupures autoroutières</li>
+        <li>Part piétonne la plus faible du panel (3 %, 25<sup>e</sup>) ; centre ancien en réhabilitation, parti de très bas</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <h3>Montpellier</h3>
+      <p class="sub">Hérault (34) · ~305 000 hab.</p>
+      <h4 class="plus">Avantages</h4>
+      <ul>
+        <li>26 offres CIP : le meilleur marché du panel pour le second poste</li>
+        <li>2 705 h de soleil, mer à 10 km, seulement 58 jours de pluie par an</li>
+        <li>Écosystème numérique réel (2<sup>e</sup> région hors Île-de-France), profil édition logicielle</li>
+        <li>Cévennes, Camargue et Pic Saint-Loup à moins d'une heure</li>
+      </ul>
+      <h4 class="minus">Inconvénients</h4>
+      <ul>
+        <li><strong>10,9 % de chômage dans l'Hérault</strong>, le plus haut du panel — offres CIP nombreuses mais très disputées et souvent en CDD</li>
+        <li>Loyers les plus élevés (13,7 €/m²) et marché le plus tendu pour une maison</li>
+        <li>36 arrêtés CatNat dont 15 sécheresses et 16 inondations : le profil de risque le plus lourd</li>
+        <li>28 nuits tropicales, record à 43,5 °C, bassins placés en crise sécheresse en 2026</li>
+        <li>Milieu de garrigue aride, forte exposition au feu ; seulement 446 voies à 30 km</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <h3>Une sixième option</h3>
+      <p class="sub">Le sillon alpin · Voiron – Montmélian</p>
+      <h4 class="plus">Pourquoi y penser</h4>
+      <ul>
+        <li>Chambéry et Grenoble sont à 55 km : depuis Voiron, Pontcharra ou Montmélian, on accède aux <em>deux</em> bassins d'emploi</li>
+        <li>Cela résout le point faible de Chambéry (marché CIP minuscule) sans perdre l'accès à la Chartreuse, au Vercors et au lac du Bourget</li>
+        <li>Marché locatif nettement moins tendu que dans les deux villes-centres : la maison avec jardin à 1 200 € y est un objectif réaliste</li>
+      </ul>
+      <h4 class="minus">Ce que ça coûte</h4>
+      <ul>
+        <li><strong>Sort du rayon de 10 km</strong> : c'est le seul scénario du dossier qui demande d'abandonner cette contrainte</li>
+        <li>Un des deux emplois impliquera un trajet quotidien de 30 à 45 minutes</li>
+        <li>Vie urbaine et services réduits par rapport aux villes-centres</li>
+        <li>Le climat reste celui du sillon alpin : pluvieux, gris en hiver, chaud en vallée l'été</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ RECOMMANDATION ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div>
+      <p class="crit-tag">Conclusion</p>
+      <h2>Comment trancher</h2>
+    </div>
+    <p class="crit-ask">La décision ne se joue pas sur un score global mais sur trois questions préalables.</p>
+  </div>
+
+  <div class="col">
+    <p><strong>Première question : la falaise est-elle une pratique hebdomadaire ou une pratique de vacances ?</strong> Si c'est hebdomadaire, Rennes sort du dossier et Montpellier devient marginale ; il reste Grenoble, Chambéry et Toulon. Si c'est une pratique de séjour, Rennes redevient la candidate la plus solide sur tout le reste.</p>
+    <p><strong>Deuxième question : quel poste doit se trouver en premier ?</strong> Le conseil en insertion est le marché le plus contraint, et il classe les villes dans un ordre presque inverse de celui de la falaise — Montpellier 26, Rennes 23, Grenoble 15, Toulon 6, Chambéry 1. Si ce poste doit être sécurisé avant le déménagement, Chambéry devient très risquée et Toulon fragile.</p>
+    <p><strong>Troisième question : à quel point la vie urbaine quotidienne compte-t-elle ?</strong> C'est ce qui sépare désormais les deux premières. Rennes et Montpellier ont les vrais centres-villes du panel — commerce dense, patrimoine, terrasses. Grenoble a la première part piétonne de France posée sur le patrimoine le plus pauvre et le commerce le plus en déclin : 13–14 % de vacance, taux doublé en dix ans.</p>
+    <p>En croisant les trois, <strong>Rennes arrive en tête</strong> parce qu'elle est la seule ville sans point faible majeur en dehors d'un seul : le marché de l'emploi le plus profond pour les deux métiers, le logement le plus accessible dans le rayon, le centre-ville le plus solide, la 3<sup>e</sup> place au baromètre vélo, les risques les plus faibles. Son unique défaut est massif — l'escalade y est quasi inexistante, à vélo comme en voiture.</p>
+    <p><strong>Grenoble est le choix si la falaise et le vélo priment.</strong> C'est la seule ville où l'on grimpe après le travail sans voiture ni dénivelé, et la première ville cyclable de France. Le prix à payer est le climat de cuvette et un centre-ville sans grand intérêt, commercialement en recul.</p>
+    <p><strong>Chambéry reste le meilleur équilibre nature</strong> — falaise, deux lacs, deux parcs, vieille ville piétonne, pas d'embouteillages — à condition de résoudre d'abord la question du poste de conseillère en insertion, qui est un obstacle réel et non un détail. C'est précisément ce que desserre l'option Voiron – Montmélian ci-dessus, au prix de la contrainte des 15 km.</p>
+    <p><strong>Montpellier et Toulon décrochent pour des raisons opposées</strong> : Montpellier a le plus beau centre et le pire trafic, un chômage à 10,9 % et le profil de risque le plus lourd ; Toulon a la mer et la falaise mais aucun des deux marchés de l'emploi, et un vélo quotidien qui ne fonctionne pas.</p>
+  </div>
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="sources">
+  <h2>Sources par rubrique</h2>
+  <div class="src-grid">
+    <div>
+      <h3>Emploi</h3>
+      <ul>
+        <li><a href="https://www.hellowork.com/fr-fr/emploi/metier_devops.html">HelloWork</a> — relevés d'offres par ville, rayon 20 km, sept. 2026</li>
+        <li><a href="https://fr.indeed.com/q-devops-l-grenoble-(38)-emplois.html">Indeed</a> — contre-vérification Grenoble et Rennes</li>
+        <li><a href="https://candidat.francetravail.fr/offres/emploi/conseiller-en-insertion-sociale-et-professionnelle/s38m15">France Travail</a> — offres conseiller en insertion</li>
+        <li><a href="https://www.insee.fr/fr/statistiques/2012804">Insee</a> — taux de chômage localisés, T1 2026</li>
+        <li><a href="https://www.bretagne-economique.com/actualites/rennes-8eme-metropole-en-nombre-demplois-dans-le-numerique">Bretagne Économique</a> — poids du numérique rennais</li>
+        <li><a href="https://www.chambery-grandlac.fr/parc-activite/savoie-technolac/">Chambéry Grand Lac Économie</a> — Savoie Technolac</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Logement</h3>
+      <ul>
+        <li><a href="https://www.observatoires-des-loyers.org/connaitre-les-loyers/carte-des-niveaux-de-loyers/agglomeration-de-rennes">Observatoires des loyers</a> — Rennes, Montpellier, Grenoble, Toulon</li>
+        <li><a href="https://www.prealty.fr/blog/guide-loyer-chambery">Observatoire DHUP 2025</a> — médiane maisons à Chambéry</li>
+        <li><a href="https://www.pap.fr/bailleur/louer-avec-pap/encadrement-des-loyers-ou-en-est-on/a23046">PAP</a> et <a href="https://www.anil.org/analyse-juridique-encadrement-evolution-loyers-zones-tendues/">ANIL</a> — zones tendues et encadrement 2026</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Centre-ville</h3>
+      <ul>
+        <li><a href="https://villes.plus/pietonnes">villes.plus</a> — part de surface piétonne par commune</li>
+        <li><a href="https://fr.wikipedia.org/wiki/Nombre_de_monuments_historiques_par_commune_fran%C3%A7aise">Monuments historiques par commune</a> (base Mérimée) et rangs nationaux</li>
+        <li><a href="https://presse.metropole.rennes.fr/les-premiers-chiffres-positifs-de-lobservatoire-du-commerce-du-centre-ville-rennais-2025/">Observatoire du commerce du centre-ville rennais 2025</a> — vacance comparée Rennes / Montpellier / Grenoble</li>
+        <li><a href="https://www.banquedesterritoires.fr/la-progression-de-la-vacance-commerciale-ralentit-surtout-dans-les-villes-moyennes">Procos</a> — moyenne nationale de vacance commerciale</li>
+        <li><a href="http://www.savoie.cci.fr/actualite/1393/137-commerces-dans-les-centres-villes-ou-en-est-on-.htm">CCI Savoie</a> — commerce de centre-ville à Chambéry</li>
+        <li><a href="https://www.centre-ville.org/observez-la-transformation-radicale-de-toulon-au-fil-des-annees/">Centre-Ville en Mouvement</a> — réhabilitation du centre ancien de Toulon</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Mobilité</h3>
+      <ul>
+        <li><a href="https://www.barometre-velo.fr/2025/">Baromètre vélo 2025</a> de la FUB — notes et classement par catégorie</li>
+        <li><a href="https://media.tomtom.com/f/178460/x/986397c92f/tomtom-traffic-index-france.pdf">TomTom Traffic Index</a> — congestion des 29 villes françaises, année 2025</li>
+        <li><a href="https://www.montpellier.fr/en/actions/competences/transport-mobility/le-velo">Montpellier Méditerranée Métropole</a> — vélo-lignes et plan mobilité</li>
+        <li><a href="https://metropoletpm.fr/actualites/le-plan-velo-edition-2026">Métropole Toulon Provence Méditerranée</a> — schéma directeur des aménagements cyclables</li>
+        <li><a href="https://rouelibre.net/2025/11/28/barometre-velo-2025/">Roue Libre</a> — lecture locale du baromètre à Chambéry</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Climat</h3>
+      <ul>
+        <li><a href="https://www.infoclimat.fr/climatologie/normales-records/1991-2020/rennes-st-jacques/valeurs/07130.html">Infoclimat</a> — normales Météo-France 1991-2020, phénomènes par station</li>
+        <li>Wikipédia — fiches climat par ville (relevés Météo-France, ensoleillement et cumuls)</li>
+        <li><a href="https://open-dpe.fr/climat-ville-percentiles/">Open DPE</a> — percentiles de température, saison de chauffe, 264 villes</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Environnement</h3>
+      <ul>
+        <li><a href="https://www.parcs-naturels-regionaux.fr/les-parcs/decouvrir-les-58-parcs/parc-naturel-regional-de-chartreuse">Fédération des PNR</a> — Chartreuse, Vercors, Bauges</li>
+        <li><a href="https://www.insee.fr/fr/statistiques/8558420">Insee</a> — accès aux espaces verts dans les grands centres urbains</li>
+        <li><a href="https://www.thegood.fr/palmares-des-villes-les-plus-vertes-de-france-angers-rennes-et-strasbourg-en-tete/">Observatoire des villes vertes</a> (Unep–Hortis)</li>
+        <li><a href="https://www.montpellier.fr/en/vie-quotidienne/vivre-ici/urgences,-securite-et-prevention/je-me-prepare-a-une-situation-d-urgence/connaitre-les-risques-majeurs/forest-fire-risk">Ville de Montpellier</a> — risque feux de forêt</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Falaise</h3>
+      <ul>
+        <li><a href="https://oblyk.org/escalade-autour-de/grenoble">Oblyk</a> — comptage sites et voies dans un rayon de 30 km</li>
+        <li><a href="https://climbingaway.fr/fr/sites-escalade/carte-du-monde-des-sites-d-escalade/france">ClimbingAway</a> et <a href="https://www.escalade-france.fr/sites">escalade-france.fr</a> — recoupement</li>
+        <li><a href="https://www.ffme.fr/escalade/site-naturel/les-falaises-et-sites-naturels/sites-naturels-descalade-liste/">FFME</a> — liste officielle des sites naturels</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Mer et lac</h3>
+      <ul>
+        <li><a href="https://www.grenoble-tourisme.com/fr/blog/les-lacs-et-les-plans-deau-grenoble/">Grenoble Alpes Tourisme</a> — lacs et plans d'eau, régimes de baignade</li>
+        <li><a href="https://lacdetremelin.com/baignade/">Lac de Trémelin</a> — horaires et période de baignade surveillée 2026</li>
+        <li><a href="https://www.chamberymontagnes.com/">Chambéry Montagnes</a> — lac du Bourget et lac d'Aiguebelette</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Risques</h3>
+      <ul>
+        <li><a href="https://www.georisques.gouv.fr/">Géorisques</a> — base GASPAR, arrêtés CatNat par code Insee (API publique)</li>
+        <li><a href="https://www.rhone-mediterranee.eaufrance.fr/cartographie-des-risques-dinondation-du-tri-de-grenoble-voiron">Eaufrance</a> — TRI Grenoble-Voiron ; préfecture de Savoie pour le TRI Chambéry-Aix</li>
+        <li><a href="https://www.ille-et-vilaine.gouv.fr/Actualites/Espace-presse/Communiques-de-presse/2026/Secheresse-L-Ille-et-Vilaine-en-alerte">Préfectures</a> d'Ille-et-Vilaine, de l'Hérault et de l'Isère — arrêtés sécheresse 2026</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="limits">
+    <h3>Limites du rapport</h3>
+    <ul>
+      <li>Les comptages d'offres d'emploi sont une photographie à une date, sur une seule plateforme. L'écart Grenoble (13 sur HelloWork, 83 sur Indeed) montre l'ampleur du biais de plateforme : à recompter sur deux ou trois sites, à quelques semaines d'intervalle, avant de conclure.</li>
+      <li>Les loyers médians agrègent appartements et maisons, et les millésimes diffèrent (2024 pour Rennes et Grenoble, 2025 pour les autres).</li>
+      <li>Le critère des 15 km est évalué par la composition du bâti des communes comprises dans le rayon, pas par un décompte d'annonces réelles de maisons à louer. C'est la vérification à faire en premier sur le terrain : filtrer les annonces « maison, location, 15 km » sur chaque ville et compter ce qui sort à moins de 1 200 €.</li>
+      <li>Les colonnes « ≤ 40 min à vélo » et « ≤ 1 h de voiture » du critère falaise sont des estimations, pas un recensement. Un décompte automatisé sur OpenStreetMap a été tenté puis écarté : le tag <code>climbing=crag</code> retourne 21 sites dans 12 km autour de Grenoble et <em>zéro</em> autour de Toulon, où le Faron est pourtant dans la ville. L'écart mesure la densité de contribution locale, pas la densité de falaises. Le tag plus large <code>sport=climbing</code> inclut les salles indoor, ce qui fausse la comparaison dans l'autre sens.</li>
+      <li>Les notes du baromètre vélo n'ont pas été retrouvées pour Montpellier et Toulon : leur appréciation repose sur les données d'infrastructure et de part modale publiées par les deux métropoles. De même, TomTom ne publie pas les valeurs individuelles de Rennes et Grenoble, seulement leurs tendances, et Chambéry ne fait pas partie des 29 villes suivies.</li>
+      <li>Aucun taux de vacance commerciale comparable n'a été trouvé pour Toulon : seule la trajectoire de réhabilitation est documentée, pas le niveau actuel.</li>
+      <li>La station de Toulon-Le Baou ne totalise que treize ans de relevés — ses normales sont moins robustes que les autres.</li>
+      <li>Le retrait-gonflement des argiles n'a pas pu être établi commune par commune ici ; il se vérifie à l'adresse sur Géorisques avant toute signature.</li>
+      <li>Les notes de 0 à 10 sont une lecture argumentée des données ci-dessus, pas une mesure. Les curseurs existent pour que vous puissiez substituer votre propre jugement au mien.</li>
+    </ul>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  var CRITERES = [
+    {id:"devops",  nom:"Emploi DevOps",   def:11},
+    {id:"cip",     nom:"Emploi CIP",      def:11},
+    {id:"immo",    nom:"Logement 15 km",  def:15},
+    {id:"climat",  nom:"Climat",          def:12},
+    {id:"centre",  nom:"Piéton & archi.", def:6},
+    {id:"vie",     nom:"Vie de centre",   def:7},
+    {id:"velo",    nom:"Vélo",            def:8},
+    {id:"trafic",  nom:"Embouteillages",  def:6},
+    {id:"envir",   nom:"Environnement",   def:7},
+    {id:"falaise", nom:"Falaise",         def:7},
+    {id:"eau",     nom:"Mer & lac",       def:4},
+    {id:"risques", nom:"Risques",         def:6}
+  ];
+
+  // Note sur 10 par critère. Pour « Embouteillages », une note haute signifie
+  // peu de congestion : tous les critères se lisent donc dans le même sens.
+  var VILLES = [
+    {nom:"Rennes",      dep:"Ille-et-Vilaine", s:{devops:9,   cip:8,   immo:8.5, climat:5.5, centre:8.5, vie:9,   velo:9,   trafic:6.5, envir:8,   falaise:1,   eau:2.5, risques:6.5}},
+    {nom:"Grenoble",    dep:"Isère",           s:{devops:8.5, cip:6.5, immo:6.5, climat:4.5, centre:5.5, vie:5.5, velo:9.5, trafic:4.5, envir:8,   falaise:10,  eau:4,   risques:7}},
+    {nom:"Chambéry",    dep:"Savoie",          s:{devops:3.5, cip:1.5, immo:8.5, climat:5,   centre:8,   vie:6,   velo:7,   trafic:8,   envir:9,   falaise:8.5, eau:8,   risques:6.5}},
+    {nom:"Montpellier", dep:"Hérault",         s:{devops:7,   cip:8,   immo:5,   climat:5.5, centre:9,   vie:8.5, velo:6.5, trafic:2,   envir:4.5, falaise:4.5, eau:8,   risques:3}},
+    {nom:"Toulon",      dep:"Var",             s:{devops:5,   cip:4,   immo:5.5, climat:7,   centre:5,   vie:5.5, velo:3,   trafic:5,   envir:5,   falaise:8.5, eau:10,  risques:4}}
+  ];
+
+  var poids = {};
+  CRITERES.forEach(function(c){ poids[c.id] = c.def; });
+
+  var slidersEl = document.getElementById("sliders");
+  var rankEl = document.getElementById("ranking");
+
+  CRITERES.forEach(function(c){
+    var row = document.createElement("div");
+    row.className = "slider";
+    row.innerHTML =
+      '<label for="w-' + c.id + '">' + c.nom + '</label>' +
+      '<output id="o-' + c.id + '">' + c.def + '</output>' +
+      '<input type="range" id="w-' + c.id + '" min="0" max="40" step="1" value="' + c.def + '">';
+    slidersEl.appendChild(row);
+    row.querySelector("input").addEventListener("input", function(e){
+      poids[c.id] = Number(e.target.value);
+      document.getElementById("o-" + c.id).textContent = e.target.value;
+      render();
+    });
+  });
+
+  function render(){
+    var total = 0;
+    CRITERES.forEach(function(c){ total += poids[c.id]; });
+
+    var notes = VILLES.map(function(v){
+      var sc = 0;
+      if (total > 0) {
+        CRITERES.forEach(function(c){ sc += v.s[c.id] * poids[c.id]; });
+        sc = sc / total;
+      }
+      return {nom:v.nom, dep:v.dep, score:sc};
+    });
+
+    notes.sort(function(a,b){ return b.score - a.score; });
+
+    rankEl.textContent = "";
+    notes.forEach(function(n, i){
+      var row = document.createElement("div");
+      row.className = "rank-row" + (i === 0 ? " lead" : "");
+      row.innerHTML =
+        '<span class="rank-pos">' + (i + 1) + '</span>' +
+        '<span><span class="rank-name">' + n.nom + '</span>' +
+        '<span class="rank-bar"><i style="width:' + (n.score * 10).toFixed(1) + '%"></i></span></span>' +
+        '<span class="rank-score">' + n.score.toFixed(1) + '</span>';
+      rankEl.appendChild(row);
+    });
+  }
+
+  document.getElementById("reset").addEventListener("click", function(){
+    CRITERES.forEach(function(c){
+      poids[c.id] = c.def;
+      document.getElementById("w-" + c.id).value = c.def;
+      document.getElementById("o-" + c.id).textContent = c.def;
+    });
+    render();
+  });
+
+  render();
+})();
+</script>

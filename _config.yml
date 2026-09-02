@@ -1,0 +1,25 @@
+title: Cinq villes au banc d'essai
+description: >-
+  Rapport de décision comparant Rennes, Montpellier, Grenoble, Chambéry et
+  Toulon sur douze critères, avec pondération réglable et sources.
+lang: fr
+
+# Site utilisateur/organisation (user.github.io) : laisser baseurl vide.
+# Site de projet (user.github.io/City) : mettre baseurl: "/City"
+baseurl: ""
+url: ""
+
+# Aucun plugin : le rendu est identique en local (Jekyll 4) et sur le
+# constructeur GitHub Pages (Jekyll 3.9).
+plugins: []
+
+exclude:
+  - justfile
+  - build-artifact.sh
+  - report.body.html
+  - README.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .github

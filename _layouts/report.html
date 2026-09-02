@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="{{ site.lang | default: 'fr' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{%- if page.description %}
+<meta name="description" content="{{ page.description }}">
+{%- endif %}
+<style>
+  :root{color-scheme:light dark}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+{% include report-head.html %}
+{%- comment %}
+  Local webfonts are optional. `just init` downloads them into assets/fonts/;
+  when they are absent (a fresh clone, or GitHub Pages without the vendored
+  files committed) the page falls back to the Google Fonts <link> above.
+{%- endcomment %}
+{%- assign localfonts = site.static_files | where: "path", "/assets/fonts/fonts.css" | first %}
+{%- if localfonts %}
+<link rel="stylesheet" href="{{ '/assets/fonts/fonts.css' | relative_url }}">
+{%- endif %}
+</head>
+<body>
+{{ content }}
+</body>
+</html>
