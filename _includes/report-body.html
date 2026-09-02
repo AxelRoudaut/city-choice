@@ -4,14 +4,14 @@
   <p class="eyebrow">Rapport de décision · déménagement · septembre 2026</p>
   <h1>Cinq villes<br>au banc d'essai</h1>
   <p class="standfirst">Rennes, Montpellier, Grenoble, Chambéry, Toulon — comparées sur six critères, avec les chiffres et les sources derrière chacun. Les pondérations sont réglables&nbsp;: le classement se recalcule.</p>
-  <p class="byline"><span>12 critères</span><span>5 villes</span><span>29 sources</span><span>Données 1991–2026</span></p>
+  <p class="byline"><span>15 critères</span><span>5 villes</span><span>32 sources</span><span>Données 1991–2026</span></p>
 </header>
 
 <div class="verdict">
   <div>
     <h2>Ce que disent les données</h2>
     <p><strong>Rennes prend la tête</strong> sur la pondération par défaut (7,2), devant Grenoble (6,8) et Chambéry (6,3). Rennes est la seule ville du panel sans point faible majeur en dehors d'un seul — la falaise. Grenoble tient par l'escalade et le vélo, Chambéry par l'équilibre nature, Montpellier par le centre-ville, Toulon par la mer.</p>
-    <p>La ligne de fracture reste nette : <strong>Rennes = emploi, logement, ville quotidienne</strong> ; <strong>Grenoble = falaise et vélo</strong> ; <strong>Chambéry = nature, sans marché de l'emploi pour le second poste</strong>. Les douze curseurs ci-dessous servent à trancher.</p>
+    <p>La ligne de fracture reste nette : <strong>Rennes = emploi, logement, ville quotidienne</strong> ; <strong>Grenoble = falaise et vélo</strong> ; <strong>Chambéry = nature, sans marché de l'emploi pour le second poste</strong>. Les quinze curseurs ci-dessous servent à trancher.</p>
   </div>
   <div>
     <h2>Les trois signaux à retenir</h2>
@@ -24,7 +24,7 @@
 <div class="tool">
   <div class="tool-rank">
     <h3>Classement pondéré</h3>
-    <p class="hint">Note sur 10, agrégée à partir des douze critères. Réglez l'importance de chacun à droite.</p>
+    <p class="hint">Note sur 10, agrégée à partir des quinze critères. Réglez l'importance de chacun à droite.</p>
     <div id="ranking"></div>
   </div>
   <div>
@@ -465,11 +465,32 @@
   </div>
 </section>
 
+<!-- ============ QUALITÉ DE L'AIR ============ -->
+<section class="crit">
+  <div class="crit-head">
+    <div><p class="crit-tag">Critère 9</p><h2>Qualité de l'air</h2></div>
+    <p class="crit-ask">Réduire l'exposition chronique aux particules fines et au dioxyde d'azote, plutôt que juger une seule journée.</p>
+  </div>
+  <p>L'indice combine les moyennes annuelles 2025 de PM<sub>2.5</sub> et de NO<sub>2</sub> des stations urbaines de fond. Les deux polluants sont rapportés aux lignes directrices annuelles de l'OMS (5 et 10 µg/m³) : plus l'exposition relative est basse, meilleure est la note. Les stations trafic sont écartées, car elles décrivent une rue et non l'air ambiant de la ville.</p>
+  <div class="tscroll"><table>
+    <thead><tr><th>Ville</th><th class="n">PM<sub>2.5</sub> annuel</th><th class="n">NO<sub>2</sub> annuel</th><th class="n">Indice d'exposition</th><th>Station de fond</th><th>Lecture</th></tr></thead>
+    <tbody>
+      <tr><th>Rennes</th><td class="n">9,6 µg/m³</td><td class="n">8,3 µg/m³</td><td class="n">2,75<br><span class="chip ok">meilleur</span></td><td>Rennes Thabor</td><td>Le NO<sub>2</sub> le plus bas du panel compense des particules comparables à Montpellier.</td></tr>
+      <tr><th>Chambéry</th><td class="n">8,2 µg/m³</td><td class="n">13,3 µg/m³</td><td class="n">2,96</td><td>Pasteur</td><td>Les PM<sub>2.5</sub> sont faibles ; la cluse et les déplacements pèsent davantage sur le NO<sub>2</sub>.</td></tr>
+      <tr><th>Toulon</th><td class="n">7,8 µg/m³</td><td class="n">14,5 µg/m³</td><td class="n">3,02</td><td>Toulon Claret</td><td>Les particules sont les plus faibles, mais le NO<sub>2</sub> urbain est le plus élevé des stations de fond retenues.</td></tr>
+      <tr><th>Montpellier</th><td class="n">9,7 µg/m³</td><td class="n">11,3 µg/m³</td><td class="n">3,08</td><td>Montpellier Prés d'Arènes</td><td>Un profil intermédiaire : moins de NO<sub>2</sub> que Chambéry et Toulon, mais davantage de particules.</td></tr>
+      <tr><th>Grenoble</th><td class="n">10,0 µg/m³</td><td class="n">12,2 µg/m³</td><td class="n">3,22<br><span class="chip bad">le plus élevé</span></td><td>Grenoble Les Frênes</td><td>La cuvette pénalise les deux indicateurs de fond ; les stations trafic locales montent encore davantage.</td></tr>
+    </tbody>
+    <caption>Export Geod'air / LCSQA, moyennes annuelles réglementaires 2025, données fixes valides (code qualité R), stations urbaines de fond. Valeurs brutes avant arrondi, en µg/m³ : Rennes Thabor 9,57 / 8,35 ; Grenoble Les Frênes 9,97 / 12,22 ; Chambéry Pasteur 8,15 / 13,29 ; Montpellier Prés d'Arènes 9,74 / 11,27 ; Toulon Claret 7,83 / 14,52 (PM<sub>2.5</sub> / NO<sub>2</sub>). Indice = PM<sub>2.5</sub>/5 + NO<sub>2</sub>/10 ; c'est un repère de comparaison, pas un indice réglementaire.</caption>
+  </table></div>
+  <div class="callout"><span class="lab">Ce que l'indice ne dit pas</span><p>Une moyenne annuelle gomme les épisodes courts, notamment l'ozone estival et les pics hivernaux. Elle reste plus pertinente pour choisir un lieu de vie qu'un relevé « temps réel » isolé. Les valeurs 2025 restent au-dessus des lignes directrices OMS pour les PM<sub>2.5</sub> dans les cinq villes.</p></div>
+</section>
+
 <!-- ============ ENVIRONNEMENT ============ -->
 <section class="crit">
   <div class="crit-head">
     <div>
-      <p class="crit-tag">Critère 9</p>
+      <p class="crit-tag">Critère 10</p>
       <h2>L'environnement</h2>
     </div>
     <p class="crit-ask">Favoriser les grands espaces naturels verts. Éviter l'aride et l'industriel.</p>
@@ -511,7 +532,7 @@
 <section class="crit">
   <div class="crit-head">
     <div>
-      <p class="crit-tag">Critère 10</p>
+      <p class="crit-tag">Critère 11</p>
       <h2>La falaise</h2>
     </div>
     <p class="crit-ask">Densité et variété des secteurs d'escalade naturelle accessibles depuis le domicile.</p>
@@ -577,7 +598,7 @@
 <section class="crit">
   <div class="crit-head">
     <div>
-      <p class="crit-tag">Critère 11</p>
+      <p class="crit-tag">Critère 12</p>
       <h2>Mer et lac</h2>
     </div>
     <p class="crit-ask">Proximité d'une eau libre où se baigner et naviguer, et sur quelle durée dans l'année.</p>
@@ -626,7 +647,7 @@
 <section class="crit">
   <div class="crit-head">
     <div>
-      <p class="crit-tag">Critère 12</p>
+      <p class="crit-tag">Critère 13</p>
       <h2>Risques et dérèglement climatique</h2>
     </div>
     <p class="crit-ask">Sécheresse, inondation, et exposition aux aléas à venir.</p>
@@ -839,6 +860,29 @@
   </div>
 </section>
 
+<!-- ============ EAU ET POLITIQUE ============ -->
+<section class="crit">
+  <div class="crit-head"><div><p class="crit-tag">Critère 14</p><h2>Eau du robinet</h2></div><p class="crit-ask">Une eau conforme et peu chargée en nitrates sur le réseau qui dessert la commune.</p></div>
+  <div class="tscroll"><table><thead><tr><th>Ville</th><th class="n">Nitrates</th><th>Dernier prélèvement</th><th>Conclusion sanitaire</th></tr></thead><tbody>
+    <tr><th>Toulon</th><td class="n">4,5 mg/L</td><td>9 juin 2026</td><td><span class="chip ok">conforme</span> — adduction Toulon–La Valette</td></tr>
+    <tr><th>Grenoble</th><td class="n">5,2 mg/L</td><td>25 juin 2026</td><td><span class="chip ok">conforme</span> — Grenoble Alpes Métropole</td></tr>
+    <tr><th>Montpellier</th><td class="n">5,3 mg/L</td><td>28 mai 2026</td><td><span class="chip ok">conforme</span> — régie des eaux Montpellier 3M</td></tr>
+    <tr><th>Chambéry</th><td class="n">11,2 mg/L</td><td>30 juin 2026</td><td><span class="chip ok">conforme</span> — réseau de Joppet</td></tr>
+    <tr><th>Rennes</th><td class="n">15,7 mg/L</td><td>24 juin 2026</td><td><span class="chip ok">conforme</span> — CEBR</td></tr>
+  </tbody><caption>Hub'Eau / contrôle sanitaire ARS, dernier résultat disponible pour les nitrates (limite réglementaire : 50 mg/L). Chaque commune peut être desservie par plusieurs réseaux : cette lecture ne remplace pas la vérification à l'adresse avant signature.</caption></table></div>
+</section>
+
+<section class="crit">
+  <div class="crit-head"><div><p class="crit-tag">Critère 15</p><h2>Affinité politique</h2></div><p class="crit-ask">Préférence personnelle déclarée : favoriser une municipalité et une région dirigées à gauche.</p></div>
+  <div class="tscroll"><table><thead><tr><th>Ville</th><th>Maire (mandat 2026–2032)</th><th>Orientation municipale</th><th>Exécutif régional</th><th>Lecture</th></tr></thead><tbody>
+    <tr><th>Rennes</th><td>Nathalie Appéré</td><td><span class="chip ok">PS · gauche</span></td><td>Bretagne · gauche</td><td>Double affinité</td></tr>
+    <tr><th>Grenoble</th><td>Laurence Ruffin</td><td><span class="chip ok">gauche écologiste</span></td><td>Auvergne-Rhône-Alpes · droite</td><td>Affinité municipale</td></tr>
+    <tr><th>Chambéry</th><td>Thierry Repentin</td><td><span class="chip ok">divers gauche</span></td><td>Auvergne-Rhône-Alpes · droite</td><td>Affinité municipale</td></tr>
+    <tr><th>Montpellier</th><td>Michaël Delafosse</td><td><span class="chip ok">PS · gauche</span></td><td>Occitanie · gauche</td><td>Double affinité</td></tr>
+    <tr><th>Toulon</th><td>Josée Massi</td><td><span class="chip bad">centre droit</span></td><td>Provence-Alpes-Côte d'Azur · droite</td><td>Pas d'affinité selon ce critère</td></tr>
+  </tbody><caption>Le RNE établit l'identité et le mandat des maires ; l'orientation est documentée par les résultats et groupes municipaux. C'est un critère de préférence, non une mesure de gestion publique.</caption></table></div>
+</section>
+
 <!-- ============ SOURCES ============ -->
 <section class="sources">
   <h2>Sources par rubrique</h2>
@@ -889,6 +933,13 @@
         <li><a href="https://www.infoclimat.fr/climatologie/normales-records/1991-2020/rennes-st-jacques/valeurs/07130.html">Infoclimat</a> — normales Météo-France 1991-2020, phénomènes par station</li>
         <li>Wikipédia — fiches climat par ville (relevés Météo-France, ensoleillement et cumuls)</li>
         <li><a href="https://open-dpe.fr/climat-ville-percentiles/">Open DPE</a> — percentiles de température, saison de chauffe, 264 villes</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Qualité de l'air</h3>
+      <ul>
+        <li><a href="https://www.data.gouv.fr/datasets/donnees-temps-reel-de-mesure-des-concentrations-de-polluants-atmospheriques-reglementes-1">Geod'air / LCSQA</a> — export des moyennes annuelles réglementaires 2025, PM<sub>2.5</sub> et NO<sub>2</sub>, stations de fond</li>
+        <li><a href="https://www.who.int/publications/i/item/9789240034228">OMS</a> — lignes directrices mondiales 2021 : PM<sub>2.5</sub> annuel 5 µg/m³, NO<sub>2</sub> annuel 10 µg/m³</li>
       </ul>
     </div>
     <div>
@@ -951,6 +1002,7 @@
     {id:"cip",     nom:"Emploi CIP",      def:11},
     {id:"immo",    nom:"Logement 15 km",  def:15},
     {id:"climat",  nom:"Climat",          def:12},
+    {id:"pollution", nom:"Qualité de l'air", def:7},
     {id:"centre",  nom:"Piéton & archi.", def:6},
     {id:"vie",     nom:"Vie de centre",   def:7},
     {id:"velo",    nom:"Vélo",            def:8},
@@ -959,16 +1011,18 @@
     {id:"falaise", nom:"Falaise",         def:7},
     {id:"eau",     nom:"Mer & lac",       def:4},
     {id:"risques", nom:"Risques",         def:6}
+    ,{id:"eau",    nom:"Eau du robinet",   def:5}
+    ,{id:"politique", nom:"Affinité politique", def:5}
   ];
 
   // Note sur 10 par critère. Pour « Embouteillages », une note haute signifie
   // peu de congestion : tous les critères se lisent donc dans le même sens.
   var VILLES = [
-    {nom:"Rennes",      dep:"Ille-et-Vilaine", s:{devops:9,   cip:8,   immo:8.5, climat:5.5, centre:8.5, vie:9,   velo:9,   trafic:6.5, envir:8,   falaise:1,   eau:2.5, risques:6.5}},
-    {nom:"Grenoble",    dep:"Isère",           s:{devops:8.5, cip:6.5, immo:6.5, climat:4.5, centre:5.5, vie:5.5, velo:9.5, trafic:4.5, envir:8,   falaise:10,  eau:4,   risques:7}},
-    {nom:"Chambéry",    dep:"Savoie",          s:{devops:3.5, cip:1.5, immo:8.5, climat:5,   centre:8,   vie:6,   velo:7,   trafic:8,   envir:9,   falaise:8.5, eau:8,   risques:6.5}},
-    {nom:"Montpellier", dep:"Hérault",         s:{devops:7,   cip:8,   immo:5,   climat:5.5, centre:9,   vie:8.5, velo:6.5, trafic:2,   envir:4.5, falaise:4.5, eau:8,   risques:3}},
-    {nom:"Toulon",      dep:"Var",             s:{devops:5,   cip:4,   immo:5.5, climat:7,   centre:5,   vie:5.5, velo:3,   trafic:5,   envir:5,   falaise:8.5, eau:10,  risques:4}}
+    {nom:"Rennes",      dep:"Ille-et-Vilaine", s:{devops:9,   cip:8,   immo:8.5, climat:5.5, pollution:8.5, centre:8.5, vie:9,   velo:9,   trafic:6.5, envir:8,   falaise:1,   eau:8, risques:6.5, politique:10}},
+    {nom:"Grenoble",    dep:"Isère",           s:{devops:8.5, cip:6.5, immo:6.5, climat:4.5, pollution:6,   centre:5.5, vie:5.5, velo:9.5, trafic:4.5, envir:8,   falaise:10,  eau:4,   risques:7}},
+    {nom:"Chambéry",    dep:"Savoie",          s:{devops:3.5, cip:1.5, immo:8.5, climat:5,   pollution:7.5, centre:8,   vie:6,   velo:7,   trafic:8,   envir:9,   falaise:8.5, eau:8,   risques:6.5}},
+    {nom:"Montpellier", dep:"Hérault",         s:{devops:7,   cip:8,   immo:5,   climat:5.5, pollution:7.2, centre:9,   vie:8.5, velo:6.5, trafic:2,   envir:4.5, falaise:4.5, eau:8,   risques:3}},
+    {nom:"Toulon",      dep:"Var",             s:{devops:5,   cip:4,   immo:5.5, climat:7,   pollution:7.4, centre:5,   vie:5.5, velo:3,   trafic:5,   envir:5,   falaise:8.5, eau:10,  risques:4}}
   ];
 
   var poids = {};

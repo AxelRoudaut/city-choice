@@ -2,55 +2,65 @@ set shell := ["bash", "-euo", "pipefail", "-c"]
 
 fonts_css := "https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
 ua := "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+# Invoke Bundler through Ruby so the recipes also work when the `bundle`
+# executable is not on PATH (common with distro-provided Ruby installs).
+bundle := "ruby -rbundler -e 'exec Gem.bin_path(\"bundler\", \"bundle\"), *ARGV' --"
 
-# Liste les recettes disponibles.
+# List the available recipes.
 default:
     @just --list
 
-# Installe les prérequis : Ruby/Bundler, gems Jekyll, polices locales.
+# Install the operating-system and project dependencies.
 init:
-    @echo "==> Vérification des outils"
-    @command -v curl >/dev/null || { echo "manquant : curl"; exit 1; }
-    @command -v ruby >/dev/null || { echo "manquant : ruby (apt install ruby-full build-essential zlib1g-dev)"; exit 1; }
+    @echo "==> Checking system dependencies"
+    @if ! command -v curl >/dev/null || ! command -v ruby >/dev/null || ! ruby -rrbconfig -e 'header = File.join(RbConfig::CONFIG.fetch("rubyhdrdir"), "ruby.h"); exit File.file?(header) ? 0 : 1'; then \
+        command -v apt-get >/dev/null || { echo "Missing system dependencies. Install curl, ruby-full, ruby-dev, build-essential, and zlib1g-dev with your package manager."; exit 1; }; \
+        echo "==> Installing system dependencies (sudo required)"; \
+        sudo apt-get update; \
+        sudo apt-get install -y curl ruby-full ruby-dev build-essential zlib1g-dev; \
+    fi
     @echo "    curl $(curl --version | head -1 | cut -d' ' -f2)"
     @echo "    ruby $(ruby -e 'print RUBY_VERSION')"
 
     @echo "==> Bundler"
-    @command -v bundle >/dev/null || gem install --user-install --no-document bundler
-    @command -v bundle >/dev/null || echo "    ajoutez $(ruby -e 'print Gem.user_dir')/bin à votre PATH"
+    @ruby -rbundler -e 'puts "    bundler #{Bundler::VERSION}"' || gem install --user-install --no-document bundler
 
-    @echo "==> Installation des gems (vendor/bundle)"
-    @bundle config set --local path vendor/bundle
-    @bundle install
+    @echo "==> Installing Ruby gems (vendor/bundle)"
+    @{{bundle}} config set --local path vendor/bundle
+    @{{bundle}} install
 
     @just fonts
-    @echo "==> Prêt. Lancez : just serve"
+    @echo "==> Ready. Run: just serve"
 
-# Télécharge les polices dans assets/fonts pour un rendu hors ligne.
+# Download fonts to assets/fonts for offline rendering.
 fonts:
-    @echo "==> Polices (Archivo, Newsreader, IBM Plex Mono)"
+    @echo "==> Fonts (Archivo, Newsreader, IBM Plex Mono)"
     @mkdir -p assets/fonts
     @curl -sSfL -A "{{ua}}" "{{fonts_css}}" -o assets/fonts/fonts.css
     @grep -o 'https://fonts.gstatic.com/[^)]*' assets/fonts/fonts.css | sort -u | while read -r url; do \
         curl -sSfL -o "assets/fonts/$(basename "$url")" "$url"; \
     done
     @sed -i 's|https://fonts\.gstatic\.com/[^)]*/||g' assets/fonts/fonts.css
-    @echo "    $(ls assets/fonts/*.woff2 2>/dev/null | wc -l) fichiers de police"
+    @echo "    $(ls assets/fonts/*.woff2 2>/dev/null | wc -l) font files"
 
-# Sert le rapport sur http://localhost:PORT (par défaut 4000).
+# Serve the report at http://localhost:PORT (default: 4000).
 serve port="4000":
-    @bundle exec jekyll serve --host 127.0.0.1 --port {{port}} --livereload
+    @ruby -rrbconfig -e 'header = File.join(RbConfig::CONFIG.fetch("rubyhdrdir"), "ruby.h"); abort "Missing Ruby headers. Run: just init" unless File.file?(header)'
+    @{{bundle}} check >/dev/null 2>&1 || { echo "Jekyll dependencies are missing. Run: just init"; exit 1; }
+    @{{bundle}} exec jekyll serve --host 127.0.0.1 --port {{port}} --livereload
 
-# Construit le site statique dans _site/, tel que GitHub Pages le publiera.
+# Build the static site in _site/, as GitHub Pages will publish it.
 build:
-    @bundle exec jekyll build
-    @echo "==> _site/ prêt"
+    @ruby -rrbconfig -e 'header = File.join(RbConfig::CONFIG.fetch("rubyhdrdir"), "ruby.h"); abort "Missing Ruby headers. Run: just init" unless File.file?(header)'
+    @{{bundle}} check >/dev/null 2>&1 || { echo "Jekyll dependencies are missing. Run: just init"; exit 1; }
+    @{{bundle}} exec jekyll build
+    @echo "==> _site/ is ready"
 
-# Régénère report.body.html, le fragment publié comme Artifact Claude.
+# Regenerate report.body.html, the fragment published as a Claude Artifact.
 artifact:
     @./build-artifact.sh
 
-# Supprime les fichiers générés, les gems et les polices téléchargées.
+# Remove generated files, gems, and downloaded fonts.
 clean:
     @rm -rf _site .jekyll-cache vendor assets/fonts
-    @echo "==> Nettoyé (les sources _includes/ sont conservées)"
+    @echo "==> Cleaned (_includes/ source files were preserved)"
