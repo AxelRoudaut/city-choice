@@ -273,15 +273,18 @@ est compromise : la faire tourner sur https://www.geodair.fr/donnees/api.
 
 ## Hors rapport — listes de candidature
 
-Deux listes d'employeurs vivent dans `candidatures/`, produites par des scripts,
-jamais écrites à la main. Elles ne sont pas publiées par Jekyll et n'entrent dans
-aucun critère : c'est un usage personnel du même outillage.
+Deux listes d'employeurs vivent **hors du dépôt**, dans
+`../Cover_Letters/candidatures/`, produites par des scripts, jamais écrites à la
+main. Elles n'entrent dans aucun critère : c'est un usage personnel du même
+outillage. Le dépôt étant public, elles n'y ont pas leur place — le chemin est
+défini une fois dans `scripts/fetch/_common.py` (`CANDIDATURES`) et se surcharge
+par la variable d'environnement `CANDIDATURES_DIR`.
 
 | Commande | Sortie | Source |
 |---|---|---|
-| `just candidatures grenoble` | `candidatures/devops-grenoble.{json,md}` | API Recherche d'entreprises, 3 EPCI × 17 codes NAF, ≥ 20 salariés |
-| `just candidatures montpellier` | `candidatures/devops-montpellier.{json,md}` | idem, 6 EPCI (métropole + couronne) |
-| `just remote` | `candidatures/devops-remote.{json,md}` | 7 places de marché du travail à distance (~3 min, Himalayas cadence à 1 req/s) |
+| `just candidatures grenoble` | `../Cover_Letters/candidatures/devops-grenoble.{json,md}` | API Recherche d'entreprises, 3 EPCI × 17 codes NAF, ≥ 20 salariés |
+| `just candidatures montpellier` | `../Cover_Letters/candidatures/devops-montpellier.{json,md}` | idem, 6 EPCI (métropole + couronne) |
+| `just remote` | `../Cover_Letters/candidatures/devops-remote.{json,md}` | 7 places de marché du travail à distance (~3 min, Himalayas cadence à 1 req/s) |
 
 Ajouter un bassin : une entrée dans `BASSINS` (`scripts/candidatures_devops.py`),
 une sélection dans `SELECTIONS` et une ligne dans `ECOSYSTEMES`

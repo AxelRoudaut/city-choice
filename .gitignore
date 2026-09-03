@@ -17,3 +17,7 @@ assets/fonts/
 # Caches de collecte (exports Geod'air, archives GTFS) : régénérables
 .cache/
 scripts/**/__pycache__/
+
+# Listes de candidature : personnelles, hors dépôt public. Les scripts écrivent
+# dans ../Cover_Letters/candidatures ; cette ligne bloque un retour accidentel.
+candidatures/

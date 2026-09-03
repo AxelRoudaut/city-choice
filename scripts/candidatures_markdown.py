@@ -8,7 +8,8 @@ aucun effectif, aucune commune n'est saisi à la main.
 """
 import json, pathlib, sys, datetime
 
-RACINE = pathlib.Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "fetch"))
+from _common import CANDIDATURES
 
 # Écosystèmes locaux, par bassin : ce qui ne se trouve pas dans un registre.
 ECOSYSTEMES = {
@@ -391,8 +392,8 @@ def main():
     slug = (sys.argv[1] if len(sys.argv) > 1 else "grenoble").lower()
     if slug not in SELECTIONS:
         raise SystemExit(f"bassin inconnu : {slug} — choisir parmi {', '.join(SELECTIONS)}")
-    src = RACINE / "candidatures" / f"devops-{slug}.json"
-    dest = RACINE / "candidatures" / f"devops-{slug}.md"
+    src = CANDIDATURES / f"devops-{slug}.json"
+    dest = CANDIDATURES / f"devops-{slug}.md"
     d = json.loads(src.read_text())
     ents = d["entreprises"]
     retenus, out = set(), []
@@ -470,7 +471,7 @@ def main():
 
     dest.write_text("\n".join(out))
     print(f"  {len(retenus)} entreprises sélectionnées, {len(reste)} en annexe → "
-          f"{dest.relative_to(RACINE)}")
+          f"{dest}")
 
 
 if __name__ == "__main__":

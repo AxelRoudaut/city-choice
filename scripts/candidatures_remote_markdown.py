@@ -11,9 +11,11 @@ import json, pathlib, datetime, re, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 from candidatures_remote import FRANCE, PAYS_EUROPE   # une seule définition des zones
 
-RACINE = pathlib.Path(__file__).resolve().parents[1]
-SRC = RACINE / "candidatures" / "devops-remote.json"
-DEST = RACINE / "candidatures" / "devops-remote.md"
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "fetch"))
+from _common import CANDIDATURES
+
+SRC = CANDIDATURES / "devops-remote.json"
+DEST = CANDIDATURES / "devops-remote.md"
 
 # Annotations appliquées si l'entreprise figure dans la collecte du jour.
 NOTES = {
@@ -183,7 +185,7 @@ def main():
     DEST.write_text("\n".join(out))
     print(f"  {len(france)} France/Europe + {len(europe)} pays européen + {len(monde)} monde "
           f"+ {len(marches)} places de marché, "
-          f"{len(ailleurs)} en annexe → {DEST.relative_to(RACINE)}")
+          f"{len(ailleurs)} en annexe → {DEST}")
 
 
 if __name__ == "__main__":

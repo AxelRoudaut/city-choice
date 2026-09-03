@@ -9,6 +9,13 @@ import json, os, subprocess, sys, time, datetime, pathlib
 RACINE = pathlib.Path(__file__).resolve().parents[2]
 DATA = RACINE / "_data"
 
+# Les listes de candidature sont personnelles et ne sont pas publiées : le dépôt
+# est public, elles vivent à côté des lettres de motivation. Surchargeable par
+# CANDIDATURES_DIR. Voir CLAUDE.md, « Hors rapport ».
+CANDIDATURES = pathlib.Path(
+    os.environ.get("CANDIDATURES_DIR", RACINE.parent / "Cover_Letters" / "candidatures")
+).expanduser()
+
 # Panel. Paris est une ligne de référence : il figure dans les tableaux mais
 # ne concourt pas au classement pondéré (voir README).
 VILLES = {

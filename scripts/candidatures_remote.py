@@ -14,7 +14,7 @@ Aucun nom d'entreprise n'est saisi à la main.
 """
 import sys, pathlib, json, re, time, datetime, xml.etree.ElementTree as ET
 sys.path.insert(0, str(pathlib.Path(__file__).parent / "fetch"))
-from _common import curl, curl_json, RACINE
+from _common import curl, curl_json, CANDIDATURES
 
 UA = "Mozilla/5.0 (X11; Linux x86_64)"
 # Himalayas n'expose aucun filtre par métier : il faut balayer le flux récent.
@@ -284,8 +284,8 @@ def main():
           f"l'Europe entière, {compte['europe']} à un autre pays européen, "
           f"{compte['monde']} sans restriction déclarée, {compte['ailleurs']} hors zone")
 
-    dest = RACINE / "candidatures" / "devops-remote.json"
-    dest.parent.mkdir(exist_ok=True)
+    dest = CANDIDATURES / "devops-remote.json"
+    dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps({
         "sources": ["Remotive (remotive.com/api)", "Remote OK (remoteok.com/api)",
                     "We Work Remotely (flux RSS DevOps and Sysadmin)",
@@ -301,7 +301,7 @@ def main():
                          "ni qu'elle peut employer un résident français.",
         "nb_offres": len(offres), "compte_par_zone": compte, "entreprises": ents,
     }, ensure_ascii=False, indent=2) + "\n")
-    print(f"  {len(offres)} offres → {dest.relative_to(RACINE)}")
+    print(f"  {len(offres)} offres → {dest}")
 
 
 if __name__ == "__main__":

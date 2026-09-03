@@ -9,7 +9,7 @@ d'effectif. Chaque ligne est vérifiable par son SIREN. Voir CLAUDE.md, « Règl
 """
 import sys, pathlib, json, datetime
 sys.path.insert(0, str(pathlib.Path(__file__).parent / "fetch"))
-from _common import curl_json, RACINE
+from _common import curl_json, CANDIDATURES
 
 API = "https://recherche-entreprises.api.gouv.fr/search"
 
@@ -151,10 +151,10 @@ def main():
         "epci": EPCI, "naf": {k: v[1] for k, v in NAF.items()},
         "entreprises": lignes,
     }
-    dest = RACINE / "candidatures" / f"devops-{slug}.json"
-    dest.parent.mkdir(exist_ok=True)
+    dest = CANDIDATURES / f"devops-{slug}.json"
+    dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(sortie, ensure_ascii=False, indent=2) + "\n")
-    print(f"\n  {len(lignes)} entreprises → {dest.relative_to(RACINE)}")
+    print(f"\n  {len(lignes)} entreprises → {dest}")
 
 
 if __name__ == "__main__":
