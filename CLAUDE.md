@@ -273,32 +273,11 @@ est compromise : la faire tourner sur https://www.geodair.fr/donnees/api.
 
 ## Hors rapport — listes de candidature
 
-Deux listes d'employeurs vivent **hors du dépôt**, dans
-`../Cover_Letters/candidatures/`, produites par des scripts, jamais écrites à la
-main. Elles n'entrent dans aucun critère : c'est un usage personnel du même
-outillage. Le dépôt étant public, elles n'y ont pas leur place — le chemin est
-défini une fois dans `scripts/fetch/_common.py` (`CANDIDATURES`) et se surcharge
-par la variable d'environnement `CANDIDATURES_DIR`.
+Elles ne sont plus ici. Les scripts et leurs sorties vivent dans
+`../Cover_Letters/` (`outils/`, `candidatures/`, avec leur propre justfile),
+hors de tout dépôt git : le tri éditorial qu'ils portent — entreprises ciblées
+et commentaires — est personnel, et ce dépôt est public.
 
-| Commande | Sortie | Source |
-|---|---|---|
-| `just candidatures grenoble` | `../Cover_Letters/candidatures/devops-grenoble.{json,md}` | API Recherche d'entreprises, 3 EPCI × 17 codes NAF, ≥ 20 salariés |
-| `just candidatures montpellier` | `../Cover_Letters/candidatures/devops-montpellier.{json,md}` | idem, 6 EPCI (métropole + couronne) |
-| `just remote` | `../Cover_Letters/candidatures/devops-remote.{json,md}` | 7 places de marché du travail à distance (~3 min, Himalayas cadence à 1 req/s) |
-
-Ajouter un bassin : une entrée dans `BASSINS` (`scripts/candidatures_devops.py`),
-une sélection dans `SELECTIONS` et une ligne dans `ECOSYSTEMES`
-(`scripts/candidatures_markdown.py`). Les codes NAF sont communs aux deux villes,
-`59.12Z` compris : **Ubisoft Montpellier est déclaré en post-production
-audiovisuelle**, pas en édition de jeux — le code NAF est déclaratif.
-
-La règle d'or s'applique : `scripts/candidatures_markdown.py` désigne les
-entreprises par un fragment de raison sociale et **échoue** si le fragment ne
-correspond pas à exactement une entreprise du JSON — impossible d'ajouter un nom
-qui ne serait pas dans la source. Le tri éditorial et les commentaires en
-italique sont assumés comme tels dans l'en-tête des fichiers.
-
-Différence entre les deux : le registre des entreprises est stable, les offres
-d'emploi tournent en quelques semaines. Les annotations de
-`scripts/candidatures_remote_markdown.py` sont donc *facultatives* — appliquées
-si l'entreprise est encore dans le flux, ignorées sinon.
+L'outillage y reste soumis à la règle d'or : aucune entreprise saisie à la main,
+tout sort de l'API Recherche d'entreprises ou des places de marché, vérifiable
+par SIREN.

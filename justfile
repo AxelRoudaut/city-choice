@@ -68,16 +68,6 @@ notes:
 donnees:
     @python3 scripts/build_donnees.py
 
-# Regénérer la liste d'entreprises d'un bassin d'emploi : grenoble ou montpellier (réseau requis).
-candidatures bassin="grenoble":
-    @python3 scripts/candidatures_devops.py {{bassin}}
-    @python3 scripts/candidatures_markdown.py {{bassin}}
-
-# Regénérer la liste d'employeurs qui recrutent en télétravail intégral (réseau requis, ~3 min).
-remote:
-    @python3 scripts/candidatures_remote.py
-    @python3 scripts/candidatures_remote_markdown.py
-
 # Regenerate report.body.html, the fragment published as a Claude Artifact.
 artifact:
     @./build-artifact.sh
