@@ -117,6 +117,7 @@ h1{font-size:clamp(40px,6.4vw,72px);line-height:.98;letter-spacing:-.028em;font-
 .reset{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink-2);padding:7px 12px;cursor:pointer}
 .reset:hover{border-color:var(--ink-3);color:var(--ink)}
 .reset:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
+.tool-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 
 /* ---------- sections ---------- */
 section.crit{padding:56px 0 0;border-top:1px solid var(--rule);margin-top:56px}
@@ -196,6 +197,19 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
 }
+.rank-ref{opacity:.72;border-top:1px dashed var(--rule);margin-top:.35rem;padding-top:.5rem}
+.rank-ref .rank-pos{font-size:.72em;letter-spacing:.04em;text-transform:uppercase}
+.crit-src{margin:1.5rem 0 0;padding:.7rem .85rem;border-left:2px solid var(--rule);
+  background:var(--paper-2);font-size:.78rem;line-height:1.5;color:var(--ink-2);border-radius:0 3px 3px 0}
+.crit-src strong{color:var(--ink);font-weight:600}
+.src-lab{display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-right:.5rem}
+.src-meth{display:block;margin-top:.3rem;color:var(--ink-3)}
+.src-genre{display:block;margin-top:.25rem;font-size:.72rem;color:var(--ink-3);font-style:italic}
+tr.ville-ref{background:var(--paper-2)}
+tr.ville-ref th{font-weight:500}
+tr.ville-ref th::after{content:" · réf.";font-size:.72em;letter-spacing:.04em;color:var(--ink-3);
+  text-transform:uppercase;font-weight:400}
 </style>
 
 <div class="wrap">
@@ -203,15 +217,15 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
 <header class="masthead">
   <p class="eyebrow">Rapport de décision · déménagement · septembre 2026</p>
   <h1>Cinq villes<br>au banc d'essai</h1>
-  <p class="standfirst">Rennes, Montpellier, Grenoble, Chambéry, Toulon — comparées sur six critères, avec les chiffres et les sources derrière chacun. Les pondérations sont réglables&nbsp;: le classement se recalcule.</p>
-  <p class="byline"><span>13 critères</span><span>5 villes</span><span>30 sources</span><span>Données 1991–2026</span></p>
+  <p class="standfirst">Rennes, Montpellier, Grenoble, Chambéry, TOULON — comparées sur seize critères, avec les chiffres et les sources derrière chacun, et <strong>Paris en ligne de référence</strong>. Les pondérations sont réglables&nbsp;: le classement se recalcule.</p>
+  <p class="byline"><span>16 critères</span><span>5 villes + Paris en référence</span><span>10 jeux de données publics</span><span>Données 1991–2026</span></p>
 </header>
 
 <div class="verdict">
   <div>
     <h2>Ce que disent les données</h2>
-    <p><strong>Rennes prend la tête</strong> sur la pondération par défaut (7,2), devant Grenoble (6,8) et Chambéry (6,3). Rennes est la seule ville du panel sans point faible majeur en dehors d'un seul — la falaise. Grenoble tient par l'escalade et le vélo, Chambéry par l'équilibre nature, Montpellier par le centre-ville, Toulon par la mer.</p>
-    <p>La ligne de fracture reste nette : <strong>Rennes = emploi, logement, ville quotidienne</strong> ; <strong>Grenoble = falaise et vélo</strong> ; <strong>Chambéry = nature, sans marché de l'emploi pour le second poste</strong>. Les treize curseurs ci-dessous servent à trancher.</p>
+    <p><strong>Rennes prend la tête</strong> sur la pondération par défaut (6,5), devant Grenoble (6,3) et Chambéry (5,9) — trois villes séparées par un demi-point, ce qui veut dire que le choix se joue sur vos curseurs, pas sur le classement. Rennes tient par l'emploi, le logement et le métro ; Grenoble par l'eau du robinet, l'escalade et le vélo ; Chambéry par la falaise et les lacs, mais avec le réseau de transport le plus faible du panel. <strong>Paris, en référence, arrive à 4,9</strong> : premier sur l'emploi et les transports, dernier sur le logement, l'air et l'eau.</p>
+    <p>La ligne de fracture reste nette : <strong>Rennes = emploi, logement, ville quotidienne</strong> ; <strong>Grenoble = falaise et vélo</strong> ; <strong>Chambéry = nature, sans marché de l'emploi pour le second poste</strong>. Les seize curseurs ci-dessous servent à trancher.</p>
   </div>
   <div>
     <h2>Les trois signaux à retenir</h2>
@@ -224,14 +238,17 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
 <div class="tool">
   <div class="tool-rank">
     <h3>Classement pondéré</h3>
-    <p class="hint">Note sur 10, agrégée à partir des treize critères. Réglez l'importance de chacun à droite.</p>
+    <p class="hint">Note sur 10, agrégée à partir des seize critères. Réglez l'importance de chacun à droite.</p>
     <div id="ranking"></div>
   </div>
   <div>
     <h3>Vos priorités</h3>
     <p class="hint">Poids relatif de chaque critère. Le total est normalisé automatiquement.</p>
     <div id="sliders"></div>
-    <button class="reset" id="reset" type="button">Rétablir les poids par défaut</button>
+    <div class="tool-actions">
+      <button class="reset" id="reset" type="button">Rétablir les poids par défaut</button>
+      <button class="reset" id="save" type="button">Sauvegarder nouveaux poids par défaut</button>
+    </div>
   </div>
 </div>
 
@@ -266,7 +283,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">—</td>
           <td class="n">10,9 %<br><span class="chip bad">le plus élevé</span></td>
           <td>Occitanie = 2<sup>e</sup> région numérique hors Île-de-France (~131 000 pros, &gt;75 % sur Toulouse et Montpellier). Édition logicielle, santé numérique, startups</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">27<span class="cellbar"><i style="width:40%"></i></span></td>
           <td class="n">—</td>
           <td class="n">7,9 %<br><span class="chip mid">= moyenne nat.</span></td>
@@ -276,12 +293,36 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">—</td>
           <td class="n">5,7 %<br><span class="chip ok">le plus bas</span></td>
           <td>Savoie Technolac : 230 entreprises, 3 500 emplois, 1 000 chercheurs. French Tech in the Alps. Bassin réel mais étroit — et Grenoble est à 55 km</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td><strong>56 866 établissements</strong> actifs en programmation, conseil en systèmes et traitement de données (NAF 62.01Z, 62.02A, 63.11Z), soit <strong>27,0 pour 1 000 habitants</strong> — près de quatre fois la densité de Montpellier, la première du panel</td></tr>
       </tbody>
       <caption>Relevé HelloWork, requête « devops », rayon 20 km, septembre 2026 — série homogène entre villes. Colonne Indeed relevée pour les deux bassins où elle était disponible : l'écart Grenoble 13/83 mesure un biais de plateforme, pas un marché. Chômage : taux localisés Insee, 1<sup>er</sup> trimestre 2026 (provisoire) ; France métropolitaine 7,9 %.</caption>
     </table>
   </div>
 
-  <p>Rennes et Grenoble sortent en tête, pour des raisons opposées : Rennes par le volume et la diversité — c'est le bassin où l'on peut changer d'employeur sans déménager ; Grenoble par la profondeur industrielle, avec des postes plus rares mais plus durables, et un profil très infrastructure. Toulon concentre son offre sur la défense, ce qui rétrécit le champ des employeurs possibles.</p>
+  <p>Rennes et Grenoble sortent en tête, pour des raisons opposées : Rennes par le volume et la diversité — c'est le bassin où l'on peut changer d'employeur sans déménager ; Grenoble par la profondeur industrielle, avec des postes plus rares mais plus durables, et un profil très infrastructure. TOULON concentre son offre sur la défense, ce qui rétrécit le champ des employeurs possibles.</p>
+  <!-- SRC:devops -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ EMPLOI CIP ============ -->
@@ -315,7 +356,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">6,6 %</td>
           <td>Métropole, agglomération, réseau IAE de l'Isère, associations</td>
           <td>Volume correct pour la taille du bassin. Suffisant pour une recherche active, pas pour choisir</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">6<span class="cellbar green"><i style="width:23%"></i></span></td>
           <td class="n">7,9 %</td>
           <td>Missions locales varoises, associations</td>
@@ -325,6 +366,11 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">5,7 %</td>
           <td>Régie de quartier, une mission locale, quelques associations</td>
           <td><span class="chip bad">le point de blocage</span> Une seule offre relevée. Il faudrait viser la Savoie entière — Aix-les-Bains, Albertville, Annecy à 50 min — ou accepter une recherche longue</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td><strong>4 708 associations</strong> actives en action sociale sans hébergement (NAF 88.99B), soit <strong>2,24 pour 1 000 habitants</strong></td>
+          <td>La plus forte densité associative du panel, sur un bassin sans commune mesure — mais adossée au coût du logement le plus élevé</td></tr>
       </tbody>
       <caption>Relevé HelloWork, requête « conseiller insertion professionnelle », rayon 20 km, septembre 2026, recoupé avec les listes France Travail. Chômage : taux localisés Insee, T1 2026 (provisoire).</caption>
     </table>
@@ -336,6 +382,25 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
     <p>Symétriquement, Montpellier doit ses 26 offres aux 10,9 % de chômage de l'Hérault. Le volume est réel, la stabilité des postes l'est moins.</p>
     <p>Rennes est la seule ville où les deux marchés sont simultanément profonds. C'est son principal argument dans tout ce dossier.</p>
   </div>
+  <!-- SRC:cip -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>API Recherche d'entreprises</strong> · relevé le 3 septembre 2026<span class="src-meth">Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ IMMOBILIER ============ -->
@@ -371,7 +436,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td>Le cœur dense d'abord (Échirolles, Saint-Martin-d'Hères, Fontaine, Saint-Égrève), puis l'entrée du Grésivaudan — Montbonnot, Saint-Ismier, Le Versoud, Villard-Bonnot, Bernin — et Voreppe, Vif, Champ-sur-Drac</td>
           <td>Deux tissus très différents dans le même rayon : grands ensembles dans les 10 premiers kilomètres, pavillonnaire de vallée au-delà</td>
           <td><span class="chip mid">15 km change tout</span> À 10 km, le rayon ne contenait que de l'immeuble ; à 15, il atteint enfin le Grésivaudan et le Voironnais, où la maison avec jardin devient réaliste</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">12,9 €/m²<span class="cellbar warm"><i style="width:94%"></i></span></td>
           <td>La Valette-du-Var, La Garde, Le Revest-les-Eaux, Le Pradet, Ollioules, La Seyne-sur-Mer, puis La Crau, Carqueiranne, Six-Fours, La Farlède, Solliès-Pont</td>
           <td>Littoral urbain dense d'un côté, collines pavillonnaires et vallée du Gapeau de l'autre</td>
@@ -381,16 +446,40 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td>Castelnau-le-Lez, Clapiers, Jacou, Le Crès, Montferrier, Grabels, Juvignac, Saint-Jean-de-Védas, Lattes, Pérols, puis Saint-Gély-du-Fesc, Saint-Clément-de-Rivière, Teyran, Assas, Fabrègues, Baillargues, Mauguio</td>
           <td>Couronne très villa-pavillonnaire, la plus étalée du panel — mais aussi le marché le plus cher et le plus disputé</td>
           <td>Le tissu existe en abondance ; le prix et la concurrence font barrage. Encadrement strict avec loyers de référence depuis déc. 2021</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">32,13 €/m²<span class="cellbar"><i style="width:100%"></i></span></td>
+          <td><strong>115 communes</strong> dans le rayon, de la première couronne dense (Boulogne, Montreuil, Saint-Denis, Vincennes) aux limites de la petite couronne</td>
+          <td>Tissu urbain continu. Le rayon ne sort pas de l'agglomération : la maison avec jardin en est absente</td>
+          <td><span class="chip bad">hors d'atteinte</span> 22,35 €/m² en moyenne dans les 15 km, soit près du double du rayon rennais (12,47 €/m²)</td></tr>
       </tbody>
-      <caption>Loyers médians hors charges, tous types de logements : Observatoires des loyers (réseau OLL / DHUP) — Rennes et Grenoble millésime 2024, Montpellier et Toulon 2025. Chambéry : médiane maisons 12,81 €/m² (Observatoire DHUP 2025). Rayon de 15 km à vol d'oiseau depuis le centre-ville, soit environ 10 km au-delà des limites communales. Le loyer médian mélange appartements et maisons ; les maisons se louent généralement plus grandes et un peu moins cher au m².</caption>
+      <caption>Loyers médians hors charges, tous types de logements : Observatoires des loyers (réseau OLL / DHUP) — Rennes et Grenoble millésime 2024, Montpellier et TOULON 2025. Chambéry : médiane maisons 12,81 €/m² (Observatoire DHUP 2025). Rayon de 15 km à vol d'oiseau depuis le centre-ville, soit environ 10 km au-delà des limites communales. Le loyer médian mélange appartements et maisons ; les maisons se louent généralement plus grandes et un peu moins cher au m².</caption>
     </table>
   </div>
 
   <div class="callout">
     <span class="lab">Pourquoi 15 km plutôt que 10 change le classement</span>
     <p>À 10 km du centre, Grenoble était la ville la plus pénalisée du dossier : son rayon ne contenait que le cœur dense de la métropole — Échirolles, Saint-Martin-d'Hères, Fontaine — c'est-à-dire précisément les grands ensembles à éviter. <strong>Les cinq kilomètres supplémentaires font entrer le Grésivaudan et Voreppe dans le périmètre</strong>, et lui rendent une bonne partie de son avantage prix : c'est le loyer médian le plus bas des cinq.</p>
-    <p>Le rayon élargi profite à toutes les villes, mais pas également : Rennes et Chambéry gagnent une deuxième couronne franchement rurale, Toulon reste bridée par la géographie littorale, et Montpellier gagne du tissu sans gagner en accessibilité — le prix reste le facteur limitant.</p>
+    <p>Le rayon élargi profite à toutes les villes, mais pas également : Rennes et Chambéry gagnent une deuxième couronne franchement rurale, TOULON reste bridée par la géographie littorale, et Montpellier gagne du tissu sans gagner en accessibilité — le prix reste le facteur limitant.</p>
   </div>
+  <!-- SRC:immo -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Carte des loyers (DHUP)</strong> · relevé le 3 septembre 2026<span class="src-meth">Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ CENTRE-VILLE PIÉTON & ARCHITECTURE ============ -->
@@ -431,13 +520,18 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">37<br><span class="chip mid">92<sup>e</sup></span><span class="cellbar green"><i style="width:31%"></i></span></td>
           <td>Noyau ancien réduit autour de Saint-André et du Jardin de Ville ; le reste est très majoritairement un tissu du XX<sup>e</sup> siècle</td>
           <td><span class="chip bad">le grand écart</span> Pionnière de la piétonnisation dans les années 1970 et première ville de France en part piétonne — mais l'architecture est le point faible reconnu de la ville</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">3 %<br><span class="chip bad">25<sup>e</sup></span><span class="cellbar"><i style="width:30%"></i></span></td>
           <td class="n">25<span class="cellbar green"><i style="width:21%"></i></span></td>
-          <td>Basse ville et vieux Toulon, place Puget et sa fontaine, opéra, Atlantes de Puget sur l'hôtel de ville</td>
+          <td>Basse ville et vieux TOULON, place Puget et sa fontaine, opéra, Atlantes de Puget sur l'hôtel de ville</td>
           <td>Vraie matière architecturale, longtemps dégradée, en réhabilitation depuis plus de dix ans. La part piétonne reste la plus faible du panel</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td>—</td>
+          <td>Non relevé : ce critère s'appuie sur le classement villes.plus et un décompte Wikipédia, qui ne fournissent pas de valeur comparable pour Paris</td></tr>
       </tbody>
-      <caption>Part piétonne : classement villes.plus, surface des zones piétonnes rapportée à la surface communale mesurée — Grenoble 1,9 km² sur 18,4 ; Rennes 4,1 sur 50,3 ; Montpellier 3,0 sur 57,1 ; Toulon 1,2 sur 44,1. Chambéry n'entre pas dans le périmètre de ce classement. Monuments historiques classés ou inscrits : décompte par commune, Wikipédia d'après la base Mérimée, avec le rang national. Surfaces piétonnes de Montpellier : ville de Montpellier ; ZTL de Rennes : Rue de l'Avenir.</caption>
+      <caption>Part piétonne : classement villes.plus, surface des zones piétonnes rapportée à la surface communale mesurée — Grenoble 1,9 km² sur 18,4 ; Rennes 4,1 sur 50,3 ; Montpellier 3,0 sur 57,1 ; TOULON 1,2 sur 44,1. Chambéry n'entre pas dans le périmètre de ce classement. Monuments historiques classés ou inscrits : décompte par commune, Wikipédia d'après la base Mérimée, avec le rang national. Surfaces piétonnes de Montpellier : ville de Montpellier ; ZTL de Rennes : Rue de l'Avenir.</caption>
     </table>
   </div>
 
@@ -446,6 +540,9 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
     <p>Pris isolément, l'indicateur piéton couronnerait Grenoble et l'indicateur patrimonial couronnerait Montpellier. <strong>Croisés, ils désignent Montpellier et Rennes</strong>, seules villes fortes sur les deux plans — et ils font descendre Grenoble, dont le centre piéton traverse un bâti sans grande qualité.</p>
     <p>Chambéry est le cas particulier du panel : trop petite pour figurer dans les classements nationaux, mais dotée d'une vieille ville entièrement piétonne et d'une identité architecturale piémontaise que ses 25 monuments classés sous-estiment largement.</p>
   </div>
+  <!-- SRC:centre -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>villes.plus, base Mérimée</strong><span class="src-meth">Lecture de la part piétonne et du patrimoine protégé.</span><span class="src-genre">Note : lecture argumentée, non calculée</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ VIE DE CENTRE-VILLE ============ -->
@@ -478,7 +575,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">~10–11 %<br><span class="chip mid">= moyenne</span><span class="cellbar green"><i style="width:85%"></i></span></td>
           <td>Sous surveillance : la ville et la CCI ont lancé « la Boîte à commerce » et des boutiques éphémères pour résorber la vacance</td>
           <td>Halles de Chambéry, marché, ruelles de la vieille ville. Offre réelle mais plafonnée par la taille : 60 000 habitants ne portent pas la même densité de bars et de restaurants</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">n.d.<span class="cellbar warm"><i style="width:45%"></i></span></td>
           <td><span class="chip ok">redressement</span> Plus de dix ans de rénovation du centre ancien : piétonnisation, foncière de redynamisation, services publics réimplantés</td>
           <td>Marché du cours Lafayette, l'un des plus réputés de France ; les Halles, la rue des Arts et la place de l'Équerre forment le nouveau pôle. Parti d'une base très basse</td></tr>
@@ -486,8 +583,12 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">13–14 %<br><span class="chip bad">le plus élevé</span><span class="cellbar hot"><i style="width:100%"></i></span></td>
           <td><span class="chip bad">en dégradation</span> Taux doublé en dix ans (~6 % → ~14 %). Transactions −7 % en 2025, surfaces louées 14 012 → 11 088 m²</td>
           <td>Vraie vie étudiante (~60 000 étudiants) autour de Saint-André et du cours Berriat, mais plus de 20 % de vacance sur le cours Berriat et la rue Chenoise, deux axes historiques</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td>—</td>
+          <td>Non relevé : la vacance commerciale suivie par Procos n'est pas publiée en donnée ouverte</td></tr>
       </tbody>
-      <caption>Taux de vacance commerciale : Observatoire du commerce du centre-ville rennais 2025 (2 156 locaux relevés en avril 2025), qui publie également les comparaisons Montpellier 10,7 % et Grenoble 13 % ; moyenne nationale 10,64 % (Procos, 2025). Grenoble ~14 % et données de transactions : Le Dauphiné, avril 2026. Chambéry : CCI Savoie et presse locale. Toulon : aucun taux comparable publié — la trajectoire est documentée par la ville et l'association Centre-Ville en Mouvement, pas le niveau.</caption>
+      <caption>Taux de vacance commerciale : Observatoire du commerce du centre-ville rennais 2025 (2 156 locaux relevés en avril 2025), qui publie également les comparaisons Montpellier 10,7 % et Grenoble 13 % ; moyenne nationale 10,64 % (Procos, 2025). Grenoble ~14 % et données de transactions : Le Dauphiné, avril 2026. Chambéry : CCI Savoie et presse locale. TOULON : aucun taux comparable publié — la trajectoire est documentée par la ville et l'association Centre-Ville en Mouvement, pas le niveau.</caption>
     </table>
   </div>
 
@@ -496,6 +597,9 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
     <p><strong>C'est le critère qui pénalise le plus Grenoble</strong>, et il pointe dans la même direction que le précédent : une ville très piétonne, mais dont le commerce de centre décline nettement — le taux de vacance a doublé en dix ans et dépasse 20 % sur deux axes historiques. Un centre piéton vide reste un centre vide.</p>
     <p>Inversement, <strong>Rennes et Montpellier sont les deux vraies villes de centre-ville du panel</strong>, avec un avantage à Rennes sur la solidité (9,4 % de vacance, 61 % d'indépendants, croissance des cafés-restaurants) et à Montpellier sur l'intensité et la durée de la saison en terrasse.</p>
   </div>
+  <!-- SRC:vie -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Observatoires du commerce, Procos</strong><span class="src-meth">Lecture de la vitalité commerciale et de la vacance.</span><span class="src-genre">Note : lecture argumentée, non calculée</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ VÉLO ============ -->
@@ -536,21 +640,31 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td>235 km de « vélo-lignes » express programmées, dont 170 km d'ici 2026 ; 160 km existants ; plan mobilité à 150 M€</td>
           <td><span class="chip ok">plat</span></td>
           <td>Rattrapage massif en cours, sur une base faible : l'objectif affiché est de passer la part modale de 4 % à 10 %</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">n.c.<span class="cellbar warm"><i style="width:22%"></i></span></td>
           <td>Réseau passé de 125 km (2006) à 269 km (2018), objectif 400 km au schéma directeur</td>
           <td><span class="chip bad">accidenté</span> Ville en amphithéâtre, coincée entre mer et massifs</td>
           <td><span class="chip bad">le plus faible</span> La part modale stagne autour de <strong>2 %</strong>, contre 9 % à Bordeaux ou Strasbourg : le réseau s'allonge sans changer les pratiques</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>Non relevé : le Baromètre des villes cyclables de la FUB n'est pas publié en donnée ouverte</td></tr>
       </tbody>
-      <caption>Baromètre vélo 2025 de la FUB, enquête du 28 février au 2 juin 2025, résultats publiés le 18 septembre 2025 : 334 563 réponses, 2 776 communes qualifiées, notes de A+ (≥ 4,6) à G (&lt; 2,3), la moyenne nationale se situant en D. Montpellier et Toulon : note non retrouvée dans les sources consultées, l'appréciation repose sur les données d'infrastructure et de part modale publiées par les deux métropoles et la FUB. Réseaux : Montpellier Méditerranée Métropole, Métropole Toulon Provence Méditerranée (schéma directeur des aménagements cyclables).</caption>
+      <caption>Baromètre vélo 2025 de la FUB, enquête du 28 février au 2 juin 2025, résultats publiés le 18 septembre 2025 : 334 563 réponses, 2 776 communes qualifiées, notes de A+ (≥ 4,6) à G (&lt; 2,3), la moyenne nationale se situant en D. Montpellier et TOULON : note non retrouvée dans les sources consultées, l'appréciation repose sur les données d'infrastructure et de part modale publiées par les deux métropoles et la FUB. Réseaux : Montpellier Méditerranée Métropole, Métropole TOULON Provence Méditerranée (schéma directeur des aménagements cyclables).</caption>
     </table>
   </div>
 
   <div class="callout">
     <span class="lab">Le paradoxe grenoblois</span>
     <p>La cuvette qui vaut à Grenoble ses canicules et ses pics d'ozone est exactement ce qui en fait la première ville cyclable de France : un fond de vallée parfaitement plat, dense, avec un réseau en site propre. <strong>Le même trait géographique produit le pire score climat et le meilleur score vélo du dossier.</strong></p>
-    <p>À l'opposé, Toulon cumule le relief, la coupure des axes routiers et une part modale bloquée à 2 % : c'est la seule ville du panel où le vélo quotidien reste difficile malgré un réseau en extension.</p>
+
+  <p>À l'opposé, Toulon cumule le relief, la coupure des axes routiers et une part modale bloquée à 2 % : c'est la seule ville du panel où le vélo quotidien reste difficile malgré un réseau en extension.</p>
+    <p>À l'opposé, TOULON cumule le relief, la coupure des axes routiers et une part modale bloquée à 2 % : c'est la seule ville du panel où le vélo quotidien reste difficile malgré un réseau en extension.</p>
   </div>
+  <!-- SRC:velo -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Baromètre FUB</strong><span class="src-meth">Note du baromètre des villes cyclables.</span><span class="src-genre">Note : lecture argumentée, non calculée</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ EMBOUTEILLAGES ============ -->
@@ -581,7 +695,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">—</td>
           <td>Stable par rapport à 2024</td>
           <td>Rocade unique qui concentre les flux, mais ville compacte et alternatives crédibles (REV, métro, bus)</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">31 %<span class="cellbar warm"><i style="width:66%"></i></span></td>
           <td class="n">—</td>
           <td><span class="chip ok">en baisse</span> 34 % → 31 %. <strong>Seule ville française où le temps de trajet moyen a diminué en 2025</strong>, grâce à l'élargissement de l'A57 à 2×3 voies sur 7 km</td>
@@ -596,6 +710,11 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">85 h<br><span class="chip bad">+2 h</span></td>
           <td><span class="chip bad">en hausse</span> 40,5 % → 41,4 %</td>
           <td>Croissance démographique la plus rapide du panel, étalement urbain, A9 et A709 en limite d'agglomération</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td>—</td>
+          <td>Non relevé : le TomTom Traffic Index est une source propriétaire, sans équivalent en donnée ouverte</td></tr>
       </tbody>
       <caption>TomTom Traffic Index, édition 2026 portant sur l'année 2025 : 29 villes françaises, données de plus de 600 millions d'appareils. L'indice de congestion est le pourcentage de temps additionnel par rapport à un trajet en conditions fluides ; les heures perdues correspondent à un trajet de 10 km effectué matin et soir aux heures de pointe. Référence haute : Lyon, 47,2 % et 121 h. Les valeurs individuelles de Rennes et Grenoble ne figurent pas dans le communiqué national, seules leurs tendances y sont indiquées.</caption>
     </table>
@@ -604,9 +723,12 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
   <div class="callout">
     <span class="lab">Croisé avec le critère précédent</span>
     <p><strong>Montpellier est la seule ville du panel où les deux signaux vont dans le même mauvais sens</strong> : 3<sup>e</sup> ville la plus embouteillée de France, en aggravation, avec une part modale vélo encore à 4 %. Le réseau cyclable arrive, mais après le problème.</p>
-    <p>Grenoble est embouteillée <em>et</em> première ville cyclable de France : concrètement, le bouchon se contourne à vélo. Toulon est le cas inverse — une congestion en nette amélioration, mais aucune alternative crédible au volant.</p>
+    <p>Grenoble est embouteillée <em>et</em> première ville cyclable de France : concrètement, le bouchon se contourne à vélo. TOULON est le cas inverse — une congestion en nette amélioration, mais aucune alternative crédible au volant.</p>
     <p>Chambéry échappe simplement à la question par sa taille, ce qui est en soi un avantage.</p>
   </div>
+  <!-- SRC:trafic -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>TomTom Traffic Index</strong><span class="src-meth">Temps perdu en congestion ; note haute = peu de congestion.</span><span class="src-genre">Note : lecture argumentée, non calculée</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ CLIMAT ============ -->
@@ -616,53 +738,39 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
       <p class="crit-tag">Critère 8</p>
       <h2>Le climat</h2>
     </div>
-    <p class="crit-ask">Pénaliser le gris et la pluie. Pénaliser aussi les périodes répétées au-delà de 35 °C.</p>
+    <p class="crit-ask">Du beau temps sans sécheresse&nbsp;: valoriser l'ensoleillement, pénaliser les canicules et les jours de pluie — sans basculer dans un été sans eau.</p>
   </div>
 
   <p>Ce critère élimine les extrêmes des deux côtés, ce qui ne laisse aucune option confortable : les villes ensoleillées sont les villes chaudes. Deux indicateurs séparent malgré tout les profils — le nombre de jours à plus de 30 °C, et surtout le nombre de <em>nuits tropicales</em> (minimale ≥ 20 °C), qui détermine si la maison se rafraîchit la nuit.</p>
 
-  <div class="tscroll">
-    <table>
-      <thead>
-        <tr><th>Ville</th><th class="n">Soleil</th><th class="n">Pluie</th><th class="n">Jours de pluie</th><th class="n">Jours ≥ 30 °C</th><th class="n">Nuits ≥ 20 °C</th><th class="n">Record</th></tr>
-      </thead>
-      <tbody>
-        <tr><th>Rennes</th>
-          <td class="n">1 762 h<span class="cellbar"><i style="width:61%"></i></span></td>
-          <td class="n">691 mm</td><td class="n">114,5</td>
-          <td class="n">8,9<span class="cellbar hot"><i style="width:20%"></i></span></td>
-          <td class="n">0,5</td><td class="n">41,3 °C<br><span class="chip mid">juin 2026</span></td></tr>
-        <tr><th>Chambéry</th>
-          <td class="n">1 895 h<span class="cellbar"><i style="width:65%"></i></span></td>
-          <td class="n">1 204 mm<br><span class="chip bad">le plus pluvieux</span></td><td class="n">114,6</td>
-          <td class="n">24,7<span class="cellbar hot"><i style="width:56%"></i></span></td>
-          <td class="n">1,3</td><td class="n">40,5 °C</td></tr>
-        <tr><th>Grenoble</th>
-          <td class="n">2 108 h<span class="cellbar"><i style="width:73%"></i></span></td>
-          <td class="n">915 mm</td><td class="n">107,7</td>
-          <td class="n">35,2<span class="cellbar hot"><i style="width:81%"></i></span></td>
-          <td class="n">1,5</td><td class="n">39,5 °C</td></tr>
-        <tr><th>Montpellier</th>
-          <td class="n">2 705 h<span class="cellbar"><i style="width:93%"></i></span></td>
-          <td class="n">639 mm</td><td class="n">57,9</td>
-          <td class="n">34,2<span class="cellbar hot"><i style="width:78%"></i></span></td>
-          <td class="n">28,5</td><td class="n">43,5 °C<br><span class="chip bad">le plus chaud</span></td></tr>
-        <tr><th>Toulon</th>
-          <td class="n">2 899 h<span class="cellbar"><i style="width:100%"></i></span></td>
-          <td class="n">633 mm</td><td class="n">60,9</td>
-          <td class="n">43,7<span class="cellbar hot"><i style="width:100%"></i></span></td>
-          <td class="n">68,7<br><span class="chip bad">1 nuit sur 5</span></td><td class="n">40,1 °C</td></tr>
-      </tbody>
-      <caption>Normales Météo-France 1991–2020. Stations : Rennes-St-Jacques (07130), Chambéry-Aix (07491), Grenoble-Le Versoud (07487, 220 m — station de la vallée, plus représentative de la ville que St-Geoirs), Montpellier-Fréjorgues (07643), Toulon-Le Baou (00057, série de 13 ans seulement). Ensoleillement et cumul de pluie de Grenoble mesurés à St-Geoirs (2 108 h / 915 mm).</caption>
-    </table>
-  </div>
+  <p><strong>Toulon a le plus de jours chauds mais peu de jours à plus de 35 °C</strong> : la brise de mer écrête les pointes — son record absolu sur 1991-2020 (36,8 °C) est le plus bas du panel méridional. En revanche, 43 nuits tropicales par an, contre 1,5 à Grenoble : la maison ne refroidit jamais de juin à septembre. C'est le vrai coût du climat toulonnais.</p>
 
-  <div class="callout">
-    <span class="lab">Lecture</span>
-    <p><strong>Toulon a le plus de jours chauds mais peu de jours à plus de 35 °C</strong> : la brise de mer écrête les pointes — son record absolu (40,1 °C) est le plus bas des trois villes du Sud. En revanche, 69 nuits tropicales par an, contre 1,5 à Grenoble : la maison ne refroidit jamais de juin à septembre. C'est le vrai coût du climat toulonnais.</p>
-    <p><strong>Grenoble est le piège inverse</strong> : autant de jours à 30 °C que Montpellier, dans une cuvette où l'air stagne, avec un îlot de chaleur urbain parmi les plus marqués de France et des pics d'ozone en épisode caniculaire. Mais les nuits redescendent.</p>
-    <p><strong>Sur la page Open DPE que vous citez</strong>, attention à la période : elle couvre la saison de chauffe (15 octobre – 15 avril), c'est donc un indicateur de <em>froid</em>, pas de canicule. Elle situe Toulon à 11,1 °C de moyenne hivernale et Chambéry à 6,4 °C, avec un centile 0,5 % à +1,3 °C pour Toulon contre −6,7 °C à Grenoble.</p>
-  </div>
+  <p><strong>Grenoble est le piège inverse</strong> : autant de jours à 30 °C que Montpellier, dans une cuvette où l'air stagne, avec un îlot de chaleur urbain parmi les plus marqués de France et des pics d'ozone en épisode caniculaire. Mais les nuits redescendent.</p>
+
+  <p><strong>Le cumul annuel est trompeur.</strong> Montpellier, Toulon et Paris reçoivent tous à peu près la même pluie sur l'année — 639, 633 et 634 mm. Mais entre juin et août, Toulon n'en reçoit que 47 mm et Montpellier 86, contre 169 à Paris, 138 à Rennes et 284 à Chambéry. C'est cet écart, invisible dans la moyenne annuelle, qui sépare un climat ensoleillé d'un climat sec. La note applique donc un malus aux villes dont l'été passe sous 120 mm&nbsp;: <strong>Toulon perd ainsi le bénéfice de son ensoleillement record</strong>, et Montpellier prend la tête du critère.</p>
+
+  <p><strong>Sur la page Open DPE que vous citez</strong>, attention à la période : elle couvre la saison de chauffe (15 octobre – 15 avril), c'est donc un indicateur de <em>froid</em>, pas de canicule. Elle situe Toulon à 11,1 °C de moyenne hivernale et Chambéry à 6,4 °C, avec un centile 0,5 % à +1,3 °C pour Toulon contre −6,7 °C à Grenoble.</p>
+
+  <div class="tscroll"><table><thead><tr><th>Ville</th><th class="n">Soleil</th><th class="n">Jours ≥ 30 °C</th><th class="n">Jours de pluie</th><th class="n">Pluie<br>juin – août</th><th class="n">Pluie<br>annuelle</th><th class="n">Nuits ≥ 20 °C</th><th>Station</th></tr></thead><tbody>
+    <tr><th>TOULON</th><td class="n">2 868 h<span class="cellbar "><i style="width:100%"></i></span></td><td class="n">36,6<span class="cellbar hot"><i style="width:100%"></i></span></td><td class="n">57,5</td><td class="n">47 mm<br><span class="chip bad">été sec</span></td><td class="n">633 mm</td><td class="n">43,0</td><td>TOULON<br><span class="chip">2,8 km · 3 m</span></td></tr>
+    <tr><th>Montpellier</th><td class="n">2 705 h<span class="cellbar "><i style="width:94%"></i></span></td><td class="n">34,3<span class="cellbar hot"><i style="width:94%"></i></span></td><td class="n">57,8</td><td class="n">86 mm<br><span class="chip bad">été sec</span></td><td class="n">639 mm</td><td class="n">28,6</td><td>MONTPELLIER-AEROPORT<br><span class="chip">8,0 km · 1 m</span></td></tr>
+    <tr><th>Grenoble</th><td class="n">1 915 h<span class="cellbar "><i style="width:67%"></i></span></td><td class="n">35,9<span class="cellbar hot"><i style="width:98%"></i></span></td><td class="n">107,9</td><td class="n">250 mm</td><td class="n">982 mm</td><td class="n">1,5</td><td>GRENOBLE - LVD<br><span class="chip">10,2 km · 220 m</span></td></tr>
+    <tr><th>Chambéry</th><td class="n">1 893 h<span class="cellbar "><i style="width:66%"></i></span></td><td class="n">24,7<span class="cellbar hot"><i style="width:67%"></i></span></td><td class="n">114,6</td><td class="n">284 mm</td><td class="n">1 204 mm</td><td class="n">1,3</td><td>CHAMBERY-AIX<br><span class="chip">9,1 km · 235 m</span></td></tr>
+    <tr><th>Rennes</th><td class="n">1 762 h<span class="cellbar "><i style="width:61%"></i></span></td><td class="n">8,9<span class="cellbar hot"><i style="width:24%"></i></span></td><td class="n">114,6</td><td class="n">138 mm</td><td class="n">691 mm</td><td class="n">0,6</td><td>RENNES-ST JACQUES<br><span class="chip">6,2 km · 36 m</span></td></tr>
+    <tr class="ville-ref"><th>Paris</th><td class="n">1 716 h<span class="cellbar "><i style="width:60%"></i></span></td><td class="n">14,0<span class="cellbar hot"><i style="width:38%"></i></span></td><td class="n">109,0</td><td class="n">169 mm</td><td class="n">634 mm</td><td class="n">5,6</td><td>PARIS-MONTSOURIS<br><span class="chip">4,2 km · 75 m</span></td></tr>
+  </tbody><caption>Météo-France, normales 1991-2020 calculées depuis les fichiers mensuels ouverts, sur une station unique par ville — la plus proche du fond de vallée ayant au moins vingt ans de relevés. Jours de pluie : cumul quotidien ≥ 1 mm. <strong>Le cumul annuel ne dit rien de la sécheresse</strong> : Montpellier, TOULON et Paris reçoivent tous environ 635 mm par an, mais 86, 47 et 169 mm entre juin et août. C'est la colonne estivale qui distingue un climat sec d'un climat simplement ensoleillé.</caption></table></div>
+  <div class="callout"><span class="lab">Ce que l'indice ne dit pas</span><p>Une moyenne annuelle gomme les épisodes courts, notamment l'ozone estival et les pics hivernaux. Elle reste plus pertinente pour choisir un lieu de vie qu'un relevé « temps réel » isolé. Les valeurs 2025 restent au-dessus des lignes directrices OMS pour les PM<sub>2.5</sub> dans les cinq villes.</p></div>
+  <!-- SRC:climat -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Météo-France, climatologie de base</strong> · relevé le 3 septembre 2026<span class="src-meth">Beau temps sans sécheresse : ensoleillement (40 %), rareté des canicules au-dessus de 30 °C (30 %) et rareté des jours de pluie (30 %), le tout minoré si le cumul de juin à août tombe sous 120 mm. Chaque composante est étalée sur les seules villes classées, les villes de référence étant placées sur la même échelle. Les poids sont réglables dans le champ « parametres » de ce fichier.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Météo-France, climatologie de base</strong> · relevé le 3 septembre 2026<span class="src-meth">Beau temps sans sécheresse : ensoleillement (40 %), rareté des canicules au-dessus de 30 °C (30 %) et rareté des jours de pluie (30 %), le tout minoré si le cumul de juin à août tombe sous 120 mm. Chaque composante est étalée sur les seules villes classées, les villes de référence étant placées sur la même échelle. Les poids sont réglables dans le champ « parametres » de ce fichier.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Météo-France, climatologie de base</strong> · relevé le 3 septembre 2026<span class="src-meth">Beau temps sans sécheresse : ensoleillement (40 %), rareté des canicules au-dessus de 30 °C (30 %) et rareté des jours de pluie (30 %), le tout minoré si le cumul de juin à août tombe sous 120 mm. Chaque composante est étalée sur les seules villes classées, les villes de référence étant placées sur la même échelle. Les poids sont réglables dans le champ « parametres » de ce fichier.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Météo-France, climatologie de base</strong> · relevé le 3 septembre 2026<span class="src-meth">Beau temps sans sécheresse : ensoleillement (40 %), rareté des canicules au-dessus de 30 °C (30 %) et rareté des jours de pluie (30 %), le tout minoré si le cumul de juin à août tombe sous 120 mm. Chaque composante est étalée sur les seules villes classées, les villes de référence étant placées sur la même échelle. Les poids sont réglables dans le champ « parametres » de ce fichier.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Météo-France, climatologie de base</strong> · relevé le 3 septembre 2026<span class="src-meth">Beau temps sans sécheresse : ensoleillement (40 %), rareté des canicules au-dessus de 30 °C (30 %) et rareté des jours de pluie (30 %), le tout minoré si le cumul de juin à août tombe sous 120 mm. Chaque composante est étalée sur les seules villes classées, les villes de référence étant placées sur la même échelle. Les poids sont réglables dans le champ « parametres » de ce fichier.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ QUALITÉ DE L'AIR ============ -->
@@ -672,18 +780,18 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
     <p class="crit-ask">Réduire l'exposition chronique aux particules fines et au dioxyde d'azote, plutôt que juger une seule journée.</p>
   </div>
   <p>L'indice combine les moyennes annuelles 2025 de PM<sub>2.5</sub> et de NO<sub>2</sub> des stations urbaines de fond. Les deux polluants sont rapportés aux lignes directrices annuelles de l'OMS (5 et 10 µg/m³) : plus l'exposition relative est basse, meilleure est la note. Les stations trafic sont écartées, car elles décrivent une rue et non l'air ambiant de la ville.</p>
-  <div class="tscroll"><table>
-    <thead><tr><th>Ville</th><th class="n">PM<sub>2.5</sub> annuel</th><th class="n">NO<sub>2</sub> annuel</th><th class="n">Indice d'exposition</th><th>Station de fond</th><th>Lecture</th></tr></thead>
-    <tbody>
-      <tr><th>Rennes</th><td class="n">9,6 µg/m³</td><td class="n">8,3 µg/m³</td><td class="n">2,75<br><span class="chip ok">meilleur</span></td><td>Rennes Thabor</td><td>Le NO<sub>2</sub> le plus bas du panel compense des particules comparables à Montpellier.</td></tr>
-      <tr><th>Chambéry</th><td class="n">8,2 µg/m³</td><td class="n">13,3 µg/m³</td><td class="n">2,96</td><td>Pasteur</td><td>Les PM<sub>2.5</sub> sont faibles ; la cluse et les déplacements pèsent davantage sur le NO<sub>2</sub>.</td></tr>
-      <tr><th>Toulon</th><td class="n">7,8 µg/m³</td><td class="n">14,5 µg/m³</td><td class="n">3,02</td><td>Toulon Claret</td><td>Les particules sont les plus faibles, mais le NO<sub>2</sub> urbain est le plus élevé des stations de fond retenues.</td></tr>
-      <tr><th>Montpellier</th><td class="n">9,7 µg/m³</td><td class="n">11,3 µg/m³</td><td class="n">3,08</td><td>Montpellier Prés d'Arènes</td><td>Un profil intermédiaire : moins de NO<sub>2</sub> que Chambéry et Toulon, mais davantage de particules.</td></tr>
-      <tr><th>Grenoble</th><td class="n">10,0 µg/m³</td><td class="n">12,2 µg/m³</td><td class="n">3,22<br><span class="chip bad">le plus élevé</span></td><td>Grenoble Les Frênes</td><td>La cuvette pénalise les deux indicateurs de fond ; les stations trafic locales montent encore davantage.</td></tr>
-    </tbody>
-    <caption>Export Geod'air / LCSQA, moyennes annuelles réglementaires 2025, données fixes valides (code qualité R), stations urbaines de fond. Valeurs brutes avant arrondi, en µg/m³ : Rennes Thabor 9,57 / 8,35 ; Grenoble Les Frênes 9,97 / 12,22 ; Chambéry Pasteur 8,15 / 13,29 ; Montpellier Prés d'Arènes 9,74 / 11,27 ; Toulon Claret 7,83 / 14,52 (PM<sub>2.5</sub> / NO<sub>2</sub>). Indice = PM<sub>2.5</sub>/5 + NO<sub>2</sub>/10 ; c'est un repère de comparaison, pas un indice réglementaire.</caption>
-  </table></div>
+  <div class="tscroll"><table><thead><tr><th>Ville</th><th class="n">PM<sub>2.5</sub> annuel</th><th class="n">NO<sub>2</sub> annuel</th><th class="n">Indice d'exposition</th><th>Station de fond</th></tr></thead><tbody>
+    <tr><th>Rennes</th><td class="n">9,6 µg/m³</td><td class="n">8,3 µg/m³</td><td class="n">2,75<br><span class="chip ok">meilleur</span></td><td>Rennes Thabor<br><span class="chip">1,1 km</span></td></tr>
+    <tr><th>Chambéry</th><td class="n">8,2 µg/m³</td><td class="n">13,3 µg/m³</td><td class="n">2,97</td><td>PASTEUR<br><span class="chip">0,8 km</span></td></tr>
+    <tr><th>Toulon</th><td class="n">7,8 µg/m³</td><td class="n">14,5 µg/m³</td><td class="n">3,01</td><td>TOULON CLARET<br><span class="chip">0,8 km</span></td></tr>
+    <tr><th>Montpellier</th><td class="n">9,7 µg/m³</td><td class="n">11,3 µg/m³</td><td class="n">3,07</td><td>Montpellier Prés d'Arènes<br><span class="chip">2,3 km</span></td></tr>
+    <tr><th>Grenoble</th><td class="n">10,0 µg/m³</td><td class="n">12,2 µg/m³</td><td class="n">3,22</td><td>Grenoble Les Frenes<br><span class="chip">3,1 km</span></td></tr>
+    <tr class="ville-ref"><th>Paris</th><td class="n">11,5 µg/m³</td><td class="n">18,2 µg/m³</td><td class="n">4,12<br><span class="chip bad">le plus exposé</span></td><td>PARIS 1er Les Halles<br><span class="chip">0,4 km</span></td></tr>
+  </tbody><caption>Geod'air / LCSQA, moyennes annuelles réglementaires 2025, stations urbaines de fond, une seule station par ville — la plus proche du centre mesurant les deux polluants. Indice = PM<sub>2.5</sub>/5 + NO<sub>2</sub>/10, d'après les lignes directrices OMS 2021 ; c'est un repère de comparaison, pas un indice réglementaire. Les six villes restent au-dessus de la ligne directrice OMS pour les PM<sub>2.5</sub>.</caption></table></div>
   <div class="callout"><span class="lab">Ce que l'indice ne dit pas</span><p>Une moyenne annuelle gomme les épisodes courts, notamment l'ozone estival et les pics hivernaux. Elle reste plus pertinente pour choisir un lieu de vie qu'un relevé « temps réel » isolé. Les valeurs 2025 restent au-dessus des lignes directrices OMS pour les PM<sub>2.5</sub> dans les cinq villes.</p></div>
+  <!-- SRC:pollution -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Geod'air / LCSQA</strong> · relevé le 3 septembre 2026<span class="src-meth">Moyenne annuelle PM2.5 sur station de fond urbaine ; note inversée, 0 pour 15 µg/m³, 10 pour 5 µg/m³.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ ENVIRONNEMENT ============ -->
@@ -714,7 +822,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td>PNR du Vercors (205 000 ha, dont une réserve naturelle de 17 000 ha) + PNR de Chartreuse + Belledonne. ~40 min de porte à porte</td>
           <td>Ville très minérale et très dense, taux de couverture végétale 3–4 %</td>
           <td><span class="chip mid">air</span> Cuvette : épisodes ozone et PM10 récurrents, îlot de chaleur fort</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td>Massifs du Faron et du Coudon en balcon sur la ville, Sainte-Baume, parc national de Port-Cros, calanques</td>
           <td><span class="chip bad">le plus faible accès</span> À peine un tiers des habitants ont un parc à moins de 300 m</td>
           <td>Arsenal et port militaire : ville portuaire dense, pression foncière littorale</td></tr>
@@ -722,10 +830,17 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td>Garrigues, Pic Saint-Loup, causses ; Cévennes et Camargue à ~1 h</td>
           <td>~2,5 m² de parcs pour dix habitants ; paysage périurbain très étalé</td>
           <td><span class="chip bad">aridité</span> Milieu sec de type garrigue, forte exposition au feu de forêt</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td>—</td>
+          <td>—</td>
+          <td>Non relevé : ce critère repose sur des sources qualitatives sans équivalent ouvert</td></tr>
       </tbody>
       <caption>Sources : Fédération des Parcs naturels régionaux, offices de tourisme de Grenoble et Chambéry Montagnes, Observatoire des villes vertes (Unep–Hortis), Insee « accès aux espaces verts dans les grands centres urbains », ville de Montpellier (risque feux de forêt), Atmo / presse locale pour la qualité de l'air grenobloise.</caption>
     </table>
   </div>
+  <!-- SRC:envir -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>PNR, Insee, Observatoire des villes vertes</strong><span class="src-meth">Lecture des espaces naturels et de la pression urbaine.</span><span class="src-genre">Note : lecture argumentée, non calculée</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ NATURE ============ -->
@@ -752,7 +867,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">166</td>
           <td class="n">6 070</td>
           <td>Comboire et Les Vouillands sont à 4 minutes de voiture, Poussebou à 6, Le Petit Désert à 10, Saint-Égrève-Rochepleine à ~9 km — tous accessibles par les pistes cyclables de la vallée, sans dénivelé</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">≈ 8<br><span class="chip mid">gros dénivelé</span><span class="cellbar green"><i style="width:80%"></i></span></td>
           <td class="n">≈ 100<span class="cellbar green"><i style="width:40%"></i></span></td>
           <td class="n">46</td>
@@ -776,6 +891,12 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">6</td>
           <td class="n">98</td>
           <td>Le Boël (33 voies) est à ~13 km par la vallée de la Vilaine, accessible à vélo par la voie verte. Au-delà, l'heure de voiture n'ajoute presque rien : le stock breton est ailleurs</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td><strong>39 sites d'escalade avec corde</strong> dans un rayon de 50 km (OpenStreetMap). Le rayon compte 1 035 sites bruts, mais l'écrasante majorité est du <strong>bloc</strong> — Fontainebleau — et non de la falaise</td></tr>
       </tbody>
       <caption><strong>Colonnes « mesuré »</strong> : comptages Oblyk, rayon fixe de 30 km, consultés en septembre 2026, recoupés avec ClimbingAway, escalade-france.fr et les listes de sites naturels de la FFME. <strong>Colonnes 40 min / 1 h</strong> : estimations raisonnées, reconstruites à partir des secteurs nommés par Oblyk et de leurs distances réelles — Oblyk n'offre pas de rayon paramétrable et son API publique est fermée. Un décompte OpenStreetMap a été testé puis écarté (voir les limites). Équivalences retenues : 40 min à vélo ≈ 12 km à plat et moins en relief ; 1 h de voiture ≈ 50 km en montagne, 70 km en plaine — ce qui avantage mécaniquement Rennes et Montpellier dans la conversion.</caption>
     </table>
@@ -784,14 +905,37 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
   <div class="callout">
     <span class="lab">Ce que le seuil « à vélo » révèle</span>
     <p>Le volume total masque une différence de nature. <strong>Grenoble est la seule ville où l'on peut grimper après le travail sans voiture et sans dénivelé</strong> : une dizaine de secteurs dans le rayon cyclable, sur le plat, reliés par les pistes de la vallée. C'est le croisement direct des critères vélo et falaise.</p>
-    <p>Toulon a autant de secteurs dans le rayon, mais le Faron se mérite : 580 m de montée à l'approche. Chambéry en a la moitié, à plat pour les plus proches. <strong>Montpellier n'a rien à vélo</strong> et compense entièrement par la voiture. Rennes n'a ni l'un ni l'autre — l'heure de voiture n'y ajoute presque aucun secteur.</p>
+
+  <p>Toulon a autant de secteurs dans le rayon, mais le Faron se mérite : 580 m de montée à l'approche. Chambéry en a la moitié, à plat pour les plus proches. <strong>Montpellier n'a rien à vélo</strong> et compense entièrement par la voiture. Rennes n'a ni l'un ni l'autre — l'heure de voiture n'y ajoute presque aucun secteur.</p>
+    <p>TOULON a autant de secteurs dans le rayon, mais le Faron se mérite : 580 m de montée à l'approche. Chambéry en a la moitié, à plat pour les plus proches. <strong>Montpellier n'a rien à vélo</strong> et compense entièrement par la voiture. Rennes n'a ni l'un ni l'autre — l'heure de voiture n'y ajoute presque aucun secteur.</p>
   </div>
 
   <div class="callout">
     <span class="lab">À noter</span>
     <p>Si la falaise est une pratique hebdomadaire et non un loisir de vacances, <strong>Rennes est disqualifiante</strong> : 98 voies, aucune grande voie, un stock épuisé en une saison. C'est le seul point du dossier où l'écart n'est pas une affaire de pondération mais de nature.</p>
-    <p>Chambéry et Toulon se tiennent en volume, mais pas en usage : Toulon offre la seule grimpe hivernale confortable du panel, Chambéry la plus grande variété — grande voie, trad, via ferrata.</p>
+
+  <p>Chambéry et Toulon se tiennent en volume, mais pas en usage : Toulon offre la seule grimpe hivernale confortable du panel, Chambéry la plus grande variété — grande voie, trad, via ferrata.</p>
+    <p>Chambéry et TOULON se tiennent en volume, mais pas en usage : TOULON offre la seule grimpe hivernale confortable du panel, Chambéry la plus grande variété — grande voie, trad, via ferrata.</p>
   </div>
+  <!-- SRC:falaise -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ MER & LAC ============ -->
@@ -810,7 +954,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
         <tr><th>Ville</th><th>Plan d'eau le plus proche</th><th class="n">Distance</th><th>Baignade</th><th>Le reste</th></tr>
       </thead>
       <tbody>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td>Méditerranée — plages du Mourillon, dans la ville même</td>
           <td class="n">0 km<span class="cellbar"><i style="width:100%"></i></span></td>
           <td><span class="chip ok">quotidienne</span> Saison longue, mer encore praticable en octobre</td>
@@ -835,12 +979,36 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">35 km<span class="cellbar warm"><i style="width:26%"></i></span></td>
           <td><span class="chip mid">estivale</span> Surveillée 13 h 30 – 19 h, du 27 juin au 31 août, label Pavillon Bleu</td>
           <td>Mer à Saint-Malo, 69 km / ~55 min : accessible en week-end, pas en soirée. Base nautique et VTT à Trémelin</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td>Seine et bases de loisirs de la petite couronne</td>
+          <td class="n">—</td>
+          <td><strong>21 spots</strong> recensés dans 30 km, dont 20 plages (OpenStreetMap)</td>
+          <td>Aucune façade maritime. Le décompte est proche de celui de Grenoble, sans lac de montagne</td></tr>
       </tbody>
-      <caption>Distances routières depuis le centre-ville. Sources : Grenoble Alpes Tourisme (lacs et plans d'eau autour de Grenoble), Chambéry Montagnes et offices de tourisme du lac du Bourget et d'Aiguebelette, site du lac de Trémelin (Iffendic) pour les horaires de baignade surveillée 2026, offices de tourisme de Toulon et de Montpellier Méditerranée.</caption>
+      <caption>Distances routières depuis le centre-ville. Sources : Grenoble Alpes Tourisme (lacs et plans d'eau autour de Grenoble), Chambéry Montagnes et offices de tourisme du lac du Bourget et d'Aiguebelette, site du lac de Trémelin (Iffendic) pour les horaires de baignade surveillée 2026, offices de tourisme de TOULON et de Montpellier Méditerranée.</caption>
     </table>
   </div>
 
   <p>Séparé de la falaise, ce critère renverse le classement : <strong>Grenoble, premier sur la falaise, tombe en avant-dernier sur l'eau</strong> — les lacs sont là mais loin, et le plus proche interdit la baignade. Chambéry est la seule ville du panel à être forte sur les deux à la fois, avec une falaise à cinq minutes et deux lacs de baignade à moins de vingt.</p>
+  <!-- SRC:eau -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>OpenStreetMap</strong> · relevé le 3 septembre 2026<span class="src-meth">Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ RISQUES ============ -->
@@ -873,7 +1041,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">14<span class="cellbar hot"><i style="width:39%"></i></span></td><td class="n">12</td><td class="n">0</td>
           <td>Zone 2 — faible</td><td>Classe 3</td>
           <td>Aucun arrêté sécheresse en 40 ans. Mais l'Ille-et-Vilaine était placée en alerte sécheresse sur tout le département en août 2026 : le risque se déplace</td></tr>
-        <tr><th>Toulon</th>
+        <tr><th>TOULON</th>
           <td class="n">26<span class="cellbar hot"><i style="width:72%"></i></span></td><td class="n">13</td><td class="n">5</td>
           <td>Zone 2 — faible</td><td>Classe 3</td>
           <td>4 arrêtés « chocs mécaniques liés aux vagues », 4 mouvements de terrain, 15 cavités, 2 PPRT. Feu de forêt et submersion marine</td></tr>
@@ -881,8 +1049,15 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
           <td class="n">36<span class="cellbar hot"><i style="width:100%"></i></span></td><td class="n">16</td><td class="n">15</td>
           <td>Zone 2 — faible</td><td>Classe 1</td>
           <td><span class="chip bad">le plus exposé</span> Crues éclair du Lez et de la Mosson, feu de forêt au nord de la commune, bassins héraultais placés en crise sécheresse en juillet 2026</td></tr>
+        <tr class="ville-ref"><th>Paris</th>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td class="n">—</td>
+          <td>—</td>
+          <td>—</td>
+          <td>GASPAR ne recense que <strong>deux risques</strong> : inondation et transport de marchandises dangereuses. Le faible décompte reflète un territoire entièrement urbanisé, pas une exposition faible — la crue de la Seine reste l'aléa majeur</td></tr>
       </tbody>
-      <caption>Arrêtés de catastrophe naturelle : base GASPAR de Géorisques (API publique), tous arrêtés depuis 1982, requêtés par code Insee — Grenoble 38185, Chambéry 73065, Rennes 35238, Toulon 83137, Montpellier 34172. Zonage sismique et potentiel radon : Géorisques, restitués via france-cadastre. Arrêtés sécheresse 2026 : préfectures d'Ille-et-Vilaine, de l'Hérault et de l'Isère.</caption>
+      <caption>Arrêtés de catastrophe naturelle : base GASPAR de Géorisques (API publique), tous arrêtés depuis 1982, requêtés par code Insee — Grenoble 38185, Chambéry 73065, Rennes 35238, TOULON 83137, Montpellier 34172. Zonage sismique et potentiel radon : Géorisques, restitués via france-cadastre. Arrêtés sécheresse 2026 : préfectures d'Ille-et-Vilaine, de l'Hérault et de l'Isère.</caption>
     </table>
   </div>
 
@@ -891,16 +1066,233 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
     <p>Le <strong>retrait-gonflement des argiles</strong> — la cause des fissures de maison en période de sécheresse — ressort à « non concerné » pour les cinq communes dans l'agrégateur consulté, ce qui est très probablement une limite de restitution : plus d'une maison sur deux en France est en zone d'aléa moyen ou fort. Ce risque se vérifie <em>à l'adresse</em>, sur Géorisques, une fois un bien identifié.</p>
     <p>Le décompte d'arrêtés favorise mécaniquement Grenoble, où l'endiguement de l'Isère et du Drac limite les sinistres reconnus tout en concentrant un aléa résiduel élevé. À lire avec le classement TRI, pas seul.</p>
   </div>
+  <!-- SRC:risques -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Géorisques (GASPAR)</strong><span class="src-meth">Lecture des risques naturels et technologiques recensés.</span><span class="src-genre">Note : lecture argumentée, non calculée</span></p>
+  <!-- /SRC -->
 </section>
 
 <!-- ============ PROS / CONS ============ -->
 <section class="crit">
   <div class="crit-head">
     <div>
+<!-- ============ EAU ET POLITIQUE ============ -->
+<section class="crit">
+  <div class="crit-head"><div><p class="crit-tag">Critère 14</p><h2>Eau du robinet</h2></div><p class="crit-ask">Une eau conforme et peu chargée en nitrates sur le réseau qui dessert la commune.</p></div>
+  <div class="tscroll"><table><thead><tr><th>Ville</th><th class="n">Nitrates<br>moy. 12 mois</th><th class="n">Amplitude<br>min – max</th><th class="n">Relevés</th><th>Conclusion sanitaire</th></tr></thead><tbody>
+    <tr><th>Grenoble</th><td class="n">3,8 mg/L</td><td class="n">2,3 – 10,2</td><td class="n">35</td><td><span class="chip ok">100 % conforme</span> — GRENOBLE ALPES MÉTROPOLE</td></tr>
+    <tr><th>TOULON</th><td class="n">4,6 mg/L</td><td class="n">1,4 – 8,0</td><td class="n">83</td><td><span class="chip mid">96,4 % conforme</span> — VEOLIA CEO PROVENCE MÉDITERRANÉE OUEST</td></tr>
+    <tr><th>Montpellier</th><td class="n">4,7 mg/L</td><td class="n">2,88 – 12,0</td><td class="n">105</td><td><span class="chip mid">98,7 % conforme</span> — RÉGIE DES EAUX MONTPELLIER 3M</td></tr>
+    <tr><th>Chambéry</th><td class="n">8,9 mg/L</td><td class="n">3,7 – 12,3</td><td class="n">38</td><td><span class="chip ok">100 % conforme</span> — CA DU GRAND CHAMBÉRY</td></tr>
+    <tr><th>Rennes</th><td class="n">14,9 mg/L</td><td class="n">1,6 – 39,8</td><td class="n">122</td><td><span class="chip ok">100 % conforme</span> — SPL EBR</td></tr>
+    <tr class="ville-ref"><th>Paris</th><td class="n">28,7 mg/L</td><td class="n">3,0 – 49,0</td><td class="n">1007</td><td><span class="chip ok">99,9 % conforme</span> — EAU DE PARIS</td></tr>
+  </tbody><caption>Hub'Eau, contrôle sanitaire des ARS : moyenne des nitrates sur 12 mois glissants, limite réglementaire 50 mg/L. La moyenne prime sur le dernier relevé — trois prélèvements rennais consécutifs donnent 14,9 puis 15,7 puis 18,6 mg/L. L'amplitude et le nombre de relevés disent la robustesse de chaque valeur : Paris approche la limite avec des pointes à 49,0 mg/L. Chaque commune peut être desservie par plusieurs réseaux : cette lecture ne remplace pas la vérification à l'adresse avant signature.</caption></table></div>
+  <!-- SRC:eaupot -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Hub'Eau, contrôle sanitaire ARS</strong> · relevé le 3 septembre 2026<span class="src-meth">Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+</section>
+
+<section class="crit">
+  <div class="crit-head"><div><p class="crit-tag">Critère 15</p><h2>Affinité politique</h2></div><p class="crit-ask">Préférence personnelle déclarée : favoriser une municipalité et une région dirigées à gauche.</p></div>
+  <div class="tscroll"><table><thead><tr><th>Ville</th><th>Maire (mandat 2026–2032)</th><th>Orientation municipale</th><th>Exécutif régional</th><th>Lecture</th></tr></thead><tbody>
+    <tr><th>Rennes</th><td>Nathalie Appéré</td><td><span class="chip ok">PS · gauche</span></td><td>Bretagne · gauche</td><td>Double affinité</td></tr>
+    <tr><th>Grenoble</th><td>Laurence Ruffin</td><td><span class="chip ok">gauche écologiste</span></td><td>Auvergne-Rhône-Alpes · droite</td><td>Affinité municipale</td></tr>
+    <tr><th>Chambéry</th><td>Thierry Repentin</td><td><span class="chip ok">divers gauche</span></td><td>Auvergne-Rhône-Alpes · droite</td><td>Affinité municipale</td></tr>
+    <tr><th>Montpellier</th><td>Michaël Delafosse</td><td><span class="chip ok">PS · gauche</span></td><td>Occitanie · gauche</td><td>Double affinité</td></tr>
+    <tr><th>TOULON</th><td>Josée Massi</td><td><span class="chip bad">centre droit</span></td><td>Provence-Alpes-Côte d'Azur · droite</td><td>Pas d'affinité selon ce critère</td></tr>
+    <tr class="ville-ref"><th>Paris</th><td>Emmanuel Grégoire</td><td><span class="chip ok">LUG · union de la gauche</span></td><td>—</td><td>112 des 163 sièges à gauche, soit 68,7 %</td></tr>
+  </tbody><caption>Le RNE établit l'identité et le mandat des maires ; l'orientation est documentée par les résultats et groupes municipaux. C'est un critère de préférence, non une mesure de gestion publique.</caption></table></div>
+  <!-- SRC:politique -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>Ministère de l'Intérieur, municipales 2026</strong> · relevé le 3 septembre 2026<span class="src-meth">Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+</section>
+
+<!-- ============ TRANSPORTS EN COMMUN ============ -->
+<section class="crit">
+  <div class="crit-head"><div><p class="crit-tag">Critère 16</p><h2>Transports en commun</h2></div><p class="crit-ask">Se passer de voiture au quotidien : le réseau dessert-il toute l'agglomération, et avec quels modes ?</p></div>
+
+  <p>Deux questions distinctes, souvent confondues. <strong>La couverture</strong> : le réseau atteint-il toutes les communes de l'intercommunalité, ou s'arrête-t-il à la ville-centre ? <strong>La qualité</strong> : un métro en site propre ne se compare pas à une ligne de bus prise dans le même trafic que les voitures. Les deux se lisent directement dans les fichiers GTFS que chaque réseau publie en donnée ouverte.</p>
+
+  <div class="tscroll"><table><thead><tr><th>Ville</th><th class="n">Communes<br>desservies</th><th class="n">Arrêts</th><th class="n">Lignes</th><th>Modes lourds</th><th class="n">Indice<br>qualité</th><th>Réseau</th></tr></thead><tbody>
+    <tr><th>Rennes</th><td class="n">43/43<br><span class="chip ok">100,0 %</span></td><td class="n">1 776</td><td class="n">155</td><td>métro ×2</td><td class="n"><span class="chip ok">3</span></td><td>Réseau urbain STAR</td></tr>
+    <tr><th>Montpellier</th><td class="n">31/31<br><span class="chip ok">100,0 %</span></td><td class="n">1 455</td><td class="n">45</td><td>tram ×5</td><td class="n"><span class="chip mid">2</span></td><td>Réseau urbain et suburbain TaM</td></tr>
+    <tr><th>TOULON</th><td class="n">12/12<br><span class="chip ok">100,0 %</span></td><td class="n">2 019</td><td class="n">99</td><td>bateau ×3, câble ×1</td><td class="n"><span class="chip mid">2</span></td><td>Réseau urbain Mistral</td></tr>
+    <tr><th>Grenoble</th><td class="n">45/49<br><span class="chip mid">91,8 %</span></td><td class="n">1 766</td><td class="n">55</td><td>tram ×5</td><td class="n"><span class="chip mid">2</span></td><td>Réseau urbain TAG</td></tr>
+    <tr><th>Chambéry</th><td class="n">30/38<br><span class="chip bad">78,9 %</span></td><td class="n">808</td><td class="n">24</td><td><span class="chip bad">bus seul</span></td><td class="n"><span class="chip bad">0</span></td><td>Réseau urbain Synchro Bus</td></tr>
+    <tr class="ville-ref"><th>Paris</th><td class="n">130/130<br><span class="chip ok">100,0 %</span></td><td class="n">35 507</td><td class="n">2022</td><td>train ×24, tram ×17, métro ×16, funiculaire ×1, câble ×1</td><td class="n"><span class="chip ok">9</span></td><td>Réseaux urbains et interurbains d'Île-de-France Mobilités (IDFM)</td></tr>
+  </tbody><caption>GTFS publiés sur transport.data.gouv.fr. Couverture : part des communes de l'EPCI comptant au moins un arrêt, calculée par appartenance géographique de chaque arrêt aux contours communaux. Indice qualité : somme des modes lourds présents — métro 3, tram et train 2, funiculaire, câble et bateau 1. C'est un repère de hiérarchie, pas une mesure de fréquence. Le GTFS retenu est celui offrant le plus de modes distincts : plusieurs réseaux publient séparément leur volet urbain et leur volet suburbain.</caption></table></div>
+
+  <p><strong>La couverture ne discrimine presque pas</strong> : quatre agglomérations sur six desservent 100 % de leurs communes, et la couverture en population dépasse partout 98 %. L'exception est <strong>Chambéry</strong>, dont le réseau laisse 8 des 38 communes du Grand Chambéry sans aucun arrêt — 1,7 % de la population, mais des communes entières où la voiture reste obligatoire.</p>
+
+  <p><strong>C'est la qualité qui sépare.</strong> Rennes est la seule ville moyenne du panel dotée d'un métro, avec deux lignes automatiques desservant 43 communes — un rapport desserte/effort sans équivalent ici. Grenoble et Montpellier tiennent par le tram, cinq lignes chacune. TOULON compense un relief et une rade difficiles par trois lignes de bateau-bus et un téléphérique. <strong>Chambéry est la seule ville du panel sans aucun mode lourd</strong> : vingt-quatre lignes de bus, rien d'autre.</p>
+
+  <p class="note"><span class="lab">Ce que l'indice ne dit pas</span> Ni la fréquence, ni l'amplitude horaire, ni la vitesse commerciale — un GTFS les contient, mais leur agrégation en une note comparable demanderait un modèle de desserte que ce rapport n'a pas. Deux réseaux au même indice peuvent offrir un service très différent aux heures creuses.</p>
+  <!-- SRC:transports -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+  <p class="crit-src"><span class="src-lab">Source</span> <strong>transport.data.gouv.fr (GTFS)</strong> · relevé le 3 septembre 2026<span class="src-meth">Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.</span><span class="src-genre">Note calculée depuis ces données</span></p>
+  <!-- /SRC -->
+</section>
+
+<!-- ============ SOURCES ============ -->
+<section class="sources">
+  <h2>Sources par rubrique</h2>
+  <div class="src-grid">
+    <div>
+      <h3>Emploi</h3>
+      <ul>
+        <li><a href="https://www.hellowork.com/fr-fr/emploi/metier_devops.html">HelloWork</a> — relevés d'offres par ville, rayon 20 km, sept. 2026</li>
+        <li><a href="https://fr.indeed.com/q-devops-l-grenoble-(38)-emplois.html">Indeed</a> — contre-vérification Grenoble et Rennes</li>
+        <li><a href="https://candidat.francetravail.fr/offres/emploi/conseiller-en-insertion-sociale-et-professionnelle/s38m15">France Travail</a> — offres conseiller en insertion</li>
+        <li><a href="https://www.insee.fr/fr/statistiques/2012804">Insee</a> — taux de chômage localisés, T1 2026</li>
+        <li><a href="https://www.bretagne-economique.com/actualites/rennes-8eme-metropole-en-nombre-demplois-dans-le-numerique">Bretagne Économique</a> — poids du numérique rennais</li>
+        <li><a href="https://www.chambery-grandlac.fr/parc-activite/savoie-technolac/">Chambéry Grand Lac Économie</a> — Savoie Technolac</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Logement</h3>
+      <ul>
+        <li><a href="https://www.observatoires-des-loyers.org/connaitre-les-loyers/carte-des-niveaux-de-loyers/agglomeration-de-rennes">Observatoires des loyers</a> — Rennes, Montpellier, Grenoble, TOULON</li>
+        <li><a href="https://www.prealty.fr/blog/guide-loyer-chambery">Observatoire DHUP 2025</a> — médiane maisons à Chambéry</li>
+        <li><a href="https://www.pap.fr/bailleur/louer-avec-pap/encadrement-des-loyers-ou-en-est-on/a23046">PAP</a> et <a href="https://www.anil.org/analyse-juridique-encadrement-evolution-loyers-zones-tendues/">ANIL</a> — zones tendues et encadrement 2026</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Centre-ville</h3>
+      <ul>
+        <li><a href="https://villes.plus/pietonnes">villes.plus</a> — part de surface piétonne par commune</li>
+        <li><a href="https://fr.wikipedia.org/wiki/Nombre_de_monuments_historiques_par_commune_fran%C3%A7aise">Monuments historiques par commune</a> (base Mérimée) et rangs nationaux</li>
+        <li><a href="https://presse.metropole.rennes.fr/les-premiers-chiffres-positifs-de-lobservatoire-du-commerce-du-centre-ville-rennais-2025/">Observatoire du commerce du centre-ville rennais 2025</a> — vacance comparée Rennes / Montpellier / Grenoble</li>
+        <li><a href="https://www.banquedesterritoires.fr/la-progression-de-la-vacance-commerciale-ralentit-surtout-dans-les-villes-moyennes">Procos</a> — moyenne nationale de vacance commerciale</li>
+        <li><a href="http://www.savoie.cci.fr/actualite/1393/137-commerces-dans-les-centres-villes-ou-en-est-on-.htm">CCI Savoie</a> — commerce de centre-ville à Chambéry</li>
+        <li><a href="https://www.centre-ville.org/observez-la-transformation-radicale-de-toulon-au-fil-des-annees/">Centre-Ville en Mouvement</a> — réhabilitation du centre ancien de TOULON</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Mobilité</h3>
+      <ul>
+        <li><a href="https://www.barometre-velo.fr/2025/">Baromètre vélo 2025</a> de la FUB — notes et classement par catégorie</li>
+        <li><a href="https://media.tomtom.com/f/178460/x/986397c92f/tomtom-traffic-index-france.pdf">TomTom Traffic Index</a> — congestion des 29 villes françaises, année 2025</li>
+        <li><a href="https://www.montpellier.fr/en/actions/competences/transport-mobility/le-velo">Montpellier Méditerranée Métropole</a> — vélo-lignes et plan mobilité</li>
+        <li><a href="https://metropoletpm.fr/actualites/le-plan-velo-edition-2026">Métropole TOULON Provence Méditerranée</a> — schéma directeur des aménagements cyclables</li>
+        <li><a href="https://rouelibre.net/2025/11/28/barometre-velo-2025/">Roue Libre</a> — lecture locale du baromètre à Chambéry</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Climat</h3>
+      <ul>
+        <li><a href="https://www.infoclimat.fr/climatologie/normales-records/1991-2020/rennes-st-jacques/valeurs/07130.html">Infoclimat</a> — normales Météo-France 1991-2020, phénomènes par station</li>
+        <li>Wikipédia — fiches climat par ville (relevés Météo-France, ensoleillement et cumuls)</li>
+        <li><a href="https://open-dpe.fr/climat-ville-percentiles/">Open DPE</a> — percentiles de température, saison de chauffe, 264 villes</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Qualité de l'air</h3>
+      <ul>
+        <li><a href="https://www.data.gouv.fr/datasets/donnees-temps-reel-de-mesure-des-concentrations-de-polluants-atmospheriques-reglementes-1">Geod'air / LCSQA</a> — export des moyennes annuelles réglementaires 2025, PM<sub>2.5</sub> et NO<sub>2</sub>, stations de fond</li>
+        <li><a href="https://www.who.int/publications/i/item/9789240034228">OMS</a> — lignes directrices mondiales 2021 : PM<sub>2.5</sub> annuel 5 µg/m³, NO<sub>2</sub> annuel 10 µg/m³</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Environnement</h3>
+      <ul>
+        <li><a href="https://www.parcs-naturels-regionaux.fr/les-parcs/decouvrir-les-58-parcs/parc-naturel-regional-de-chartreuse">Fédération des PNR</a> — Chartreuse, Vercors, Bauges</li>
+        <li><a href="https://www.insee.fr/fr/statistiques/8558420">Insee</a> — accès aux espaces verts dans les grands centres urbains</li>
+        <li><a href="https://www.thegood.fr/palmares-des-villes-les-plus-vertes-de-france-angers-rennes-et-strasbourg-en-tete/">Observatoire des villes vertes</a> (Unep–Hortis)</li>
+        <li><a href="https://www.montpellier.fr/en/vie-quotidienne/vivre-ici/urgences,-securite-et-prevention/je-me-prepare-a-une-situation-d-urgence/connaitre-les-risques-majeurs/forest-fire-risk">Ville de Montpellier</a> — risque feux de forêt</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Falaise</h3>
+      <ul>
+        <li><a href="https://oblyk.org/escalade-autour-de/grenoble">Oblyk</a> — comptage sites et voies dans un rayon de 30 km</li>
+        <li><a href="https://climbingaway.fr/fr/sites-escalade/carte-du-monde-des-sites-d-escalade/france">ClimbingAway</a> et <a href="https://www.escalade-france.fr/sites">escalade-france.fr</a> — recoupement</li>
+        <li><a href="https://www.ffme.fr/escalade/site-naturel/les-falaises-et-sites-naturels/sites-naturels-descalade-liste/">FFME</a> — liste officielle des sites naturels</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Mer et lac</h3>
+      <ul>
+        <li><a href="https://www.grenoble-tourisme.com/fr/blog/les-lacs-et-les-plans-deau-grenoble/">Grenoble Alpes Tourisme</a> — lacs et plans d'eau, régimes de baignade</li>
+        <li><a href="https://lacdetremelin.com/baignade/">Lac de Trémelin</a> — horaires et période de baignade surveillée 2026</li>
+        <li><a href="https://www.chamberymontagnes.com/">Chambéry Montagnes</a> — lac du Bourget et lac d'Aiguebelette</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Risques</h3>
+      <ul>
+        <li><a href="https://www.georisques.gouv.fr/">Géorisques</a> — base GASPAR, arrêtés CatNat par code Insee (API publique)</li>
+        <li><a href="https://www.rhone-mediterranee.eaufrance.fr/cartographie-des-risques-dinondation-du-tri-de-grenoble-voiron">Eaufrance</a> — TRI Grenoble-Voiron ; préfecture de Savoie pour le TRI Chambéry-Aix</li>
+        <li><a href="https://www.ille-et-vilaine.gouv.fr/Actualites/Espace-presse/Communiques-de-presse/2026/Secheresse-L-Ille-et-Vilaine-en-alerte">Préfectures</a> d'Ille-et-Vilaine, de l'Hérault et de l'Isère — arrêtés sécheresse 2026</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="limits">
+    <h3>Limites du rapport</h3>
+    <ul>
+      <li>Les comptages d'offres d'emploi sont une photographie à une date, sur une seule plateforme. L'écart Grenoble (13 sur HelloWork, 83 sur Indeed) montre l'ampleur du biais de plateforme : à recompter sur deux ou trois sites, à quelques semaines d'intervalle, avant de conclure.</li>
+      <li>Les loyers médians agrègent appartements et maisons, et les millésimes diffèrent (2024 pour Rennes et Grenoble, 2025 pour les autres).</li>
+      <li>Le critère des 15 km est évalué par la composition du bâti des communes comprises dans le rayon, pas par un décompte d'annonces réelles de maisons à louer. C'est la vérification à faire en premier sur le terrain : filtrer les annonces « maison, location, 15 km » sur chaque ville et compter ce qui sort à moins de 1 200 €.</li>
+      <li>Les colonnes « ≤ 40 min à vélo » et « ≤ 1 h de voiture » du critère falaise sont des estimations, pas un recensement. Un décompte automatisé sur OpenStreetMap a été tenté puis écarté : le tag <code>climbing=crag</code> retourne 21 sites dans 12 km autour de Grenoble et <em>zéro</em> autour de TOULON, où le Faron est pourtant dans la ville. L'écart mesure la densité de contribution locale, pas la densité de falaises. Le tag plus large <code>sport=climbing</code> inclut les salles indoor, ce qui fausse la comparaison dans l'autre sens.</li>
+      <li>Les notes du baromètre vélo n'ont pas été retrouvées pour Montpellier et TOULON : leur appréciation repose sur les données d'infrastructure et de part modale publiées par les deux métropoles. De même, TomTom ne publie pas les valeurs individuelles de Rennes et Grenoble, seulement leurs tendances, et Chambéry ne fait pas partie des 29 villes suivies.</li>
+      <li>Aucun taux de vacance commerciale comparable n'a été trouvé pour TOULON : seule la trajectoire de réhabilitation est documentée, pas le niveau actuel.</li>
+      <li>La station de TOULON-Le Baou ne totalise que treize ans de relevés — ses normales sont moins robustes que les autres.</li>
+      <li>Le retrait-gonflement des argiles n'a pas pu être établi commune par commune ici ; il se vérifie à l'adresse sur Géorisques avant toute signature.</li>
+      <li>Les notes de 0 à 10 sont une lecture argumentée des données ci-dessus, pas une mesure. Les curseurs existent pour que vous puissiez substituer votre propre jugement au mien.</li>
+    </ul>
+  </div>
+</section>
+
       <p class="crit-tag">Synthèse</p>
       <h2>Avantages et inconvénients, ville par ville</h2>
     </div>
-    <p class="crit-ask">Les points qui feraient réellement pencher la décision, une fois les six critères croisés.</p>
+    <p class="crit-ask">Les points qui feraient réellement pencher la décision, une fois les seize critères croisés.</p>
   </div>
 
   <div class="pc-grid">
@@ -976,7 +1368,7 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
     </div>
 
     <div class="pc">
-      <h3>Toulon</h3>
+      <h3>TOULON</h3>
       <p class="sub">Var (83) · ~180 000 hab.</p>
       <h4 class="plus">Avantages</h4>
       <ul>
@@ -1050,158 +1442,89 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
   </div>
 
   <div class="col">
-    <p><strong>Première question : la falaise est-elle une pratique hebdomadaire ou une pratique de vacances ?</strong> Si c'est hebdomadaire, Rennes sort du dossier et Montpellier devient marginale ; il reste Grenoble, Chambéry et Toulon. Si c'est une pratique de séjour, Rennes redevient la candidate la plus solide sur tout le reste.</p>
-    <p><strong>Deuxième question : quel poste doit se trouver en premier ?</strong> Le conseil en insertion est le marché le plus contraint, et il classe les villes dans un ordre presque inverse de celui de la falaise — Montpellier 26, Rennes 23, Grenoble 15, Toulon 6, Chambéry 1. Si ce poste doit être sécurisé avant le déménagement, Chambéry devient très risquée et Toulon fragile.</p>
+    <p><strong>Première question : la falaise est-elle une pratique hebdomadaire ou une pratique de vacances ?</strong> Si c'est hebdomadaire, Rennes sort du dossier et Montpellier devient marginale ; il reste Grenoble, Chambéry et TOULON. Si c'est une pratique de séjour, Rennes redevient la candidate la plus solide sur tout le reste.</p>
+    <p><strong>Deuxième question : quel poste doit se trouver en premier ?</strong> Le conseil en insertion est le marché le plus contraint, et il classe les villes dans un ordre presque inverse de celui de la falaise — Montpellier 26, Rennes 23, Grenoble 15, TOULON 6, Chambéry 1. Si ce poste doit être sécurisé avant le déménagement, Chambéry devient très risquée et TOULON fragile.</p>
     <p><strong>Troisième question : à quel point la vie urbaine quotidienne compte-t-elle ?</strong> C'est ce qui sépare désormais les deux premières. Rennes et Montpellier ont les vrais centres-villes du panel — commerce dense, patrimoine, terrasses. Grenoble a la première part piétonne de France posée sur le patrimoine le plus pauvre et le commerce le plus en déclin : 13–14 % de vacance, taux doublé en dix ans.</p>
     <p>En croisant les trois, <strong>Rennes arrive en tête</strong> parce qu'elle est la seule ville sans point faible majeur en dehors d'un seul : le marché de l'emploi le plus profond pour les deux métiers, le logement le plus accessible dans le rayon, le centre-ville le plus solide, la 3<sup>e</sup> place au baromètre vélo, les risques les plus faibles. Son unique défaut est massif — l'escalade y est quasi inexistante, à vélo comme en voiture.</p>
     <p><strong>Grenoble est le choix si la falaise et le vélo priment.</strong> C'est la seule ville où l'on grimpe après le travail sans voiture ni dénivelé, et la première ville cyclable de France. Le prix à payer est le climat de cuvette et un centre-ville sans grand intérêt, commercialement en recul.</p>
     <p><strong>Chambéry reste le meilleur équilibre nature</strong> — falaise, deux lacs, deux parcs, vieille ville piétonne, pas d'embouteillages — à condition de résoudre d'abord la question du poste de conseillère en insertion, qui est un obstacle réel et non un détail. C'est précisément ce que desserre l'option Voiron – Montmélian ci-dessus, au prix de la contrainte des 15 km.</p>
-    <p><strong>Montpellier et Toulon décrochent pour des raisons opposées</strong> : Montpellier a le plus beau centre et le pire trafic, un chômage à 10,9 % et le profil de risque le plus lourd ; Toulon a la mer et la falaise mais aucun des deux marchés de l'emploi, et un vélo quotidien qui ne fonctionne pas.</p>
+
+  <p><strong>Montpellier et Toulon décrochent pour des raisons opposées</strong> : Montpellier a le plus beau centre et le pire trafic, un chômage à 10,9 % et le profil de risque le plus lourd ; Toulon a la mer et la falaise mais aucun des deux marchés de l'emploi, et un vélo quotidien qui ne fonctionne pas.</p>
+    <p><strong>Montpellier et TOULON décrochent pour des raisons opposées</strong> : Montpellier a le plus beau centre et le pire trafic, un chômage à 10,9 % et le profil de risque le plus lourd ; TOULON a la mer et la falaise mais aucun des deux marchés de l'emploi, et un vélo quotidien qui ne fonctionne pas.</p>
   </div>
 </section>
 
-<!-- ============ SOURCES ============ -->
-<section class="sources">
-  <h2>Sources par rubrique</h2>
-  <div class="src-grid">
-    <div>
-      <h3>Emploi</h3>
-      <ul>
-        <li><a href="https://www.hellowork.com/fr-fr/emploi/metier_devops.html">HelloWork</a> — relevés d'offres par ville, rayon 20 km, sept. 2026</li>
-        <li><a href="https://fr.indeed.com/q-devops-l-grenoble-(38)-emplois.html">Indeed</a> — contre-vérification Grenoble et Rennes</li>
-        <li><a href="https://candidat.francetravail.fr/offres/emploi/conseiller-en-insertion-sociale-et-professionnelle/s38m15">France Travail</a> — offres conseiller en insertion</li>
-        <li><a href="https://www.insee.fr/fr/statistiques/2012804">Insee</a> — taux de chômage localisés, T1 2026</li>
-        <li><a href="https://www.bretagne-economique.com/actualites/rennes-8eme-metropole-en-nombre-demplois-dans-le-numerique">Bretagne Économique</a> — poids du numérique rennais</li>
-        <li><a href="https://www.chambery-grandlac.fr/parc-activite/savoie-technolac/">Chambéry Grand Lac Économie</a> — Savoie Technolac</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Logement</h3>
-      <ul>
-        <li><a href="https://www.observatoires-des-loyers.org/connaitre-les-loyers/carte-des-niveaux-de-loyers/agglomeration-de-rennes">Observatoires des loyers</a> — Rennes, Montpellier, Grenoble, Toulon</li>
-        <li><a href="https://www.prealty.fr/blog/guide-loyer-chambery">Observatoire DHUP 2025</a> — médiane maisons à Chambéry</li>
-        <li><a href="https://www.pap.fr/bailleur/louer-avec-pap/encadrement-des-loyers-ou-en-est-on/a23046">PAP</a> et <a href="https://www.anil.org/analyse-juridique-encadrement-evolution-loyers-zones-tendues/">ANIL</a> — zones tendues et encadrement 2026</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Centre-ville</h3>
-      <ul>
-        <li><a href="https://villes.plus/pietonnes">villes.plus</a> — part de surface piétonne par commune</li>
-        <li><a href="https://fr.wikipedia.org/wiki/Nombre_de_monuments_historiques_par_commune_fran%C3%A7aise">Monuments historiques par commune</a> (base Mérimée) et rangs nationaux</li>
-        <li><a href="https://presse.metropole.rennes.fr/les-premiers-chiffres-positifs-de-lobservatoire-du-commerce-du-centre-ville-rennais-2025/">Observatoire du commerce du centre-ville rennais 2025</a> — vacance comparée Rennes / Montpellier / Grenoble</li>
-        <li><a href="https://www.banquedesterritoires.fr/la-progression-de-la-vacance-commerciale-ralentit-surtout-dans-les-villes-moyennes">Procos</a> — moyenne nationale de vacance commerciale</li>
-        <li><a href="http://www.savoie.cci.fr/actualite/1393/137-commerces-dans-les-centres-villes-ou-en-est-on-.htm">CCI Savoie</a> — commerce de centre-ville à Chambéry</li>
-        <li><a href="https://www.centre-ville.org/observez-la-transformation-radicale-de-toulon-au-fil-des-annees/">Centre-Ville en Mouvement</a> — réhabilitation du centre ancien de Toulon</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Mobilité</h3>
-      <ul>
-        <li><a href="https://www.barometre-velo.fr/2025/">Baromètre vélo 2025</a> de la FUB — notes et classement par catégorie</li>
-        <li><a href="https://media.tomtom.com/f/178460/x/986397c92f/tomtom-traffic-index-france.pdf">TomTom Traffic Index</a> — congestion des 29 villes françaises, année 2025</li>
-        <li><a href="https://www.montpellier.fr/en/actions/competences/transport-mobility/le-velo">Montpellier Méditerranée Métropole</a> — vélo-lignes et plan mobilité</li>
-        <li><a href="https://metropoletpm.fr/actualites/le-plan-velo-edition-2026">Métropole Toulon Provence Méditerranée</a> — schéma directeur des aménagements cyclables</li>
-        <li><a href="https://rouelibre.net/2025/11/28/barometre-velo-2025/">Roue Libre</a> — lecture locale du baromètre à Chambéry</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Climat</h3>
-      <ul>
-        <li><a href="https://www.infoclimat.fr/climatologie/normales-records/1991-2020/rennes-st-jacques/valeurs/07130.html">Infoclimat</a> — normales Météo-France 1991-2020, phénomènes par station</li>
-        <li>Wikipédia — fiches climat par ville (relevés Météo-France, ensoleillement et cumuls)</li>
-        <li><a href="https://open-dpe.fr/climat-ville-percentiles/">Open DPE</a> — percentiles de température, saison de chauffe, 264 villes</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Qualité de l'air</h3>
-      <ul>
-        <li><a href="https://www.data.gouv.fr/datasets/donnees-temps-reel-de-mesure-des-concentrations-de-polluants-atmospheriques-reglementes-1">Geod'air / LCSQA</a> — export des moyennes annuelles réglementaires 2025, PM<sub>2.5</sub> et NO<sub>2</sub>, stations de fond</li>
-        <li><a href="https://www.who.int/publications/i/item/9789240034228">OMS</a> — lignes directrices mondiales 2021 : PM<sub>2.5</sub> annuel 5 µg/m³, NO<sub>2</sub> annuel 10 µg/m³</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Environnement</h3>
-      <ul>
-        <li><a href="https://www.parcs-naturels-regionaux.fr/les-parcs/decouvrir-les-58-parcs/parc-naturel-regional-de-chartreuse">Fédération des PNR</a> — Chartreuse, Vercors, Bauges</li>
-        <li><a href="https://www.insee.fr/fr/statistiques/8558420">Insee</a> — accès aux espaces verts dans les grands centres urbains</li>
-        <li><a href="https://www.thegood.fr/palmares-des-villes-les-plus-vertes-de-france-angers-rennes-et-strasbourg-en-tete/">Observatoire des villes vertes</a> (Unep–Hortis)</li>
-        <li><a href="https://www.montpellier.fr/en/vie-quotidienne/vivre-ici/urgences,-securite-et-prevention/je-me-prepare-a-une-situation-d-urgence/connaitre-les-risques-majeurs/forest-fire-risk">Ville de Montpellier</a> — risque feux de forêt</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Falaise</h3>
-      <ul>
-        <li><a href="https://oblyk.org/escalade-autour-de/grenoble">Oblyk</a> — comptage sites et voies dans un rayon de 30 km</li>
-        <li><a href="https://climbingaway.fr/fr/sites-escalade/carte-du-monde-des-sites-d-escalade/france">ClimbingAway</a> et <a href="https://www.escalade-france.fr/sites">escalade-france.fr</a> — recoupement</li>
-        <li><a href="https://www.ffme.fr/escalade/site-naturel/les-falaises-et-sites-naturels/sites-naturels-descalade-liste/">FFME</a> — liste officielle des sites naturels</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Mer et lac</h3>
-      <ul>
-        <li><a href="https://www.grenoble-tourisme.com/fr/blog/les-lacs-et-les-plans-deau-grenoble/">Grenoble Alpes Tourisme</a> — lacs et plans d'eau, régimes de baignade</li>
-        <li><a href="https://lacdetremelin.com/baignade/">Lac de Trémelin</a> — horaires et période de baignade surveillée 2026</li>
-        <li><a href="https://www.chamberymontagnes.com/">Chambéry Montagnes</a> — lac du Bourget et lac d'Aiguebelette</li>
-      </ul>
-    </div>
-    <div>
-      <h3>Risques</h3>
-      <ul>
-        <li><a href="https://www.georisques.gouv.fr/">Géorisques</a> — base GASPAR, arrêtés CatNat par code Insee (API publique)</li>
-        <li><a href="https://www.rhone-mediterranee.eaufrance.fr/cartographie-des-risques-dinondation-du-tri-de-grenoble-voiron">Eaufrance</a> — TRI Grenoble-Voiron ; préfecture de Savoie pour le TRI Chambéry-Aix</li>
-        <li><a href="https://www.ille-et-vilaine.gouv.fr/Actualites/Espace-presse/Communiques-de-presse/2026/Secheresse-L-Ille-et-Vilaine-en-alerte">Préfectures</a> d'Ille-et-Vilaine, de l'Hérault et de l'Isère — arrêtés sécheresse 2026</li>
-      </ul>
-    </div>
-  </div>
 
-  <div class="limits">
-    <h3>Limites du rapport</h3>
-    <ul>
-      <li>Les comptages d'offres d'emploi sont une photographie à une date, sur une seule plateforme. L'écart Grenoble (13 sur HelloWork, 83 sur Indeed) montre l'ampleur du biais de plateforme : à recompter sur deux ou trois sites, à quelques semaines d'intervalle, avant de conclure.</li>
-      <li>Les loyers médians agrègent appartements et maisons, et les millésimes diffèrent (2024 pour Rennes et Grenoble, 2025 pour les autres).</li>
-      <li>Le critère des 15 km est évalué par la composition du bâti des communes comprises dans le rayon, pas par un décompte d'annonces réelles de maisons à louer. C'est la vérification à faire en premier sur le terrain : filtrer les annonces « maison, location, 15 km » sur chaque ville et compter ce qui sort à moins de 1 200 €.</li>
-      <li>Les colonnes « ≤ 40 min à vélo » et « ≤ 1 h de voiture » du critère falaise sont des estimations, pas un recensement. Un décompte automatisé sur OpenStreetMap a été tenté puis écarté : le tag <code>climbing=crag</code> retourne 21 sites dans 12 km autour de Grenoble et <em>zéro</em> autour de Toulon, où le Faron est pourtant dans la ville. L'écart mesure la densité de contribution locale, pas la densité de falaises. Le tag plus large <code>sport=climbing</code> inclut les salles indoor, ce qui fausse la comparaison dans l'autre sens.</li>
-      <li>Les notes du baromètre vélo n'ont pas été retrouvées pour Montpellier et Toulon : leur appréciation repose sur les données d'infrastructure et de part modale publiées par les deux métropoles. De même, TomTom ne publie pas les valeurs individuelles de Rennes et Grenoble, seulement leurs tendances, et Chambéry ne fait pas partie des 29 villes suivies.</li>
-      <li>Aucun taux de vacance commerciale comparable n'a été trouvé pour Toulon : seule la trajectoire de réhabilitation est documentée, pas le niveau actuel.</li>
-      <li>La station de Toulon-Le Baou ne totalise que treize ans de relevés — ses normales sont moins robustes que les autres.</li>
-      <li>Le retrait-gonflement des argiles n'a pas pu être établi commune par commune ici ; il se vérifie à l'adresse sur Géorisques avant toute signature.</li>
-      <li>Les notes de 0 à 10 sont une lecture argumentée des données ci-dessus, pas une mesure. Les curseurs existent pour que vous puissiez substituer votre propre jugement au mien.</li>
-    </ul>
-  </div>
-</section>
 
 </div>
 
 <script>
 (function(){
+  // <<< DONNÉES GÉNÉRÉES — source : _data/criteres.yml, via `just donnees`
   var CRITERES = [
-    {id:"devops",  nom:"Emploi DevOps",   def:11},
-    {id:"cip",     nom:"Emploi CIP",      def:11},
-    {id:"immo",    nom:"Logement 15 km",  def:15},
-    {id:"climat",  nom:"Climat",          def:12},
-    {id:"pollution", nom:"Qualité de l'air", def:7},
-    {id:"centre",  nom:"Piéton & archi.", def:6},
-    {id:"vie",     nom:"Vie de centre",   def:7},
-    {id:"velo",    nom:"Vélo",            def:8},
-    {id:"trafic",  nom:"Embouteillages",  def:6},
-    {id:"envir",   nom:"Environnement",   def:7},
-    {id:"falaise", nom:"Falaise",         def:7},
-    {id:"eau",     nom:"Mer & lac",       def:4},
-    {id:"risques", nom:"Risques",         def:6}
+    {id:"devops", nom:"Emploi DevOps", def:10},
+    {id:"cip", nom:"Emploi CIP", def:10},
+    {id:"immo", nom:"Logement 15 km", def:7},
+    {id:"climat", nom:"Climat", def:5},
+    {id:"pollution", nom:"Qualité de l'air", def:3},
+    {id:"centre", nom:"Piéton & archi.", def:4},
+    {id:"vie", nom:"Vie de centre", def:4},
+    {id:"velo", nom:"Vélo", def:5},
+    {id:"trafic", nom:"Embouteillages", def:4},
+    {id:"envir", nom:"Environnement", def:6},
+    {id:"falaise", nom:"Falaise", def:7},
+    {id:"eau", nom:"Mer & lac", def:4},
+    {id:"risques", nom:"Risques", def:3},
+    {id:"eaupot", nom:"Eau du robinet", def:3},
+    {id:"politique", nom:"Affinité politique", def:5},
+    {id:"transports", nom:"Transports en commun", def:5}
   ];
 
-  // Note sur 10 par critère. Pour « Embouteillages », une note haute signifie
-  // peu de congestion : tous les critères se lisent donc dans le même sens.
+  // Note sur 10, toujours dans le même sens : 10 est favorable. Pour
+  // « Embouteillages », une note haute signifie donc peu de congestion.
+  // Une ville sans note pour un critère en est écartée, jamais comptée zéro.
   var VILLES = [
-    {nom:"Rennes",      dep:"Ille-et-Vilaine", s:{devops:9,   cip:8,   immo:8.5, climat:5.5, pollution:8.5, centre:8.5, vie:9,   velo:9,   trafic:6.5, envir:8,   falaise:1,   eau:2.5, risques:6.5}},
-    {nom:"Grenoble",    dep:"Isère",           s:{devops:8.5, cip:6.5, immo:6.5, climat:4.5, pollution:6,   centre:5.5, vie:5.5, velo:9.5, trafic:4.5, envir:8,   falaise:10,  eau:4,   risques:7}},
-    {nom:"Chambéry",    dep:"Savoie",          s:{devops:3.5, cip:1.5, immo:8.5, climat:5,   pollution:7.5, centre:8,   vie:6,   velo:7,   trafic:8,   envir:9,   falaise:8.5, eau:8,   risques:6.5}},
-    {nom:"Montpellier", dep:"Hérault",         s:{devops:7,   cip:8,   immo:5,   climat:5.5, pollution:7.2, centre:9,   vie:8.5, velo:6.5, trafic:2,   envir:4.5, falaise:4.5, eau:8,   risques:3}},
-    {nom:"Toulon",      dep:"Var",             s:{devops:5,   cip:4,   immo:5.5, climat:7,   pollution:7.4, centre:5,   vie:5.5, velo:3,   trafic:5,   envir:5,   falaise:8.5, eau:10,  risques:4}}
+    {nom:"Rennes", dep:"Ille-et-Vilaine", s:{"devops": 7.5, "cip": 4.5, "immo": 10.0, "climat": 3.7, "pollution": 4.2, "centre": 8.5, "vie": 9.0, "velo": 9.0, "trafic": 6.5, "envir": 8.0, "falaise": 1.0, "eau": 1.0, "risques": 6.5, "eaupot": 1.0, "politique": 9.3, "transports": 10.0}},
+    {nom:"Grenoble", dep:"Isère", s:{"devops": 8.6, "cip": 10.0, "immo": 5.9, "climat": 1.9, "pollution": 1.0, "centre": 5.5, "vie": 5.5, "velo": 9.5, "trafic": 4.5, "envir": 8.0, "falaise": 5.2, "eau": 1.9, "risques": 7.0, "eaupot": 10.0, "politique": 8.9, "transports": 6.8}},
+    {nom:"Chambéry", dep:"Savoie", s:{"devops": 3.3, "cip": 6.5, "immo": 4.9, "climat": 2.6, "pollution": 7.4, "centre": 8.0, "vie": 6.0, "velo": 7.0, "trafic": 8.0, "envir": 9.0, "falaise": 10.0, "eau": 5.3, "risques": 6.5, "eaupot": 5.9, "politique": 8.5, "transports": 1.0}},
+    {nom:"Montpellier", dep:"Hérault", s:{"devops": 10.0, "cip": 4.4, "immo": 1.1, "climat": 6.3, "pollution": 3.9, "centre": 9.0, "vie": 8.5, "velo": 6.5, "trafic": 2.0, "envir": 4.5, "falaise": 3.0, "eau": 4.4, "risques": 3.0, "eaupot": 9.3, "politique": 10.0, "transports": 8.4}},
+    {nom:"Toulon", dep:"Var", s:{"devops": 1.0, "cip": 1.0, "immo": 1.0, "climat": 5.8, "pollution": 10.0, "centre": 5.0, "vie": 5.5, "velo": 3.0, "trafic": 5.0, "envir": 5.0, "falaise": 3.0, "eau": 10.0, "risques": 4.0, "eaupot": 9.4, "politique": 1.0, "transports": 8.4}},
+    {nom:"Paris", dep:"Paris", reference:true, s:{"devops": 10.0, "cip": 10.0, "immo": 0.0, "climat": 3.5, "pollution": 1.0, "falaise": 3.5, "eau": 2.1, "eaupot": 0.0, "politique": 8.0, "transports": 10.0}}
   ];
+  // >>> FIN DONNÉES GÉNÉRÉES
+
+  // Poids par défaut : ceux du rapport, éventuellement remplacés par ceux que
+  // le lecteur a sauvegardés dans son navigateur. Rien ne quitte la page :
+  // le site est statique, il n'y a pas de serveur pour stocker ces réglages.
+  var CLE_POIDS = "cinq-villes:poids-defaut";
+  var defauts = {};
+  CRITERES.forEach(function(c){
+    if (c.id in defauts) { throw new Error("Critère en double : " + c.id); }
+    defauts[c.id] = c.def;
+  });
+
+  try {
+    var enregistres = JSON.parse(localStorage.getItem(CLE_POIDS) || "null");
+    if (enregistres) {
+      CRITERES.forEach(function(c){
+        var v = Number(enregistres[c.id]);
+        // Un critère ajouté depuis la sauvegarde garde le poids du rapport.
+        if (isFinite(v) && v >= 0 && v <= 10) { defauts[c.id] = v; }
+      });
+    }
+  } catch (e) { /* stockage indisponible (navigation privée) : poids du rapport */ }
 
   var poids = {};
-  CRITERES.forEach(function(c){ poids[c.id] = c.def; });
+  CRITERES.forEach(function(c){ poids[c.id] = defauts[c.id]; });
+
+  // Une note manquante fausse silencieusement le classement : on la signale.
+  VILLES.forEach(function(v){
+    CRITERES.forEach(function(c){
+      if (typeof v.s[c.id] !== "number") {
+        console.warn("Note manquante : " + v.nom + " / " + c.id);
+      }
+    });
+  });
 
   var slidersEl = document.getElementById("sliders");
   var rankEl = document.getElementById("ranking");
@@ -1211,8 +1534,8 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
     row.className = "slider";
     row.innerHTML =
       '<label for="w-' + c.id + '">' + c.nom + '</label>' +
-      '<output id="o-' + c.id + '">' + c.def + '</output>' +
-      '<input type="range" id="w-' + c.id + '" min="0" max="40" step="1" value="' + c.def + '">';
+      '<output id="o-' + c.id + '">' + defauts[c.id] + '</output>' +
+      '<input type="range" id="w-' + c.id + '" min="0" max="10" step="1" value="' + defauts[c.id] + '">';
     slidersEl.appendChild(row);
     row.querySelector("input").addEventListener("input", function(e){
       poids[c.id] = Number(e.target.value);
@@ -1222,26 +1545,34 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
   });
 
   function render(){
-    var total = 0;
-    CRITERES.forEach(function(c){ total += poids[c.id]; });
-
     var notes = VILLES.map(function(v){
-      var sc = 0;
-      if (total > 0) {
-        CRITERES.forEach(function(c){ sc += v.s[c.id] * poids[c.id]; });
-        sc = sc / total;
-      }
-      return {nom:v.nom, dep:v.dep, score:sc};
+      // Un critère sans note pour cette ville est retiré du calcul plutôt que
+      // de propager un NaN : le score reste la moyenne pondérée des critères
+      // effectivement renseignés.
+      var sc = 0, total = 0;
+      CRITERES.forEach(function(c){
+        var note = v.s[c.id];
+        if (typeof note !== "number" || isNaN(note)) { return; }
+        sc += note * poids[c.id];
+        total += poids[c.id];
+      });
+      return {nom:v.nom, dep:v.dep, reference: !!v.reference, score: total > 0 ? sc / total : 0};
     });
 
     notes.sort(function(a,b){ return b.score - a.score; });
 
+    // Les villes de référence figurent dans les tableaux et sous le classement,
+    // mais ne concourent pas : ce sont des étalons, pas des destinations.
+    var classees = notes.filter(function(n){ return !n.reference; });
+    var etalons  = notes.filter(function(n){ return n.reference; });
+
     rankEl.textContent = "";
-    notes.forEach(function(n, i){
+    classees.concat(etalons).forEach(function(n, i){
+      var rang = n.reference ? "réf." : (i + 1);
       var row = document.createElement("div");
-      row.className = "rank-row" + (i === 0 ? " lead" : "");
+      row.className = "rank-row" + (i === 0 ? " lead" : "") + (n.reference ? " rank-ref" : "");
       row.innerHTML =
-        '<span class="rank-pos">' + (i + 1) + '</span>' +
+        '<span class="rank-pos">' + rang + '</span>' +
         '<span><span class="rank-name">' + n.nom + '</span>' +
         '<span class="rank-bar"><i style="width:' + (n.score * 10).toFixed(1) + '%"></i></span></span>' +
         '<span class="rank-score">' + n.score.toFixed(1) + '</span>';
@@ -1251,11 +1582,29 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
 
   document.getElementById("reset").addEventListener("click", function(){
     CRITERES.forEach(function(c){
-      poids[c.id] = c.def;
-      document.getElementById("w-" + c.id).value = c.def;
-      document.getElementById("o-" + c.id).textContent = c.def;
+      poids[c.id] = defauts[c.id];
+      document.getElementById("w-" + c.id).value = defauts[c.id];
+      document.getElementById("o-" + c.id).textContent = defauts[c.id];
     });
     render();
+  });
+
+  var saveBtn = document.getElementById("save");
+  var saveLabel = saveBtn.textContent;
+  var saveTimer = null;
+
+  saveBtn.addEventListener("click", function(){
+    CRITERES.forEach(function(c){ defauts[c.id] = poids[c.id]; });
+    var msg;
+    try {
+      localStorage.setItem(CLE_POIDS, JSON.stringify(defauts));
+      msg = "Poids enregistrés dans ce navigateur";
+    } catch (e) {
+      msg = "Enregistrement impossible ici";
+    }
+    saveBtn.textContent = msg;
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(function(){ saveBtn.textContent = saveLabel; }, 2600);
   });
 
   render();

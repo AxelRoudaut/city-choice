@@ -1,0 +1,99 @@
+{
+ "source": "API Recherche d'entreprises",
+ "url": "https://recherche-entreprises.api.gouv.fr/",
+ "collecte": "2026-09-03",
+ "unite": "établissements actifs",
+ "methode": "Établissements actifs par code NAF, sommés commune par commune (plafond API de 10 000 par requête), rapportés à la population Insee.",
+ "villes": {
+  "Rennes": {
+   "population": 230890,
+   "devops_etablissements": 1393,
+   "devops_pour_1000_hab": 6.03,
+   "cip_associations": 301,
+   "cip_pour_1000_hab": 1.3,
+   "naf_devops": [
+    "62.01Z",
+    "62.02A",
+    "63.11Z"
+   ],
+   "naf_cip": [
+    "88.99B"
+   ]
+  },
+  "Grenoble": {
+   "population": 156140,
+   "devops_etablissements": 1030,
+   "devops_pour_1000_hab": 6.6,
+   "cip_associations": 281,
+   "cip_pour_1000_hab": 1.8,
+   "naf_devops": [
+    "62.01Z",
+    "62.02A",
+    "63.11Z"
+   ],
+   "naf_cip": [
+    "88.99B"
+   ]
+  },
+  "Chambéry": {
+   "population": 59964,
+   "devops_etablissements": 228,
+   "devops_pour_1000_hab": 3.8,
+   "cip_associations": 89,
+   "cip_pour_1000_hab": 1.48,
+   "naf_devops": [
+    "62.01Z",
+    "62.02A",
+    "63.11Z"
+   ],
+   "naf_cip": [
+    "88.99B"
+   ]
+  },
+  "Montpellier": {
+   "population": 310240,
+   "devops_etablissements": 2273,
+   "devops_pour_1000_hab": 7.33,
+   "cip_associations": 401,
+   "cip_pour_1000_hab": 1.29,
+   "naf_devops": [
+    "62.01Z",
+    "62.02A",
+    "63.11Z"
+   ],
+   "naf_cip": [
+    "88.99B"
+   ]
+  },
+  "Toulon": {
+   "population": 179116,
+   "devops_etablissements": 461,
+   "devops_pour_1000_hab": 2.57,
+   "cip_associations": 175,
+   "cip_pour_1000_hab": 0.98,
+   "naf_devops": [
+    "62.01Z",
+    "62.02A",
+    "63.11Z"
+   ],
+   "naf_cip": [
+    "88.99B"
+   ]
+  },
+  "Paris": {
+   "population": 2103778,
+   "devops_etablissements": 56866,
+   "devops_pour_1000_hab": 27.03,
+   "cip_associations": 4708,
+   "cip_pour_1000_hab": 2.24,
+   "naf_devops": [
+    "62.01Z",
+    "62.02A",
+    "63.11Z"
+   ],
+   "naf_cip": [
+    "88.99B"
+   ]
+  }
+ }
+}

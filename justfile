@@ -56,6 +56,28 @@ build:
     @{{bundle}} exec jekyll build
     @echo "==> _site/ is ready"
 
+# Rejouer tous les collecteurs de données publiques (réseau requis).
+collecte:
+    @for f in scripts/fetch/[a-z]*.py; do echo "==> $f"; python3 "$f" || echo "    (échec, on continue)"; done
+
+# Recalculer les notes sur 10 depuis les _data/*.json collectés.
+notes:
+    @python3 scripts/notes.py
+
+# Réinjecter _data/criteres.yml dans le bloc JS du rapport.
+donnees:
+    @python3 scripts/build_donnees.py
+
+# Regénérer la liste d'entreprises d'un bassin d'emploi : grenoble ou montpellier (réseau requis).
+candidatures bassin="grenoble":
+    @python3 scripts/candidatures_devops.py {{bassin}}
+    @python3 scripts/candidatures_markdown.py {{bassin}}
+
+# Regénérer la liste d'employeurs qui recrutent en télétravail intégral (réseau requis, ~3 min).
+remote:
+    @python3 scripts/candidatures_remote.py
+    @python3 scripts/candidatures_remote_markdown.py
+
 # Regenerate report.body.html, the fragment published as a Claude Artifact.
 artifact:
     @./build-artifact.sh

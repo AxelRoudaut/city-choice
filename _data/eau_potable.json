@@ -1,0 +1,75 @@
+{
+ "source": "Hub'Eau — contrôle sanitaire de l'eau distribuée (ARS)",
+ "url": "https://hubeau.eaufrance.fr/page/api-qualite-eau-potable",
+ "collecte": "2026-09-03",
+ "unite": "mg/L de nitrates",
+ "methode": "Moyenne des nitrates (paramètre 1340) sur 12 mois glissants, tous réseaux desservant la commune. Limite réglementaire : 50 mg/L.",
+ "villes": {
+  "Rennes": {
+   "nitrates_moy_12_mois": 14.9,
+   "nitrates_min": 1.6,
+   "nitrates_max": 39.8,
+   "releves": 122,
+   "conformite_pct": 100.0,
+   "distributeurs": [
+    "SPL EBR"
+   ],
+   "limite_reglementaire": 50.0
+  },
+  "Grenoble": {
+   "nitrates_moy_12_mois": 3.8,
+   "nitrates_min": 2.3,
+   "nitrates_max": 10.2,
+   "releves": 35,
+   "conformite_pct": 100.0,
+   "distributeurs": [
+    "GRENOBLE ALPES METROPOLE"
+   ],
+   "limite_reglementaire": 50.0
+  },
+  "Chambéry": {
+   "nitrates_moy_12_mois": 8.9,
+   "nitrates_min": 3.7,
+   "nitrates_max": 12.3,
+   "releves": 38,
+   "conformite_pct": 100.0,
+   "distributeurs": [
+    "CA DU GRAND CHAMBÉRY"
+   ],
+   "limite_reglementaire": 50.0
+  },
+  "Montpellier": {
+   "nitrates_moy_12_mois": 4.7,
+   "nitrates_min": 2.88,
+   "nitrates_max": 12.0,
+   "releves": 105,
+   "conformite_pct": 98.7,
+   "distributeurs": [
+    "REGIE DES EAUX MONTPELLIER 3M"
+   ],
+   "limite_reglementaire": 50.0
+  },
+  "Toulon": {
+   "nitrates_moy_12_mois": 4.6,
+   "nitrates_min": 1.4,
+   "nitrates_max": 8.0,
+   "releves": 83,
+   "conformite_pct": 96.4,
+   "distributeurs": [
+    "VEOLIA CEO PROV. MED. OUEST"
+   ],
+   "limite_reglementaire": 50.0
+  },
+  "Paris": {
+   "nitrates_moy_12_mois": 28.7,
+   "nitrates_min": 3.0,
+   "nitrates_max": 49.0,
+   "releves": 1007,
+   "conformite_pct": 99.9,
+   "distributeurs": [
+    "EAU DE PARIS"
+   ],
+   "limite_reglementaire": 50.0
+  }
+ }
+}

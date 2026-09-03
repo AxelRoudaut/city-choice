@@ -1,0 +1,63 @@
+{
+ "source": "Geod'air / LCSQA — moyennes annuelles réglementaires",
+ "url": "https://www.geodair.fr/donnees/api",
+ "collecte": "2026-09-03",
+ "unite": "µg/m³",
+ "methode": "Moyenne annuelle 2025 (type de donnée a7) sur une station unique par ville : la station de fond en implantation urbaine la plus proche, dans un rayon de 20 km, mesurant tous les polluants retenus. Indice d'exposition = PM2.5/5 + NO2/10 (lignes directrices OMS 2021).",
+ "villes": {
+  "Rennes": {
+   "station": "Rennes Thabor",
+   "annee": 2025,
+   "PM2.5": 9.6,
+   "distance_km": 1.1,
+   "NO2": 8.3,
+   "complet": true,
+   "indice_exposition": 2.75
+  },
+  "Grenoble": {
+   "station": "Grenoble Les Frenes",
+   "annee": 2025,
+   "PM2.5": 10.0,
+   "distance_km": 3.1,
+   "NO2": 12.2,
+   "complet": true,
+   "indice_exposition": 3.22
+  },
+  "Chambéry": {
+   "station": "PASTEUR",
+   "annee": 2025,
+   "PM2.5": 8.2,
+   "distance_km": 0.8,
+   "NO2": 13.3,
+   "complet": true,
+   "indice_exposition": 2.97
+  },
+  "Montpellier": {
+   "station": "Montpellier Prés d'Arènes",
+   "annee": 2025,
+   "PM2.5": 9.7,
+   "distance_km": 2.3,
+   "NO2": 11.3,
+   "complet": true,
+   "indice_exposition": 3.07
+  },
+  "Toulon": {
+   "station": "TOULON CLARET",
+   "annee": 2025,
+   "PM2.5": 7.8,
+   "distance_km": 0.8,
+   "NO2": 14.5,
+   "complet": true,
+   "indice_exposition": 3.01
+  },
+  "Paris": {
+   "station": "PARIS 1er Les Halles",
+   "annee": 2025,
+   "PM2.5": 11.5,
+   "distance_km": 0.4,
+   "NO2": 18.2,
+   "complet": true,
+   "indice_exposition": 4.12
+  }
+ }
+}

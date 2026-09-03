@@ -1,0 +1,175 @@
+{
+ "source": "Ministère de l'Intérieur — municipales 2026, second tour",
+ "url": "https://www.data.gouv.fr/api/1/datasets/elections-municipales-2026-resultats-du-second-tour/",
+ "collecte": "2026-09-03",
+ "unite": "% des sièges au conseil municipal",
+ "methode": "Part des sièges détenus par des listes de nuance officielle de gauche (LCOM, LDVG, LECO, LEXG, LFI, LRDG, LSOC, LUG, LVEC). Préférence déclarée : favoriser la gauche.",
+ "villes": {
+  "Rennes": {
+   "tete": "Nathalie APPÉRÉ",
+   "nuance_tete": "LUG",
+   "sieges_total": 61,
+   "sieges_gauche": 50,
+   "part_gauche_pct": 82.0,
+   "listes": [
+    {
+     "candidat": "Nathalie APPÉRÉ",
+     "nuance": "LUG",
+     "liste": "RENNES SOLIDAIRE",
+     "pct_exprimes": 43.78,
+     "sieges": 44
+    },
+    {
+     "candidat": "Charles COMPAGNON",
+     "nuance": "LUC",
+     "liste": "VIVRE RENNES AVEC CHARLES COMPAGNON",
+     "pct_exprimes": 36.38,
+     "sieges": 11
+    },
+    {
+     "candidat": "Marie MESMEUR",
+     "nuance": "LFI",
+     "liste": "FAIRE MIEUX POUR RENNES, UNION POPULAIRE ET ÉCOLOGISTE",
+     "pct_exprimes": 19.84,
+     "sieges": 6
+    }
+   ]
+  },
+  "Grenoble": {
+   "tete": "Laurence RUFFIN",
+   "nuance_tete": "LUG",
+   "sieges_total": 59,
+   "sieges_gauche": 46,
+   "part_gauche_pct": 78.0,
+   "listes": [
+    {
+     "candidat": "Laurence RUFFIN",
+     "nuance": "LUG",
+     "liste": "OUI GRENOBLE",
+     "pct_exprimes": 56.59,
+     "sieges": 46
+    },
+    {
+     "candidat": "Alain CARIGNON",
+     "nuance": "LLR",
+     "liste": "Réconcilier Grenoble",
+     "pct_exprimes": 43.41,
+     "sieges": 13
+    }
+   ]
+  },
+  "Chambéry": {
+   "tete": "Thierry REPENTIN",
+   "nuance_tete": "LUG",
+   "sieges_total": 45,
+   "sieges_gauche": 33,
+   "part_gauche_pct": 73.3,
+   "listes": [
+    {
+     "candidat": "Thierry REPENTIN",
+     "nuance": "LUG",
+     "liste": "Chambéry avance avec Thierry Repentin",
+     "pct_exprimes": 45.22,
+     "sieges": 33
+    },
+    {
+     "candidat": "Vincent PATEY",
+     "nuance": "LDVD",
+     "liste": "LE PACTE",
+     "pct_exprimes": 43.83,
+     "sieges": 10
+    },
+    {
+     "candidat": "Brice BERNARD",
+     "nuance": "LRN",
+     "liste": "RASSEMBLEMENT POUR CHAMBERY !",
+     "pct_exprimes": 10.95,
+     "sieges": 2
+    }
+   ]
+  },
+  "Montpellier": {
+   "tete": "Michaël DELAFOSSE",
+   "nuance_tete": "LUG",
+   "sieges_total": 69,
+   "sieges_gauche": 61,
+   "part_gauche_pct": 88.4,
+   "listes": [
+    {
+     "candidat": "Michaël DELAFOSSE",
+     "nuance": "LUG",
+     "liste": "DEMAIN MONTPELLIER",
+     "pct_exprimes": 50.13,
+     "sieges": 53
+    },
+    {
+     "candidat": "Nathalie OZIOL",
+     "nuance": "LFI",
+     "liste": "FAIRE MIEUX POUR MONTPELLIER",
+     "pct_exprimes": 25.06,
+     "sieges": 8
+    },
+    {
+     "candidat": "Mohed ALTRAD",
+     "nuance": "LDVC",
+     "liste": "MONTPELLIER NOTRE FIERTÉ",
+     "pct_exprimes": 24.81,
+     "sieges": 8
+    }
+   ]
+  },
+  "Toulon": {
+   "tete": "Josée MASSI",
+   "nuance_tete": "LDVD",
+   "sieges_total": 59,
+   "sieges_gauche": 0,
+   "part_gauche_pct": 0.0,
+   "listes": [
+    {
+     "candidat": "Josée MASSI",
+     "nuance": "LDVD",
+     "liste": "TOULON MON PARTI",
+     "pct_exprimes": 52.35,
+     "sieges": 45
+    },
+    {
+     "candidat": "Laure LAVALETTE",
+     "nuance": "LRN",
+     "liste": "UN AVENIR POUR TOULON",
+     "pct_exprimes": 47.65,
+     "sieges": 14
+    }
+   ]
+  },
+  "Paris": {
+   "tete": "Emmanuel GRÉGOIRE",
+   "nuance_tete": "LUG",
+   "sieges_total": 163,
+   "sieges_gauche": 112,
+   "part_gauche_pct": 68.7,
+   "listes": [
+    {
+     "candidat": "Emmanuel GRÉGOIRE",
+     "nuance": "LUG",
+     "liste": "Paris est à vous! avec Emmanuel Grégoire L'union de la gauche et des écologistes",
+     "pct_exprimes": 50.52,
+     "sieges": 103
+    },
+    {
+     "candidat": "Rachida DATI",
+     "nuance": "LUD",
+     "liste": "CHANGER PARIS AVEC RACHIDA DATI",
+     "pct_exprimes": 41.52,
+     "sieges": 51
+    },
+    {
+     "candidat": "Sophia CHIKIROU",
+     "nuance": "LFI",
+     "liste": "LE NOUVEAU PARIS POPULAIRE",
+     "pct_exprimes": 7.96,
+     "sieges": 9
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,39 @@
+{
+ "source": "Carte des loyers — indicateurs de loyers d'annonce (DHUP)",
+ "url": "https://www.data.gouv.fr/api/1/datasets/carte-des-loyers-indicateurs-de-loyers-dannonce-par-commune-en-2025/",
+ "collecte": "2026-09-03",
+ "unite": "€/m²",
+ "methode": "Loyer d'annonce prédit appartement. Ville : valeur communale (Paris : moyenne des arrondissements pondérée par le nombre d'annonces). Rayon : moyenne des communes dont le centroïde est à moins de 15 km.",
+ "villes": {
+  "Rennes": {
+   "loyer_ville_eur_m2": 14.87,
+   "loyer_moyen_15km_eur_m2": 12.47,
+   "communes_dans_le_rayon": 40
+  },
+  "Grenoble": {
+   "loyer_ville_eur_m2": 13.41,
+   "loyer_moyen_15km_eur_m2": 13.75,
+   "communes_dans_le_rayon": 55
+  },
+  "Chambéry": {
+   "loyer_ville_eur_m2": 16.1,
+   "loyer_moyen_15km_eur_m2": 14.04,
+   "communes_dans_le_rayon": 62
+  },
+  "Montpellier": {
+   "loyer_ville_eur_m2": 15.49,
+   "loyer_moyen_15km_eur_m2": 15.24,
+   "communes_dans_le_rayon": 42
+  },
+  "Toulon": {
+   "loyer_ville_eur_m2": 14.43,
+   "loyer_moyen_15km_eur_m2": 15.26,
+   "communes_dans_le_rayon": 20
+  },
+  "Paris": {
+   "loyer_ville_eur_m2": 32.13,
+   "loyer_moyen_15km_eur_m2": 22.35,
+   "communes_dans_le_rayon": 115
+  }
+ }
+}

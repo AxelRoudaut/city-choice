@@ -1,0 +1,247 @@
+# Critères du comparatif : pondération par défaut et notes sur 10.
+#
+# Ce fichier est la SOURCE des données du classement. Après modification :
+#     just donnees      (régénère le bloc JS de _includes/report-body.html)
+#     just artifact     (régénère report.body.html)
+#
+# poids_defaut     position initiale du curseur, 0 à 10. Seul compte le poids
+#                  relatif : le total est normalisé à l'affichage.
+# notes            0 à 10, toujours dans le même sens (10 = favorable).
+#                  Une ville sans note pour un critère est écartée du calcul
+#                  de ce critère, jamais comptée comme zéro.
+# notes_issues_de  « calculee »    : dérivée d'un jeu de données par la méthode
+#                                    décrite, reproductible par un script.
+#                  « appreciation » : lecture argumentée des données du critère.
+#
+# Règle d'or (CLAUDE.md) : aucun chiffre estimé. Pas de source, pas de note.
+- id: devops
+  nom: Emploi DevOps
+  poids_defaut: 10
+  source: API Recherche d'entreprises
+  methode: Établissements actifs en NAF 62.01Z, 62.02A et 63.11Z rapportés à 1 000 habitants ; plus il
+    est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les
+    villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 7.5
+    Grenoble: 8.6
+    Chambéry: 3.3
+    Montpellier: 10.0
+    Toulon: 1.0
+    Paris: 10.0
+- id: cip
+  nom: Emploi CIP
+  poids_defaut: 10
+  source: API Recherche d'entreprises
+  methode: Associations actives en NAF 88.99B rapportées à 1 000 habitants ; plus il est élevé, mieux
+    c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence
+    étant placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 4.5
+    Grenoble: 10.0
+    Chambéry: 6.5
+    Montpellier: 4.4
+    Toulon: 1.0
+    Paris: 10.0
+- id: immo
+  nom: Logement 15 km
+  poids_defaut: 7
+  source: Carte des loyers (DHUP)
+  methode: Loyer d'annonce moyen dans un rayon de 15 km, en €/m² ; moins il est élevé, mieux c'est. La
+    note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant
+    placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 10.0
+    Grenoble: 5.9
+    Chambéry: 4.9
+    Montpellier: 1.1
+    Toulon: 1.0
+    Paris: 0.0
+- id: climat
+  nom: Climat
+  poids_defaut: 5
+  source: Météo-France, climatologie de base
+  methode: 'Beau temps sans sécheresse : ensoleillement (40 %), rareté des canicules au-dessus de 30 °C
+    (30 %) et rareté des jours de pluie (30 %), le tout minoré si le cumul de juin à août tombe sous 120
+    mm. Chaque composante est étalée sur les seules villes classées, les villes de référence étant placées
+    sur la même échelle. Les poids sont réglables dans le champ « parametres » de ce fichier.'
+  notes_issues_de: calculee
+  notes:
+    Rennes: 3.7
+    Grenoble: 1.9
+    Chambéry: 2.6
+    Montpellier: 6.3
+    Toulon: 5.8
+    Paris: 3.5
+  parametres:
+    commentaire: 'Préférence déclarée : du beau temps sans sécheresse. L''ensoleillement compte positivement,
+      les canicules et les jours de pluie négativement ; un été trop sec applique un malus. Modifiez ces
+      poids pour changer le critère sans toucher au code.'
+    poids_soleil: 0.4
+    poids_canicule: 0.3
+    poids_jours_pluie: 0.3
+    seuil_pluie_ete_mm: 120
+    malus_secheresse_max: 0.6
+- id: pollution
+  nom: Qualité de l'air
+  poids_defaut: 3
+  source: Geod'air / LCSQA
+  methode: Moyenne annuelle PM2.5 sur station de fond urbaine ; note inversée, 0 pour 15 µg/m³, 10 pour
+    5 µg/m³.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 4.2
+    Grenoble: 1.0
+    Chambéry: 7.4
+    Montpellier: 3.9
+    Toulon: 10.0
+    Paris: 1.0
+- id: centre
+  nom: Piéton & archi.
+  poids_defaut: 4
+  source: villes.plus, base Mérimée
+  methode: Lecture de la part piétonne et du patrimoine protégé.
+  notes_issues_de: appreciation
+  notes:
+    Rennes: 8.5
+    Grenoble: 5.5
+    Chambéry: 8.0
+    Montpellier: 9.0
+    Toulon: 5.0
+- id: vie
+  nom: Vie de centre
+  poids_defaut: 4
+  source: Observatoires du commerce, Procos
+  methode: Lecture de la vitalité commerciale et de la vacance.
+  notes_issues_de: appreciation
+  notes:
+    Rennes: 9.0
+    Grenoble: 5.5
+    Chambéry: 6.0
+    Montpellier: 8.5
+    Toulon: 5.5
+- id: velo
+  nom: Vélo
+  poids_defaut: 5
+  source: Baromètre FUB
+  methode: Note du baromètre des villes cyclables.
+  notes_issues_de: appreciation
+  notes:
+    Rennes: 9.0
+    Grenoble: 9.5
+    Chambéry: 7.0
+    Montpellier: 6.5
+    Toulon: 3.0
+- id: trafic
+  nom: Embouteillages
+  poids_defaut: 4
+  source: TomTom Traffic Index
+  methode: Temps perdu en congestion ; note haute = peu de congestion.
+  notes_issues_de: appreciation
+  notes:
+    Rennes: 6.5
+    Grenoble: 4.5
+    Chambéry: 8.0
+    Montpellier: 2.0
+    Toulon: 5.0
+- id: envir
+  nom: Environnement
+  poids_defaut: 6
+  source: PNR, Insee, Observatoire des villes vertes
+  methode: Lecture des espaces naturels et de la pression urbaine.
+  notes_issues_de: appreciation
+  notes:
+    Rennes: 8.0
+    Grenoble: 8.0
+    Chambéry: 9.0
+    Montpellier: 4.5
+    Toulon: 5.0
+- id: falaise
+  nom: Falaise
+  poids_defaut: 7
+  source: OpenStreetMap
+  methode: Sites d'escalade avec corde à moins de 50 km (racine carrée du décompte) ; plus il est élevé,
+    mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de
+    référence étant placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 1.0
+    Grenoble: 5.2
+    Chambéry: 10.0
+    Montpellier: 3.0
+    Toulon: 3.0
+    Paris: 3.5
+- id: eau
+  nom: Mer & lac
+  poids_defaut: 4
+  source: OpenStreetMap
+  methode: Spots de baignade à moins de 30 km, surveillés ou non (racine carrée du décompte) ; plus il
+    est élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les
+    villes de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 1.0
+    Grenoble: 1.9
+    Chambéry: 5.3
+    Montpellier: 4.4
+    Toulon: 10.0
+    Paris: 2.1
+- id: risques
+  nom: Risques
+  poids_defaut: 3
+  source: Géorisques (GASPAR)
+  methode: Lecture des risques naturels et technologiques recensés.
+  notes_issues_de: appreciation
+  notes:
+    Rennes: 6.5
+    Grenoble: 7.0
+    Chambéry: 6.5
+    Montpellier: 3.0
+    Toulon: 4.0
+- id: eaupot
+  nom: Eau du robinet
+  poids_defaut: 3
+  source: Hub'Eau, contrôle sanitaire ARS
+  methode: Nitrates dans l'eau distribuée, moyenne sur 12 mois glissants ; moins il est élevé, mieux c'est.
+    La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes de référence étant
+    placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 1.0
+    Grenoble: 10.0
+    Chambéry: 5.9
+    Montpellier: 9.3
+    Toulon: 9.4
+    Paris: 0.0
+- id: politique
+  nom: Affinité politique
+  poids_defaut: 5
+  source: Ministère de l'Intérieur, municipales 2026
+  methode: Part des sièges de gauche au conseil municipal, d'après les nuances officielles ; plus il est
+    élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes
+    de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 9.3
+    Grenoble: 8.9
+    Chambéry: 8.5
+    Montpellier: 10.0
+    Toulon: 1.0
+    Paris: 8.0
+- id: transports
+  nom: Transports en commun
+  poids_defaut: 5
+  source: transport.data.gouv.fr (GTFS)
+  methode: Couverture des communes de l'EPCI, plus huit points par mode lourd du réseau ; plus il est
+    élevé, mieux c'est. La note étale cet indicateur de 1 à 10 sur les seules villes classées, les villes
+    de référence étant placées sur la même échelle. Le barème se recalibre si le panel change.
+  notes_issues_de: calculee
+  notes:
+    Rennes: 10.0
+    Grenoble: 6.8
+    Chambéry: 1.0
+    Montpellier: 8.4
+    Toulon: 8.4
+    Paris: 10.0

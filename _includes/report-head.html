@@ -117,6 +117,7 @@ h1{font-size:clamp(40px,6.4vw,72px);line-height:.98;letter-spacing:-.028em;font-
 .reset{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;background:none;border:1px solid var(--rule);color:var(--ink-2);padding:7px 12px;cursor:pointer}
 .reset:hover{border-color:var(--ink-3);color:var(--ink)}
 .reset:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
+.tool-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 
 /* ---------- sections ---------- */
 section.crit{padding:56px 0 0;border-top:1px solid var(--rule);margin-top:56px}
@@ -196,4 +197,17 @@ a:focus-visible{outline:2px solid var(--bistre);outline-offset:2px}
 @media (prefers-reduced-motion:reduce){
   *{transition:none!important;animation:none!important}
 }
+.rank-ref{opacity:.72;border-top:1px dashed var(--rule);margin-top:.35rem;padding-top:.5rem}
+.rank-ref .rank-pos{font-size:.72em;letter-spacing:.04em;text-transform:uppercase}
+.crit-src{margin:1.5rem 0 0;padding:.7rem .85rem;border-left:2px solid var(--rule);
+  background:var(--paper-2);font-size:.78rem;line-height:1.5;color:var(--ink-2);border-radius:0 3px 3px 0}
+.crit-src strong{color:var(--ink);font-weight:600}
+.src-lab{display:inline-block;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:.66rem;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);margin-right:.5rem}
+.src-meth{display:block;margin-top:.3rem;color:var(--ink-3)}
+.src-genre{display:block;margin-top:.25rem;font-size:.72rem;color:var(--ink-3);font-style:italic}
+tr.ville-ref{background:var(--paper-2)}
+tr.ville-ref th{font-weight:500}
+tr.ville-ref th::after{content:" · réf.";font-size:.72em;letter-spacing:.04em;color:var(--ink-3);
+  text-transform:uppercase;font-weight:400}
 </style>

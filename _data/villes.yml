@@ -1,0 +1,19 @@
+# Panel. « reference: true » = présent dans les tableaux, hors classement pondéré.
+Rennes:
+  departement: Ille-et-Vilaine
+  reference: false
+Grenoble:
+  departement: Isère
+  reference: false
+Chambéry:
+  departement: Savoie
+  reference: false
+Montpellier:
+  departement: Hérault
+  reference: false
+Toulon:
+  departement: Var
+  reference: false
+Paris:
+  departement: Paris
+  reference: true

@@ -1,0 +1,87 @@
+{
+ "source": "OpenStreetMap via Overpass",
+ "url": "https://overpass-api.de/",
+ "collecte": "2026-09-03",
+ "unite": "nombre de sites",
+ "methode": "Falaise : sites sport=climbing à moins de 50 km portant un marqueur d'escalade avec corde ; le bloc et les salles sont exclus. Baignade : plages et zones de baignade à moins de 30 km, surveillées ou non.",
+ "villes": {
+  "Rennes": {
+   "falaise": {
+    "sites_avec_corde": 2,
+    "sites_bruts": 24,
+    "rayon_km": 50
+   },
+   "baignade": {
+    "spots": 10,
+    "plages": 10,
+    "zones_baignade": 0,
+    "rayon_km": 30
+   }
+  },
+  "Grenoble": {
+   "falaise": {
+    "sites_avec_corde": 93,
+    "sites_bruts": 268,
+    "rayon_km": 50
+   },
+   "baignade": {
+    "spots": 19,
+    "plages": 15,
+    "zones_baignade": 4,
+    "rayon_km": 30
+   }
+  },
+  "Chambéry": {
+   "falaise": {
+    "sites_avec_corde": 357,
+    "sites_bruts": 535,
+    "rayon_km": 50
+   },
+   "baignade": {
+    "spots": 77,
+    "plages": 52,
+    "zones_baignade": 25,
+    "rayon_km": 30
+   }
+  },
+  "Montpellier": {
+   "falaise": {
+    "sites_avec_corde": 28,
+    "sites_bruts": 98,
+    "rayon_km": 50
+   },
+   "baignade": {
+    "spots": 59,
+    "plages": 59,
+    "zones_baignade": 0,
+    "rayon_km": 30
+   }
+  },
+  "Toulon": {
+   "falaise": {
+    "sites_avec_corde": 29,
+    "sites_bruts": 519,
+    "rayon_km": 50
+   },
+   "baignade": {
+    "spots": 224,
+    "plages": 216,
+    "zones_baignade": 8,
+    "rayon_km": 30
+   }
+  },
+  "Paris": {
+   "falaise": {
+    "sites_avec_corde": 39,
+    "sites_bruts": 1035,
+    "rayon_km": 50
+   },
+   "baignade": {
+    "spots": 21,
+    "plages": 20,
+    "zones_baignade": 1,
+    "rayon_km": 30
+   }
+  }
+ }
+}

@@ -1,0 +1,98 @@
+{
+ "source": "transport.data.gouv.fr — GTFS des réseaux urbains",
+ "url": "https://transport.data.gouv.fr/datasets?type=public-transit",
+ "collecte": "2026-09-03",
+ "unite": "% et indice",
+ "methode": "Couverture : part des communes de l'EPCI ayant au moins un arrêt. Qualité : somme des poids des modes présents (métro 3, tram et train 2, funiculaire, câble et ferry 1). Le GTFS retenu est celui offrant le plus de modes distincts, pour éviter un réseau partiel.",
+ "villes": {
+  "Rennes": {
+   "reseau": "Réseau urbain STAR",
+   "communes_epci": 43,
+   "communes_couvertes": 43,
+   "couverture_communes_pct": 100.0,
+   "couverture_population_pct": 100.0,
+   "arrets": 1776,
+   "lignes": 155,
+   "modes": {
+    "métro": 2,
+    "bus": 153
+   },
+   "indice_qualite_reseau": 3
+  },
+  "Grenoble": {
+   "reseau": "Réseau urbain TAG",
+   "communes_epci": 49,
+   "communes_couvertes": 45,
+   "couverture_communes_pct": 91.8,
+   "couverture_population_pct": 99.3,
+   "arrets": 1766,
+   "lignes": 55,
+   "modes": {
+    "bus": 50,
+    "tram": 5
+   },
+   "indice_qualite_reseau": 2
+  },
+  "Chambéry": {
+   "reseau": "Réseau urbain Synchro Bus",
+   "communes_epci": 38,
+   "communes_couvertes": 30,
+   "couverture_communes_pct": 78.9,
+   "couverture_population_pct": 98.3,
+   "arrets": 808,
+   "lignes": 24,
+   "modes": {
+    "bus": 24
+   },
+   "indice_qualite_reseau": 0
+  },
+  "Montpellier": {
+   "reseau": "Réseau urbain et suburbain TaM",
+   "communes_epci": 31,
+   "communes_couvertes": 31,
+   "couverture_communes_pct": 100.0,
+   "couverture_population_pct": 100.0,
+   "arrets": 1455,
+   "lignes": 45,
+   "modes": {
+    "tram": 5,
+    "bus": 35,
+    "autre": 5
+   },
+   "indice_qualite_reseau": 2
+  },
+  "Toulon": {
+   "reseau": "Réseau urbain Mistral",
+   "communes_epci": 12,
+   "communes_couvertes": 12,
+   "couverture_communes_pct": 100.0,
+   "couverture_population_pct": 100.0,
+   "arrets": 2019,
+   "lignes": 99,
+   "modes": {
+    "bus": 95,
+    "ferry": 3,
+    "câble": 1
+   },
+   "indice_qualite_reseau": 2
+  },
+  "Paris": {
+   "reseau": "Réseaux urbains et interurbains d'Île-de-France Mobilités (IDFM)",
+   "communes_epci": 130,
+   "communes_couvertes": 130,
+   "couverture_communes_pct": 100.0,
+   "couverture_population_pct": 100.0,
+   "arrets": 35507,
+   "lignes": 2022,
+   "modes": {
+    "bus": 1963,
+    "tram": 17,
+    "métro": 16,
+    "funiculaire": 1,
+    "câble": 1,
+    "train": 24
+   },
+   "indice_qualite_reseau": 9
+  }
+ }
+}
